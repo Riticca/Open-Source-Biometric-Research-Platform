@@ -31,8 +31,8 @@ public class MainWindow extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jFileChooser1 = new javax.swing.JFileChooser();
+//branch test
+        jFileChooser1 = new javax.swing.JFileChooser(); 
         buttonGroup2 = new javax.swing.ButtonGroup();
         jSlider1 = new javax.swing.JSlider();
         jPanel7 = new javax.swing.JPanel();
