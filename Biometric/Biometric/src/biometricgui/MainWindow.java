@@ -5,10 +5,20 @@
  */
 package biometricgui;
 
+import java.awt.Canvas;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+
+import com.sun.jna.Native;
+
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.discovery.NativeDiscovery;
+import uk.co.caprica.vlcj.player.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 /**
  *
@@ -149,6 +159,12 @@ public class MainWindow extends javax.swing.JFrame {
         jButton1.setText("Eye Tracking");
 
         jButton2.setText("User Video");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            	jLabel4.setVisible(false);
+                userVideoHandler(evt);
+            }
+        });
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -387,6 +403,33 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void userVideoHandler(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userVideoHandler
+        JFileChooser videochooser = new JFileChooser();
+        videochooser.showOpenDialog(null);
+        File f = videochooser.getSelectedFile();
+        runMedia( f.getAbsolutePath() );
+    }//GEN-LAST:event_userVideoHandler
+
+    void runMedia(String filePath){
+        NativeDiscovery nd = new NativeDiscovery();
+        if (!nd.discover()) {
+           System.out.println("VLC not found");
+           System.exit(-1);
+        }   
+        canvas = new Canvas();
+        jPanel9.add(canvas);
+        canvas.setSize(jPanel9.getSize());
+        jPanel9.revalidate();
+        jPanel9.repaint();
+        
+        mediaPlayerFactory = new MediaPlayerFactory();
+        mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
+        CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
+        mediaPlayer.setVideoSurface(videoSurface);
+        mediaPlayer.playMedia(filePath);
+        
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -416,8 +459,10 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new MainWindow().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable(){
+        	public void run() {
+        		new MainWindow().setVisible(true);
+        	}
         });
     }
 
@@ -451,4 +496,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+    
+    private Canvas canvas;
+    private EmbeddedMediaPlayer mediaPlayer;
+    private MediaPlayerFactory mediaPlayerFactory;
+
 }
