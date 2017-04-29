@@ -25,6 +25,15 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
 import uk.co.caprica.vlcj.player.media.Media;
 
+import com.sun.jna.Native;
+
+import uk.co.caprica.vlcj.binding.LibVlc;
+import uk.co.caprica.vlcj.discovery.NativeDiscovery;
+import uk.co.caprica.vlcj.player.MediaPlayerFactory;
+import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
+import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
+import uk.co.caprica.vlcj.runtime.RuntimeUtil;
+
 /**
  *
  * @author smurali
@@ -512,8 +521,10 @@ public class MainWindow extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new MainWindow().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable(){
+        	public void run() {
+        		new MainWindow().setVisible(true);
+        	}
         });
     }
 private XYDataset createDataset( ) {
@@ -564,4 +575,9 @@ private XYDataset createDataset( ) {
     private javax.swing.JSlider jSlider1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+    
+    private Canvas canvas;
+    private EmbeddedMediaPlayer mediaPlayer;
+    private MediaPlayerFactory mediaPlayerFactory;
+
 }
