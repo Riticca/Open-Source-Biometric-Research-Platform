@@ -25,7 +25,7 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
 import uk.co.caprica.vlcj.player.media.Media;
 
-import com.sun.jna.Native;
+//import com.sun.jna.Native;
 
 import uk.co.caprica.vlcj.binding.LibVlc;
 import uk.co.caprica.vlcj.discovery.NativeDiscovery;
@@ -490,6 +490,7 @@ public class MainWindow extends javax.swing.JFrame {
         EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
         CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
         mediaPlayer.setVideoSurface(videoSurface);
+        jLabel2.setVisible(false);
         mediaPlayer.playMedia(filePath);
     }
     /**
