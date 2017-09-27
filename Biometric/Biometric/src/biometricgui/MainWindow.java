@@ -423,7 +423,7 @@ public class MainWindow extends javax.swing.JFrame {
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanel12.getSize());
         try {
-         BufferedReader in = new BufferedReader(new FileReader("./testfile.txt"));
+         BufferedReader in = new BufferedReader(new FileReader("testfile.txt"));
          String str;
          while ((str = in.readLine()) != null) {
             System.out.println(str);
@@ -431,7 +431,7 @@ public class MainWindow extends javax.swing.JFrame {
          System.out.println(str);
       } catch (IOException e) {
           System.out.println(System.getProperty("user.dir"));
-          System.out.println("Error in reading file");
+         // System.out.println("Error in reading file");
       }
         jPanel12.add(chartPanel);
         jPanel12.revalidate();
@@ -440,7 +440,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         final XYDataset dataset = createDataset( );
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","Value",dataset,true,false,false);
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","Value",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanel13.getSize());
         jPanel13.add(chartPanel);
@@ -450,7 +450,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         final XYDataset dataset = createDataset( );
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","Value",dataset,true,false,false);
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","Value",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanel10.getSize());
         jPanel10.add(chartPanel);        
@@ -565,9 +565,6 @@ private XYDataset createDataset( ) {
       return new TimeSeriesCollection(series);
    }     
 
-//   private JFreeChart createChart( final XYDataset dataset ) {
-//      return ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","Value",dataset,false,false,false);
-//   }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
