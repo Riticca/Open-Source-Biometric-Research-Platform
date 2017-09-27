@@ -35,10 +35,7 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
 import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
-/**
- *
- * @author smurali
- */
+
 public class MainWindow extends javax.swing.JFrame {
 
     /**
@@ -422,7 +419,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         final XYDataset dataset = createDataset( );
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","Value",dataset,true,false,false);
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","EEG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanel12.getSize());
         try {
