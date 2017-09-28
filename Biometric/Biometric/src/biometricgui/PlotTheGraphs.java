@@ -22,7 +22,7 @@ import org.jfree.data.xy.XYDataset;
  *
  * @author Gargi
  */
-public class PlotTheGraphs {
+public class PlotTheGraphs extends MainWindow {
     
     public XYDataset series() 
     {
