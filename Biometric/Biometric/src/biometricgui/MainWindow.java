@@ -478,7 +478,7 @@ public class MainWindow extends javax.swing.JFrame {
          System.out.println(str);
          } catch (IOException e) {
               System.out.println(System.getProperty("user.dir"));
-             // System.out.println("Error in reading file");
+              System.out.println("Error in reading file");
         }
         chartPanel.setSize(jPanelEEG.getSize());
         jPanelEEG.add(chartPanel);

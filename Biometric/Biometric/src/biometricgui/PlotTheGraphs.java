@@ -9,6 +9,6 @@ package biometricgui;
  *
  * @author Gargi
  */
-public class PlotTheGraphs {
+public class PlotTheGraphs extends MainWindow {
     
 }
