@@ -463,9 +463,16 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
+        
+         JFileChooser eegFileChooser = new JFileChooser();
+        eegFileChooser.showOpenDialog(null);
+        File f = eegFileChooser.getSelectedFile();
+        eegFilePath =  f.getAbsolutePath() ;
+        
+               
         PlotTheGraphs gr = new PlotTheGraphs();
-        String str = "eeginput.txt";
-        final XYDataset dataset = gr.series(str);
+       // String str = "eeginput.txt";
+        final XYDataset dataset = gr.series(eegFilePath);
         
                
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","EEG value captured",dataset,false,false,false);
@@ -479,9 +486,14 @@ public class MainWindow extends javax.swing.JFrame {
 
 
     private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        JFileChooser emgFileChooser = new JFileChooser();
+        emgFileChooser.showOpenDialog(null);
+        File f = emgFileChooser.getSelectedFile();
+        emgFilePath =  f.getAbsolutePath() ;
+        
         PlotTheGraphs gr = new PlotTheGraphs();
-        String str = "emginput.txt";
-        final XYDataset dataset = gr.series(str);
+        //String str = "emginput.txt";
+        final XYDataset dataset = gr.series(emgFilePath);
 
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","EMG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
@@ -492,9 +504,15 @@ public class MainWindow extends javax.swing.JFrame {
     }                                          
 
     private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
+        
+        JFileChooser ecgFileChooser = new JFileChooser();
+        ecgFileChooser.showOpenDialog(null);
+        File f = ecgFileChooser.getSelectedFile();
+        ecgFilePath =  f.getAbsolutePath() ;
+        
         PlotTheGraphs gr = new PlotTheGraphs();
-        String str = "ecginput.txt";
-        final XYDataset dataset = gr.series(str);
+       // String str = "ecginput.txt";
+        final XYDataset dataset = gr.series(ecgFilePath);
         
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","ECG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
@@ -505,9 +523,14 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonECGActionPerformed
 
     private void jButtonGSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGSRActionPerformed
-         PlotTheGraphs gr = new PlotTheGraphs();
-        String str = "gsrinput.txt";
-        final XYDataset dataset = gr.series(str);
+         JFileChooser gsrFileChooser = new JFileChooser();
+        gsrFileChooser.showOpenDialog(null);
+        File f = gsrFileChooser.getSelectedFile();
+        gsrFilePath =  f.getAbsolutePath() ; 
+        
+        PlotTheGraphs gr = new PlotTheGraphs();
+        //String str = "gsrinput.txt";
+        final XYDataset dataset = gr.series(gsrFilePath);
         
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("GSR Readings","Seconds","GSR value captured",dataset,false,false,false);
         final ChartPanel CP = new ChartPanel( chart );        
@@ -638,7 +661,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
 private XYDataset createDataset( ) {
-      final TimeSeries series = new TimeSeries( "Biometric Data" );         
+      /*final TimeSeries series = new TimeSeries( "Biometric Data" );         
       Second current = new Second( );         
       double value = 100.0;         
       
@@ -654,6 +677,8 @@ private XYDataset createDataset( ) {
       }
 
       return new TimeSeriesCollection(series);
+*/
+      return null;
    }     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -688,4 +713,8 @@ private XYDataset createDataset( ) {
     private Canvas canvas;
     private EmbeddedMediaPlayer mediaPlayer;
     private MediaPlayerFactory mediaPlayerFactory;
+    private String eegFilePath;
+    private String ecgFilePath;
+    private String emgFilePath;
+    private String gsrFilePath;
 }

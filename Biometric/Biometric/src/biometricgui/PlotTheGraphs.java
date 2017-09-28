@@ -27,6 +27,7 @@ public class PlotTheGraphs extends MainWindow {
     
     public XYDataset series(String fileToRead) 
     {
+        System.out.println("The file read is "+fileToRead+"\n");
         final TimeSeries series = new TimeSeries( "Biometric Data" );
             Second current = new Second( );
         try {
@@ -36,8 +37,8 @@ public class PlotTheGraphs extends MainWindow {
             
             BufferedReader br,rebr;
             br = new BufferedReader(new FileReader(fileToRead));
-          
-            System.out.println("The buffered Read is"+br);
+             
+           
              while ((str = br.readLine()) != null) {
                  numberofDataValues ++;
              }
@@ -61,7 +62,7 @@ public class PlotTheGraphs extends MainWindow {
                 }
             }
            //}
-            System.out.println("The buffered now Read is"+br);
+           
         } catch (FileNotFoundException ex) {
             Logger.getLogger(PlotTheGraphs.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
