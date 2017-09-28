@@ -462,14 +462,17 @@ public class MainWindow extends javax.swing.JFrame {
          JFileChooser eegFileChooser = new JFileChooser();
         eegFileChooser.showOpenDialog(null);
         File f = eegFileChooser.getSelectedFile();
-        eegFilePath =  f.getAbsolutePath() ;
+        if(f  != null)
+        {
+            eegFilePath =  f.getAbsolutePath() ;
         
                
         PlotTheGraphs gr = new PlotTheGraphs();
        // String str = "eeginput.txt";
+       
         final XYDataset dataset = gr.series(eegFilePath);
         
-               
+        if(jToggleButtonStart.isEnabled()){
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","EEG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         
@@ -477,56 +480,69 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelEEG.add(chartPanel);
         jPanelEEG.revalidate();
         jPanelEEG.repaint();
+        
     }//GEN-LAST:event_jButtonEEGActionPerformed
-
-
+        }
+        else
+            System.out.println("File not selected\n");
+    }
     private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {                                         
         JFileChooser emgFileChooser = new JFileChooser();
         emgFileChooser.showOpenDialog(null);
         File f = emgFileChooser.getSelectedFile();
+     if(f  != null)
+        {
         emgFilePath =  f.getAbsolutePath() ;
         
         PlotTheGraphs gr = new PlotTheGraphs();
         //String str = "emginput.txt";
         final XYDataset dataset = gr.series(emgFilePath);
-
+        if(jToggleButtonStart.isEnabled()){    
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","EMG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanelEMG.getSize());
         jPanelEMG.add(chartPanel);
         jPanelEMG.revalidate();
         jPanelEMG.repaint();
-    }                                          
-
+    }
+        }
+     else
+          System.out.println("File not selected\n");
+    }
     private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
         
         JFileChooser ecgFileChooser = new JFileChooser();
         ecgFileChooser.showOpenDialog(null);
         File f = ecgFileChooser.getSelectedFile();
+       if(f != null){
         ecgFilePath =  f.getAbsolutePath() ;
-        
+       
         PlotTheGraphs gr = new PlotTheGraphs();
        // String str = "ecginput.txt";
         final XYDataset dataset = gr.series(ecgFilePath);
-        
+        if(jToggleButtonStart.isEnabled()){   
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","ECG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanelECG.getSize());
         jPanelECG.add(chartPanel);        
         jPanelECG.revalidate();
         jPanelECG.repaint();
+        }
     }//GEN-LAST:event_jButtonECGActionPerformed
-
+    else
+          System.out.println("File not selected\n"); 
+    }
     private void jButtonGSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGSRActionPerformed
          JFileChooser gsrFileChooser = new JFileChooser();
         gsrFileChooser.showOpenDialog(null);
         File f = gsrFileChooser.getSelectedFile();
+        if(f != null){
         gsrFilePath =  f.getAbsolutePath() ; 
         
         PlotTheGraphs gr = new PlotTheGraphs();
         //String str = "gsrinput.txt";
         final XYDataset dataset = gr.series(gsrFilePath);
-        if (jToggleButtonStart.getText().equals("Start")) {
+        if (jToggleButtonStart.isEnabled()) {
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("GSR Readings","Seconds","GSR value captured",dataset,false,false,false);
         final ChartPanel CP = new ChartPanel( chart );        
 
@@ -538,7 +554,9 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelGSR.repaint();
         }
     }//GEN-LAST:event_jButtonGSRActionPerformed
-
+    else
+            System.out.println("File not selected\n");
+    }
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
         // TODO add your handling code here:
         JFileChooser videochooser = new JFileChooser();
