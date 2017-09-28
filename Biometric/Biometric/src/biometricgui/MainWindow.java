@@ -258,9 +258,9 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -359,11 +359,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         jToggleButtonStart.setBackground(new java.awt.Color(0, 255, 0));
         jToggleButtonStart.setText("Start");
-        jToggleButtonStart.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jToggleButtonStartMouseClicked(evt);
-            }
-        });
         jToggleButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButtonStartActionPerformed(evt);
@@ -429,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jToggleButtonStop))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                        .addGap(0, 42, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jSliderForSynchronization, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -531,15 +526,17 @@ public class MainWindow extends javax.swing.JFrame {
         PlotTheGraphs gr = new PlotTheGraphs();
         //String str = "gsrinput.txt";
         final XYDataset dataset = gr.series(gsrFilePath);
-        
+        if (jToggleButtonStart.getText().equals("Start")) {
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("GSR Readings","Seconds","GSR value captured",dataset,false,false,false);
         final ChartPanel CP = new ChartPanel( chart );        
 
         //int a = jPanel12.getSize();
+        
         CP.setSize(jPanelEEG.getSize());
         jPanelGSR.add(CP);
         jPanelGSR.revalidate();
         jPanelGSR.repaint();
+        }
     }//GEN-LAST:event_jButtonGSRActionPerformed
 
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
@@ -552,23 +549,21 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
         // TODO add your handling code here:
-        
+         if (jToggleButtonStop.getText().equals("Stop")) {
+             jToggleButtonStart.setText("Start");
+             jToggleButtonStart.setBackground(Color.GREEN);
+         }
     }//GEN-LAST:event_jToggleButtonStopActionPerformed
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButtonStartActionPerformed
-
-    private void jToggleButtonStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jToggleButtonStartMouseClicked
-        // TODO add your handling code here:
-       if (jToggleButtonStart.getText().equals("Start")) {
+        if (jToggleButtonStart.getText().equals("Start")) {
             jToggleButtonStart.setText("Pause");
             jToggleButtonStart.setBackground(Color.YELLOW);
        } else if (jToggleButtonStart.getText().equals("Pause")) {
             jToggleButtonStart.setText("Start");
             jToggleButtonStart.setBackground(Color.GREEN);
-       }     
-    }//GEN-LAST:event_jToggleButtonStartMouseClicked
+       }    
+    }//GEN-LAST:event_jToggleButtonStartActionPerformed
     
     void runMedia(String filePath){
         NativeDiscovery nd = new NativeDiscovery();
