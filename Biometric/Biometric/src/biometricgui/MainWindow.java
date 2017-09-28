@@ -110,7 +110,6 @@ public class MainWindow extends javax.swing.JFrame {
         jTextAreaDisplayMessages.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jTextAreaDisplayMessages.setLineWrap(true);
         jTextAreaDisplayMessages.setRows(5);
-        jTextAreaDisplayMessages.setText("ECG, EMG, EEG, GSR and Eye Tracking Successful!");
         jTextAreaDisplayMessages.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextAreaDisplayMessages);
 
@@ -571,6 +570,8 @@ public class MainWindow extends javax.swing.JFrame {
              jToggleButtonStart.setText("Start");
              jToggleButtonStart.setBackground(Color.GREEN);
          }
+         if(jToggleButtonStop.isEnabled())
+            jTextAreaDisplayMessages.setText("ECG, EMG, EEG, GSR Successful!");
     }//GEN-LAST:event_jToggleButtonStopActionPerformed
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
