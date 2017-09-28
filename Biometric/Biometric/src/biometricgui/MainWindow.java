@@ -465,21 +465,24 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
-        final XYDataset dataset = createDataset( );
+        PlotTheGraphs gr = new PlotTheGraphs();
+        String str = "eeginput.txt";
+        final XYDataset dataset = gr.series(str);
+        
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","EEG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
 //        chartPanel.setSize(jPanel12.getSize());
-        try {
-         BufferedReader in = new BufferedReader(new FileReader("test/eeginput.txt"));
-         String str;
-         while ((str = in.readLine()) != null) {
-            System.out.println(str);
-         }
-         System.out.println(str);
-         } catch (IOException e) {
-              System.out.println(System.getProperty("user.dir"));
-              System.out.println("Error in reading file");
-        }
+//        try {
+//         BufferedReader in = new BufferedReader(new FileReader("test/eeginput.txt"));
+//         String str;
+//         while ((str = in.readLine()) != null) {
+//            System.out.println(str);
+//         }
+//         System.out.println(str);
+//         } catch (IOException e) {
+//              System.out.println(System.getProperty("user.dir"));
+//              System.out.println("Error in reading file");
+//        }
         chartPanel.setSize(jPanelEEG.getSize());
         jPanelEEG.add(chartPanel);
         jPanelEEG.revalidate();
@@ -489,10 +492,10 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {                                         
         PlotTheGraphs gr = new PlotTheGraphs();
-        
-        final XYDataset dataset = gr.series();
+        String str = "emginput.txt";
+        final XYDataset dataset = gr.series(str);
 
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","Value",dataset,false,false,false);
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","EMG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanelEMG.getSize());
         jPanelEMG.add(chartPanel);
@@ -501,8 +504,11 @@ public class MainWindow extends javax.swing.JFrame {
     }                                          
 
     private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
-        final XYDataset dataset = createDataset( );
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","Value",dataset,false,false,false);
+        PlotTheGraphs gr = new PlotTheGraphs();
+        String str = "ecginput.txt";
+        final XYDataset dataset = gr.series(str);
+        
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","ECG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanelECG.getSize());
         jPanelECG.add(chartPanel);        
@@ -511,28 +517,12 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonECGActionPerformed
 
     private void jButtonGSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGSRActionPerformed
-         XYSeries series = new XYSeries("Biometric Data");
-        series.add(1, 1);
-        series.add(1, 2);
-        series.add(2, 1);
-        series.add(3, 9);
-        series.add(4, 10);
-        series.add(5, 2);
-        series.add(6, 1);
-        series.add(7, 9);
-        series.add(8, 2);
-        series.add(9, 1);
-        series.add(10, 9);
-        series.add(11, 2);
-        series.add(12, 1);
-        series.add(13, 9);
-
-        // Add the series to your data set
-        XYSeriesCollection dataset = new XYSeriesCollection();
-        dataset.addSeries(series);
-        JFreeChart chart = ChartFactory.createXYLineChart("GSR Readings","Seconds","Value",dataset,PlotOrientation.VERTICAL,true,true,false);
-        ChartPanel CP;
-        CP = new ChartPanel(chart);
+         PlotTheGraphs gr = new PlotTheGraphs();
+        String str = "gsrinput.txt";
+        final XYDataset dataset = gr.series(str);
+        
+        final JFreeChart chart = ChartFactory.createTimeSeriesChart("GSR Readings","Seconds","GSR value captured",dataset,false,false,false);
+        final ChartPanel CP = new ChartPanel( chart );        
 
         //int a = jPanel12.getSize();
         CP.setSize(jPanelEEG.getSize());

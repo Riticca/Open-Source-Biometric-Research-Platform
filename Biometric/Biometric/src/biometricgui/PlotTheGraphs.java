@@ -24,19 +24,19 @@ import org.jfree.data.xy.XYDataset;
  */
 public class PlotTheGraphs extends MainWindow {
     
-    public XYDataset series() 
+    public XYDataset series(String str) 
     {
         final TimeSeries series = new TimeSeries( "Biometric Data" );
             Second current = new Second( );
         try {
             
             BufferedReader br;
-            br = new BufferedReader(new FileReader("ecginput.txt"));
+            br = new BufferedReader(new FileReader(str));
             
             
             
-            for (int i = 0; i < 10000; i++) {
-                System.out.println(br.readLine());
+            for (int i = 0; i < 100; i++) {
+                //System.out.println(br.readLine());
                 try {
                     String line=br.readLine();
                     
