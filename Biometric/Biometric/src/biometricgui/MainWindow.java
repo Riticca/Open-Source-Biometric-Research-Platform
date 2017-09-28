@@ -439,7 +439,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        final XYDataset dataset = createDataset( );
+        PlotTheGraphs gr = new PlotTheGraphs();
+        
+        final XYDataset dataset = gr.series();
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","Value",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
         chartPanel.setSize(jPanel13.getSize());
@@ -465,6 +467,15 @@ public class MainWindow extends javax.swing.JFrame {
         series.add(2, 1);
         series.add(3, 9);
         series.add(4, 10);
+        series.add(5, 2);
+        series.add(6, 1);
+        series.add(7, 9);
+        series.add(8, 2);
+        series.add(9, 1);
+        series.add(10, 9);
+        series.add(11, 2);
+        series.add(12, 1);
+        series.add(13, 9);
 
         // Add the series to your data set
         XYSeriesCollection dataset = new XYSeriesCollection();
