@@ -334,6 +334,7 @@
               <ComponentRef name="buttonGroup2"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Browse Computer"/>
+            <Property name="toolTipText" type="java.lang.String" value="Click to brose file from your system"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButtonBrowseComputerActionPerformed"/>

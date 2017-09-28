@@ -129,7 +129,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(jPanelMessagesLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 184, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelMessagesLayout.setVerticalGroup(
@@ -151,7 +151,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(65, 65, 65))
         );
         jPanel1Layout.setVerticalGroup(
@@ -175,6 +175,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         buttonGroup2.add(jRadioButtonBrowseComputer);
         jRadioButtonBrowseComputer.setText("Browse Computer");
+        jRadioButtonBrowseComputer.setToolTipText("Click to brose file from your system");
         jRadioButtonBrowseComputer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonBrowseComputerActionPerformed(evt);
@@ -187,12 +188,7 @@ public class MainWindow extends javax.swing.JFrame {
                 jButtonEyeTrackingMouseClicked(evt);
             }
         });
-/*        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-*/
+
         jButtonUserVideo.setText("User Video");
         jButtonUserVideo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -254,7 +250,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                             .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(97, 97, 97))))
         );
@@ -290,7 +286,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(76, 76, 76))
         );
         jPanel9Layout.setVerticalGroup(
@@ -449,6 +445,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jRadioButtonBrowseComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonBrowseComputerActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_jRadioButtonBrowseComputerActionPerformed
 
     private void jButtonUserVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserVideoActionPerformed
