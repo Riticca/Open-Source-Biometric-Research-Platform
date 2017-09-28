@@ -469,20 +469,10 @@ public class MainWindow extends javax.swing.JFrame {
         String str = "eeginput.txt";
         final XYDataset dataset = gr.series(str);
         
+               
         final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","EEG value captured",dataset,false,false,false);
         final ChartPanel chartPanel = new ChartPanel( chart );
-//        chartPanel.setSize(jPanel12.getSize());
-//        try {
-//         BufferedReader in = new BufferedReader(new FileReader("test/eeginput.txt"));
-//         String str;
-//         while ((str = in.readLine()) != null) {
-//            System.out.println(str);
-//         }
-//         System.out.println(str);
-//         } catch (IOException e) {
-//              System.out.println(System.getProperty("user.dir"));
-//              System.out.println("Error in reading file");
-//        }
+        
         chartPanel.setSize(jPanelEEG.getSize());
         jPanelEEG.add(chartPanel);
         jPanelEEG.revalidate();
