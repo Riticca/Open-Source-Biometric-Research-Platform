@@ -487,7 +487,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEEGActionPerformed
 
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {                                         
         PlotTheGraphs gr = new PlotTheGraphs();
         
         final XYDataset dataset = gr.series();
@@ -498,7 +498,7 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelEMG.add(chartPanel);
         jPanelEMG.revalidate();
         jPanelEMG.repaint();
-    }//GEN-LAST:event_jButtonEMGActionPerformed
+    }                                          
 
     private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
         final XYDataset dataset = createDataset( );
