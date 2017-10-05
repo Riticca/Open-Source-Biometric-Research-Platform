@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -46,6 +48,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form BiometricUI
      */
     public MainWindow() {
+        this.fileToOpen = new HashMap<>();
         initComponents();
     }
 
@@ -249,7 +252,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                            .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
                             .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(97, 97, 97))))
         );
@@ -393,7 +396,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jToggleButtonStart)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonStop)))
-                .addGap(494, 494, 494))
+                .addGap(34, 34, 34))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel8, jPanelMessages});
@@ -434,18 +437,28 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jRadioButtonLiveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonLiveActionPerformed
-        // TODO add your handling code here:
+        browseComputer = false;
     }//GEN-LAST:event_jRadioButtonLiveActionPerformed
 
     private void jRadioButtonBrowseComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonBrowseComputerActionPerformed
-        // TODO add your handling code here:
-        
-        
+        browseComputer = true;        
     }//GEN-LAST:event_jRadioButtonBrowseComputerActionPerformed
 
     private void jButtonUserVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserVideoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonUserVideoActionPerformed
+
+    private void chooseFile(javax.swing.JPanel panelName) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.showOpenDialog(null);
+        try{
+            File fileRef = fileChooser.getSelectedFile();
+            if(fileRef != null)
+                fileToOpen.put(panelName, fileRef.getAbsolutePath());
+        } catch (NullPointerException e) {
+            System.out.println("Null pointer exception");
+        }
+    }
 
     private void jButtonEyeTrackingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingMouseClicked
         // TODO add your handling code here:
@@ -453,109 +466,28 @@ public class MainWindow extends javax.swing.JFrame {
         videochooser.showOpenDialog(null);
         File f = videochooser.getSelectedFile();
         runMedia( f.getAbsolutePath() );
-        
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
-        
-         JFileChooser eegFileChooser = new JFileChooser();
-        eegFileChooser.showOpenDialog(null);
-        File f = eegFileChooser.getSelectedFile();
-        if(f  != null)
-        {
-            eegFilePath =  f.getAbsolutePath() ;
-        
-               
-        PlotTheGraphs gr = new PlotTheGraphs();
-       // String str = "eeginput.txt";
-       
-        final XYDataset dataset = gr.series(eegFilePath);
-        
-        if(jToggleButtonStart.isEnabled()){
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EEG Readings","Seconds","EEG value captured",dataset,false,false,false);
-        final ChartPanel chartPanel = new ChartPanel( chart );
-        
-        chartPanel.setSize(jPanelEEG.getSize());
-        jPanelEEG.add(chartPanel);
-        jPanelEEG.revalidate();
-        jPanelEEG.repaint();
-        
+        if (browseComputer == true)
+            chooseFile(jPanelEEG);        
     }//GEN-LAST:event_jButtonEEGActionPerformed
-        }
-        else
-            System.out.println("File not selected\n");
-    }
-    private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        JFileChooser emgFileChooser = new JFileChooser();
-        emgFileChooser.showOpenDialog(null);
-        File f = emgFileChooser.getSelectedFile();
-     if(f  != null)
-        {
-        emgFilePath =  f.getAbsolutePath() ;
-        
-        PlotTheGraphs gr = new PlotTheGraphs();
-        //String str = "emginput.txt";
-        final XYDataset dataset = gr.series(emgFilePath);
-        if(jToggleButtonStart.isEnabled()){    
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("EMG Readings","Seconds","EMG value captured",dataset,false,false,false);
-        final ChartPanel chartPanel = new ChartPanel( chart );
-        chartPanel.setSize(jPanelEMG.getSize());
-        jPanelEMG.add(chartPanel);
-        jPanelEMG.revalidate();
-        jPanelEMG.repaint();
-    }
-        }
-     else
-          System.out.println("File not selected\n");
-    }
-    private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
-        
-        JFileChooser ecgFileChooser = new JFileChooser();
-        ecgFileChooser.showOpenDialog(null);
-        File f = ecgFileChooser.getSelectedFile();
-       if(f != null){
-        ecgFilePath =  f.getAbsolutePath() ;
-       
-        PlotTheGraphs gr = new PlotTheGraphs();
-       // String str = "ecginput.txt";
-        final XYDataset dataset = gr.series(ecgFilePath);
-        if(jToggleButtonStart.isEnabled()){   
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("ECG Readings","Seconds","ECG value captured",dataset,false,false,false);
-        final ChartPanel chartPanel = new ChartPanel( chart );
-        chartPanel.setSize(jPanelECG.getSize());
-        jPanelECG.add(chartPanel);        
-        jPanelECG.revalidate();
-        jPanelECG.repaint();
-        }
-    }//GEN-LAST:event_jButtonECGActionPerformed
-    else
-          System.out.println("File not selected\n"); 
-    }
-    private void jButtonGSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGSRActionPerformed
-         JFileChooser gsrFileChooser = new JFileChooser();
-        gsrFileChooser.showOpenDialog(null);
-        File f = gsrFileChooser.getSelectedFile();
-        if(f != null){
-        gsrFilePath =  f.getAbsolutePath() ; 
-        
-        PlotTheGraphs gr = new PlotTheGraphs();
-        //String str = "gsrinput.txt";
-        final XYDataset dataset = gr.series(gsrFilePath);
-        if (jToggleButtonStart.isEnabled()) {
-        final JFreeChart chart = ChartFactory.createTimeSeriesChart("GSR Readings","Seconds","GSR value captured",dataset,false,false,false);
-        final ChartPanel CP = new ChartPanel( chart );        
 
-        //int a = jPanel12.getSize();
-        
-        CP.setSize(jPanelEEG.getSize());
-        jPanelGSR.add(CP);
-        jPanelGSR.revalidate();
-        jPanelGSR.repaint();
-        }
-    }//GEN-LAST:event_jButtonGSRActionPerformed
-    else
-            System.out.println("File not selected\n");
+    private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {
+        if (browseComputer == true)
+            chooseFile(jPanelEMG);
     }
+
+    private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
+        if (browseComputer == true)
+            chooseFile(jPanelECG);
+    }//GEN-LAST:event_jButtonECGActionPerformed
+
+    private void jButtonGSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGSRActionPerformed
+        if (browseComputer == true)
+            chooseFile(jPanelGSR);
+    }//GEN-LAST:event_jButtonGSRActionPerformed
+    
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
         // TODO add your handling code here:
         JFileChooser videochooser = new JFileChooser();
@@ -578,6 +510,14 @@ public class MainWindow extends javax.swing.JFrame {
         if (jToggleButtonStart.getText().equals("Start")) {
             jToggleButtonStart.setText("Pause");
             jToggleButtonStart.setBackground(Color.YELLOW);
+            
+            for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
+                javax.swing.JPanel key = entry.getKey();
+                String value = entry.getValue();
+                GraphPlotter firstThread = new GraphPlotter(key, value);
+                Thread thread = new Thread(firstThread);
+                thread.start();
+            }            
        } else if (jToggleButtonStart.getText().equals("Pause")) {
             jToggleButtonStart.setText("Start");
             jToggleButtonStart.setBackground(Color.GREEN);
@@ -643,38 +583,14 @@ public class MainWindow extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable(){
-        	public void run() {
-        		new MainWindow().setVisible(true);
-        	}
+        java.awt.EventQueue.invokeLater(() -> {
+            new MainWindow().setVisible(true);
         });
     }
-private XYDataset createDataset( ) {
+
+    private XYDataset createDataset( ) {
       /*final TimeSeries series = new TimeSeries( "Biometric Data" );         
       Second current = new Second( );         
       double value = 100.0;         
@@ -693,7 +609,7 @@ private XYDataset createDataset( ) {
       return new TimeSeriesCollection(series);
 */
       return null;
-   }     
+    }     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
@@ -727,8 +643,6 @@ private XYDataset createDataset( ) {
     private Canvas canvas;
     private EmbeddedMediaPlayer mediaPlayer;
     private MediaPlayerFactory mediaPlayerFactory;
-    private String eegFilePath;
-    private String ecgFilePath;
-    private String emgFilePath;
-    private String gsrFilePath;
+    private Map<javax.swing.JPanel, String> fileToOpen;
+    private boolean browseComputer;
 }
