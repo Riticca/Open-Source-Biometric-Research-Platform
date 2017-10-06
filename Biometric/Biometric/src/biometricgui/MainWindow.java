@@ -94,8 +94,9 @@ public class MainWindow extends javax.swing.JFrame {
         setTitle("Opensource Biometric Research Platform");
         setBackground(new java.awt.Color(255, 204, 204));
         setBounds(new java.awt.Rectangle(500, 500, 500, 500));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setMaximumSize(new java.awt.Dimension(700, 700));
-        setPreferredSize(new java.awt.Dimension(735, 679));
+        setPreferredSize(new java.awt.Dimension(735, 700));
 
         jSliderForSynchronization.setMajorTickSpacing(10);
         jSliderForSynchronization.setMinorTickSpacing(2);
@@ -153,7 +154,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
                 .addGap(65, 65, 65))
         );
         jPanel1Layout.setVerticalGroup(
@@ -252,7 +253,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                            .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                             .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(97, 97, 97))))
         );
@@ -260,9 +261,9 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -288,7 +289,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addGap(76, 76, 76))
         );
         jPanel9Layout.setVerticalGroup(
@@ -396,7 +397,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jToggleButtonStart)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonStop)))
-                .addGap(34, 34, 34))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel8, jPanelMessages});
@@ -426,7 +427,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jToggleButtonStop))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 42, Short.MAX_VALUE)))
+                        .addGap(0, 16, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jSliderForSynchronization, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -543,41 +544,6 @@ public class MainWindow extends javax.swing.JFrame {
         jLabelEyeTracking.setVisible(false);
         mediaPlayer.playMedia(filePath);
     }
-    /*
-    void createRuler() {
-        JFrame f = new JFrame();
-        f.add(new JComponent() {
-
-            private final double TICK_DIST = 20;
-
-            void drawRuler(Graphics g1, int x1, int y1, int x2, int y2) {
-                Graphics2D g = (Graphics2D) g1.create();
-
-                double dx = x2 - x1, dy = y2 - y1;
-                double len = Math.sqrt(dx*dx + dy*dy);
-                AffineTransform at = AffineTransform.getTranslateInstance(x1, y1);
-                at.concatenate(AffineTransform.getRotateInstance(Math.atan2(dy, dx)));
-                g.transform(at);
-
-                // Draw horizontal ruler starting in (0, 0)
-                g.drawLine(0, 0, (int) len, 0);
-                for (double i = 0; i < len; i += TICK_DIST)
-                    g.drawLine((int) i, -3, (int) i, 3);
-            }
-
-            public void paintComponent(Graphics g) {
-                drawRuler(g, 10, 30, 300, 150);
-//                drawRuler(g, 300, 150, 100, 100);
-//                drawRuler(g, 100, 100, 120, 350);
-//                drawRuler(g, 50, 350, 350, 50);
-            }
-        });
-
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(400, 400);
-        f.setVisible(true);
-    }
-    */
     
     /**
      * @param args the command line arguments
@@ -589,27 +555,6 @@ public class MainWindow extends javax.swing.JFrame {
             new MainWindow().setVisible(true);
         });
     }
-
-    private XYDataset createDataset( ) {
-      /*final TimeSeries series = new TimeSeries( "Biometric Data" );         
-      Second current = new Second( );         
-      double value = 100.0;         
-      
-      for (int i = 0; i < 4000; i++) {
-         
-         try {
-            value = value + Math.random( ) - 0.5;                 
-            series.add(current, new Double( value ) );                 
-            current = ( Second ) current.next( ); 
-         } catch ( SeriesException e ) {
-            System.err.println("Error adding to series");
-         }
-      }
-
-      return new TimeSeriesCollection(series);
-*/
-      return null;
-    }     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
