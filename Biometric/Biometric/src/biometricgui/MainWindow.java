@@ -132,7 +132,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(jPanelMessagesLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 184, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanelMessagesLayout.setVerticalGroup(
@@ -154,7 +154,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(65, 65, 65))
         );
         jPanel1Layout.setVerticalGroup(
@@ -289,7 +289,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(83, 83, 83)
-                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(76, 76, 76))
         );
         jPanel9Layout.setVerticalGroup(
@@ -301,6 +301,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jPanelECG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelECG.setName("ECG Graph"); // NOI18N
 
         javax.swing.GroupLayout jPanelECGLayout = new javax.swing.GroupLayout(jPanelECG);
         jPanelECG.setLayout(jPanelECGLayout);
@@ -314,6 +315,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jPanelGSR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelGSR.setName("GSR Graph"); // NOI18N
 
         javax.swing.GroupLayout jPanelGSRLayout = new javax.swing.GroupLayout(jPanelGSR);
         jPanelGSR.setLayout(jPanelGSRLayout);
@@ -327,6 +329,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jPanelEEG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelEEG.setName("EEG Graph"); // NOI18N
 
         javax.swing.GroupLayout jPanelEEGLayout = new javax.swing.GroupLayout(jPanelEEG);
         jPanelEEG.setLayout(jPanelEEGLayout);
@@ -340,6 +343,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jPanelEMG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelEMG.setName("EMG Graph"); // NOI18N
 
         javax.swing.GroupLayout jPanelEMGLayout = new javax.swing.GroupLayout(jPanelEMG);
         jPanelEMG.setLayout(jPanelEMGLayout);
@@ -397,7 +401,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jToggleButtonStart)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButtonStop)))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jPanel8, jPanelMessages});
@@ -514,6 +518,7 @@ public class MainWindow extends javax.swing.JFrame {
             
             for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
                 javax.swing.JPanel key = entry.getKey();
+                System.out.println("it is compnent choosed"+key.getName()+"\n");
                 String value = entry.getValue();
                 GraphPlotter firstThread = new GraphPlotter(key, value);
                 Thread thread = new Thread(firstThread);

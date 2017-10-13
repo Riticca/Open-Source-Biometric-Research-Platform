@@ -34,8 +34,8 @@ public class GraphPlotter implements Runnable {
     public GraphPlotter(javax.swing.JPanel panel, String filePath) {
         
         this.panel = panel;
-        series = new TimeSeries("Biometric Data");
-        current = new Second( );
+         series = new TimeSeries("Biometric Data");
+         current = new Second( );
         
         /* We already made sure that file exists
          * but my IDE wants me to double check it
@@ -80,8 +80,8 @@ public class GraphPlotter implements Runnable {
             
             /* Draw the graph */
             dataset = new TimeSeriesCollection(series);
-            chart = ChartFactory.createTimeSeriesChart("EMG Readings",
-                    "Seconds", "EMG value captured", dataset,
+            chart = ChartFactory.createTimeSeriesChart(this.panel.getName(),
+                    "Seconds", this.panel.getName().split(" ")[0]+" values", dataset,
                     false, false, false);
             
             chartPanel = new ChartPanel(chart);
