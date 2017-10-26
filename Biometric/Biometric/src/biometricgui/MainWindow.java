@@ -63,7 +63,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jSliderForSynchronization = new javax.swing.JSlider();
+        slider = new javax.swing.JSlider();
         jPanelMessages = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDisplayMessages = new javax.swing.JTextArea();
@@ -99,13 +99,14 @@ public class MainWindow extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1400, 900));
         setResizable(false);
 
-        jSliderForSynchronization.setMajorTickSpacing(10);
-        jSliderForSynchronization.setMinorTickSpacing(2);
-        jSliderForSynchronization.setPaintLabels(true);
-        jSliderForSynchronization.setPaintTicks(true);
-        jSliderForSynchronization.setSnapToTicks(true);
-        jSliderForSynchronization.setToolTipText("");
-        jSliderForSynchronization.setPreferredSize(new java.awt.Dimension(200, 40));
+        slider.setMajorTickSpacing(10);
+        slider.setMinorTickSpacing(1);
+        slider.setPaintLabels(true);
+        slider.setPaintTicks(true);
+        slider.setSnapToTicks(true);
+        slider.setToolTipText("");
+        slider.setValue(0);
+        slider.setPreferredSize(new java.awt.Dimension(200, 40));
 
         jPanelMessages.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -270,9 +271,9 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -306,7 +307,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addGap(77, 77, 77))
         );
 
@@ -391,11 +392,11 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSliderForSynchronization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(slider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -423,8 +424,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -443,7 +444,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addComponent(jPanelGSR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelEMG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSliderForSynchronization, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
@@ -595,10 +596,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonBrowseComputer;
     private javax.swing.JRadioButton jRadioButtonLive;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSlider jSliderForSynchronization;
     private javax.swing.JTextArea jTextAreaDisplayMessages;
     private javax.swing.JToggleButton jToggleButtonStart;
     private javax.swing.JToggleButton jToggleButtonStop;
+    private javax.swing.JSlider slider;
     // End of variables declaration//GEN-END:variables
     
     private Canvas canvas;
