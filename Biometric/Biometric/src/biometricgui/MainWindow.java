@@ -514,32 +514,53 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUserVideoMouseClicked
 
     private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
-        // TODO add your handling code here:
-         if (jToggleButtonStop.getText().equals("Stop")) {
-             jToggleButtonStart.setText("Start");
-             jToggleButtonStart.setBackground(Color.GREEN);
-         }
-         if(jToggleButtonStop.isEnabled())
-            jTextAreaDisplayMessages.setText("ECG, EMG, EEG, GSR Successful!");
+        
+        if (jToggleButtonStop.getText().equals("Stop") && jToggleButtonStop.isEnabled()) {
+            jToggleButtonStart.setText("Start");
+            jToggleButtonStart.setBackground(Color.GREEN);
+            for (Thread graphThread : graphThreads) {
+                graphThread.stop();
+            }
+        } 
     }//GEN-LAST:event_jToggleButtonStopActionPerformed
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
+        
+        int i = 0;
+        graphThreads = new Thread[4];
+        sharedData = SharedData.getSharedDataInstance();
+        
         if (jToggleButtonStart.getText().equals("Start")) {
+          
             jToggleButtonStart.setText("Pause");
             jToggleButtonStart.setBackground(Color.YELLOW);
             
             for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
                 javax.swing.JPanel key = entry.getKey();
-                System.out.println("it is compnent choosed"+key.getName()+"\n");
                 String value = entry.getValue();
-                GraphPlotter firstThread = new GraphPlotter(key, value);
-                Thread thread = new Thread(firstThread);
-                thread.start();
-            }            
-       } else if (jToggleButtonStart.getText().equals("Pause")) {
-            jToggleButtonStart.setText("Start");
+                GraphPlotter newGraph = new GraphPlotter(key, value);
+                graphThreads[i] = new Thread(newGraph);
+                graphThreads[i].start();
+                i++;
+            }
+            sharedData.setSliderStatus(true);
+            Slider firstThread = new Slider(slider);
+            Thread thread = new Thread(firstThread);
+            thread.start();
+            
+            jToggleButtonStop.setEnabled(true);
+
+        } else if (jToggleButtonStart.getText().equals("Pause")) {
+            sharedData.setSliderStatus(false);
+            jToggleButtonStart.setText("Resume");
             jToggleButtonStart.setBackground(Color.GREEN);
-       }    
+
+        } else if (jToggleButtonStart.getText().equals("Resume")) {
+            jToggleButtonStart.setText("Pause");
+            jToggleButtonStart.setBackground(Color.YELLOW);
+            sharedData.setSliderStatus(true);
+        }
+        
     }//GEN-LAST:event_jToggleButtonStartActionPerformed
     
     void runMedia(String filePath){
@@ -607,4 +628,6 @@ public class MainWindow extends javax.swing.JFrame {
     private MediaPlayerFactory mediaPlayerFactory;
     private Map<javax.swing.JPanel, String> fileToOpen;
     private boolean browseComputer;
+    private Thread graphThreads[];
+    private SharedData sharedData;
 }

@@ -34,8 +34,10 @@ public class GraphPlotter implements Runnable {
     public GraphPlotter(javax.swing.JPanel panel, String filePath) {
         
         this.panel = panel;
-         series = new TimeSeries("Biometric Data");
-         current = new Second( );
+        sharedData = SharedData.getSharedDataInstance();
+        
+        series = new TimeSeries("Biometric Data");
+        current = new Second( );
         
         /* We already made sure that file exists
          * but my IDE wants me to double check it
@@ -53,9 +55,18 @@ public class GraphPlotter implements Runnable {
         
         Double biometricValue;
         int endOfFileFlag = 0;
-        
+        int oldValue = sharedData.get();
+
         while( true )
         {
+            while (oldValue == sharedData.get() || !sharedData.getSliderStatus())
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GraphPlotter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            oldValue = sharedData.get();
             series.clear();
             
             /* Let's plot 50 values at a time */
@@ -90,13 +101,14 @@ public class GraphPlotter implements Runnable {
             panel.add(chartPanel);
             panel.revalidate();
             panel.repaint();
-            
+            /*
             try {
                 Thread.sleep(500);
             } catch (InterruptedException ex) {
                 Logger.getLogger(GraphPlotter.class.getName()).log(
                         Level.SEVERE, null, ex);
             }
+            */
         }
         
     }
@@ -108,5 +120,6 @@ public class GraphPlotter implements Runnable {
     private JFreeChart chart;
     private javax.swing.JPanel panel;
     private ChartPanel chartPanel;
+    private SharedData sharedData;
 
 }
