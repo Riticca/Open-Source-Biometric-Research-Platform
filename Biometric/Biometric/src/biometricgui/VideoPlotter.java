@@ -53,25 +53,20 @@ public class VideoPlotter implements Runnable {
            System.out.println("VLC not found");
            System.exit(-1);
         }
-        System.out.println("heree...");
-        //EmbeddedMediaPlayerComponent mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
-        //panel.add(mediaPlayerComponent, BorderLayout.CENTER);
-        //mediaPlayerComponent.getMediaPlayer().playMedia(filePath);
         
         Canvas canvas = new Canvas();
         panel.add(canvas);
         canvas.setSize(panel.getSize());
+        
         panel.revalidate();
         panel.repaint();
-        /*
+        
         MediaPlayerFactory mediaPlayerFactory = new MediaPlayerFactory();
         EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
-        panel.add((Component) mediaPlayer, BorderLayout.CENTER);
         CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
         mediaPlayer.setVideoSurface(videoSurface);
-        panel.setVisible(false);
         mediaPlayer.playMedia(filePath);
-        */
+        
         /*
         series = new XYSeries("Eye Tracking Data");      
         String line = null;

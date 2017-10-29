@@ -570,6 +570,11 @@ public class MainWindow extends javax.swing.JFrame {
                 
                 if ( (key.getName().equals("jPanelEyeTracking"))
                         || (key.getName().equals("jPanelUserVideo")) ) {
+                   
+                    /* Hide the label on video */
+                    javax.swing.JLabel lab = (javax.swing.JLabel) key.getComponent(0);
+                    lab.setVisible(false);
+                   
                     VideoPlotter video;
                     video = new VideoPlotter(key, value);
                     Thread thread = new Thread(video);
@@ -613,11 +618,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButtonUserVideoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserVideoDataActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonUserVideoDataActionPerformed
-    
-    void runMedia(String filePath){
-     
-    }
-    
+
     /**
      * @param args the command line arguments
      */
