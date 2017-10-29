@@ -130,11 +130,26 @@ public class VideoPlotter implements Runnable {
     }
     
     void setMediaValue(int value) {
-        System.out.println("Hereee.." + value);
+       // System.out.println("Hereee.." + value);
         mediaPlayer.setTime(value * 10000);
         
     }
     
+    void pauseVideo() {
+        System.out.println("Pausing video");
+        mediaPlayer.pause();
+    }
+    
+    void stopVideo() {
+        System.out.println("Stoping video");
+        mediaPlayer.stop();
+    }
+
+    void resumeVideo() {
+        System.out.println("Resuming video");
+        mediaPlayer.start();
+    }
+
     private XYSeries series;
     private BufferedReader fileReader;
     private XYSeriesCollection dataset;

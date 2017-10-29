@@ -7,39 +7,16 @@ package biometricgui;
 
 import java.awt.*;
 import java.awt.Color;
-import java.awt.geom.AffineTransform;
 import java.io.File;
-import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.general.SeriesException;
-import org.jfree.data.time.Second;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import uk.co.caprica.vlcj.discovery.NativeDiscovery;
-import uk.co.caprica.vlcj.player.MediaPlayerFactory;
-import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
-import uk.co.caprica.vlcj.player.media.Media;
+
 
 //import com.sun.jna.Native;
 
-import uk.co.caprica.vlcj.binding.LibVlc;
-import uk.co.caprica.vlcj.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.player.MediaPlayerFactory;
 import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-import uk.co.caprica.vlcj.player.embedded.videosurface.CanvasVideoSurface;
-import uk.co.caprica.vlcj.runtime.RuntimeUtil;
 
 
 public class MainWindow extends javax.swing.JFrame {
@@ -48,7 +25,26 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form BiometricUI
      */
     public MainWindow() {
-        this.fileToOpen = new HashMap<>();
+        
+        /* Hash map contains panels and filepaths */
+        fileToOpen = new HashMap<>();
+        
+        /* Count for videos to be load */
+        videoPlotterCount = 0;
+        
+        /* Count for graphs to be load */
+        graphCount = 0;
+        
+        /* Initialization for video plotters (maximum 2) */
+        videoPlotters = new VideoPlotter[2];
+        
+        /* Initialization for graph plotters (maximum 4) */
+        graphThreads = new Thread[4];
+        
+        /* Data to be synchronized between threads */
+        sharedData = SharedData.getSharedDataInstance();
+        
+        /* Initialization of window components */
         initComponents();
     }
 
@@ -495,8 +491,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonBrowseComputerActionPerformed
 
     private void chooseFile(javax.swing.JPanel panelName) {
+        
+        /* Get input file from user */
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
+        
         try{
             File fileRef = fileChooser.getSelectedFile();
             if(fileRef != null)
@@ -510,11 +509,7 @@ public class MainWindow extends javax.swing.JFrame {
         if (browseComputer == true)
             chooseFile(jPanelEyeTracking);
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
-
-    private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {
-        
-    }
-    
+  
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
          if (browseComputer == true)
             chooseFile(jPanelUserVideo);
@@ -523,32 +518,35 @@ public class MainWindow extends javax.swing.JFrame {
     private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
         
         if (jToggleButtonStop.getText().equals("Stop") && jToggleButtonStop.isEnabled()) {
-            jToggleButtonStart.setText("Start");
-            jToggleButtonStart.setBackground(Color.GREEN);
+            
+            /* Stop all graph threads
             for (Thread graphThread : graphThreads) {
                 graphThread.stop();
             }
+            */
+            
+            /* Stop all videos */
+            for ( int i=0; i < videoPlotterCount; i++ )
+                videoPlotters[i].stopVideo();
+            
+            /* Change the color of button */
+            jToggleButtonStart.setText("Start");
+            jToggleButtonStart.setBackground(Color.GREEN);
+            
         } 
     }//GEN-LAST:event_jToggleButtonStopActionPerformed
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
-        
-        int i = 0;
-        graphThreads = new Thread[4];
-        videoPlotters = new VideoPlotter[2];
-        videoPlotterCount = 0;
-        sharedData = SharedData.getSharedDataInstance();
-        
+       
         if (jToggleButtonStart.getText().equals("Start")) {
-          
-            jToggleButtonStart.setText("Pause");
-            jToggleButtonStart.setBackground(Color.YELLOW);
-            
+
+            /* Process all entries from map */
             for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
                 
                 javax.swing.JPanel key = entry.getKey();
                 String value = entry.getValue();
                 
+                /* Processing for videos */
                 if ( (key.getName().equals("jPanelEyeTracking"))
                         || (key.getName().equals("jPanelUserVideo")) ) {
                    
@@ -556,33 +554,57 @@ public class MainWindow extends javax.swing.JFrame {
                     javax.swing.JLabel lab = (javax.swing.JLabel) key.getComponent(0);
                     lab.setVisible(false);
                    
+                    /* Create and start threads for video */
                     videoPlotters[videoPlotterCount] = new VideoPlotter(key, value);
                     Thread thread = new Thread(videoPlotters[videoPlotterCount]);
                     thread.start();
                     videoPlotterCount++;
                 }
                 else {
+                    
+                    /* Processing for graphs */
                     GraphPlotter newGraph = new GraphPlotter(key, value);
-                    graphThreads[i] = new Thread(newGraph);
-                    graphThreads[i].start();
-                    i++;
+                    graphThreads[graphCount] = new Thread(newGraph);
+                    graphThreads[graphCount].start();
+                    graphCount++;
                 }
             }
+            
+            /* Create thread for slider and set its status to true */
             sharedData.setSliderStatus(true);
             Slider firstThread = new Slider(slider);
             Thread thread = new Thread(firstThread);
             thread.start();
             
+            /* Change Start button label to Pause */
             jToggleButtonStop.setEnabled(true);
+            jToggleButtonStart.setText("Pause");
+            jToggleButtonStart.setBackground(Color.YELLOW);
 
         } else if (jToggleButtonStart.getText().equals("Pause")) {
+            
+            /* Pause all running videos */
+            for ( int i=0; i < videoPlotterCount; i++ )
+                videoPlotters[i].pauseVideo();
+            
+            /* Disable slider */
             sharedData.setSliderStatus(false);
+            
+            /* Change Pause button label to Resume */
             jToggleButtonStart.setText("Resume");
             jToggleButtonStart.setBackground(Color.GREEN);
 
         } else if (jToggleButtonStart.getText().equals("Resume")) {
+            
+            /* Resume all videos */
+            for ( int i=0; i < videoPlotterCount; i++ )
+                videoPlotters[i].resumeVideo();
+            
+            /* Change Resume button label to Pause */
             jToggleButtonStart.setText("Pause");
             jToggleButtonStart.setBackground(Color.YELLOW);
+            
+            /* Enable slider */
             sharedData.setSliderStatus(true);
         }
         
@@ -597,32 +619,44 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUserVideoDataMouseClicked
 
     private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
+        
+        /* Change the current time of video according to slider */
         sharedData.set(slider.getValue());
         for ( int i=0; i < videoPlotterCount; i++ )
             videoPlotters[i].setMediaValue(slider.getValue());
     }//GEN-LAST:event_sliderMouseDragged
 
     private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
+        
+        /* Get ECG file from user */
         if (browseComputer == true)
             chooseFile(jPanelECG);
     }//GEN-LAST:event_jButtonECGMouseClicked
 
     private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
-         if (browseComputer == true)
+        
+        /* Get EEG file from user */
+        if (browseComputer == true)
             chooseFile(jPanelEEG);        
     }//GEN-LAST:event_jButtonEEGMouseClicked
 
     private void jButtonGSRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGSRMouseClicked
+        
+        /* Get GSR file from user */
         if (browseComputer == true)
             chooseFile(jPanelGSR);
     }//GEN-LAST:event_jButtonGSRMouseClicked
 
     private void jButtonEMGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEMGMouseClicked
+        
+        /* Get EMG file from user */
         if (browseComputer == true)
             chooseFile(jPanelEMG);
     }//GEN-LAST:event_jButtonEMGMouseClicked
 
     private void sliderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseClicked
+        
+        /* Change the current time of video according to slider */
         sharedData.set(slider.getValue());
         for ( int i=0; i < videoPlotterCount; i++ )
             videoPlotters[i].setMediaValue(slider.getValue());
@@ -676,6 +710,7 @@ public class MainWindow extends javax.swing.JFrame {
     private Map<javax.swing.JPanel, String> fileToOpen;
     private boolean browseComputer;
     private Thread graphThreads[];
+    private int graphCount;
     private VideoPlotter videoPlotters[];
     private int videoPlotterCount;
     private SharedData sharedData;
