@@ -57,9 +57,9 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="slider" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jPanel1" pref="507" max="32767" attributes="0"/>
+                      <Component id="jPanel1" pref="657" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jPanel9" pref="508" max="32767" attributes="0"/>
+                      <Component id="jPanel9" pref="657" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -283,27 +283,27 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButtonEMG" max="32767" attributes="0"/>
+                          <Component id="jButtonEMG" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonGSR" max="32767" attributes="0"/>
+                          <Component id="jButtonGSR" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
-                          <Component id="jButtonEEG" max="32767" attributes="0"/>
+                          <Component id="jButtonEEG" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonECG" max="32767" attributes="0"/>
+                          <Component id="jButtonECG" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="2" attributes="0">
-                          <Component id="jButtonEyeTracking" max="32767" attributes="0"/>
+                          <Component id="jButtonEyeTracking" pref="0" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonUserVideo" max="32767" attributes="0"/>
+                          <Component id="jButtonUserVideo" pref="0" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jRadioButtonBrowseComputer" alignment="0" pref="189" max="32767" attributes="0"/>
-                              <Component id="jRadioButtonLive" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jRadioButtonBrowseComputer" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jRadioButtonLive" alignment="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="97" pref="97" max="-2" attributes="0"/>
                       </Group>
@@ -316,7 +316,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jRadioButtonBrowseComputer" min="-2" pref="93" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jRadioButtonLive" max="32767" attributes="0"/>
+                  <Component id="jRadioButtonLive" pref="0" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -324,18 +324,18 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonEyeTracking" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButtonUserVideo" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jButtonEyeTracking" alignment="3" pref="0" max="32767" attributes="0"/>
+                      <Component id="jButtonUserVideo" alignment="3" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonEEG" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButtonECG" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jButtonEEG" alignment="3" pref="0" max="32767" attributes="0"/>
+                      <Component id="jButtonECG" alignment="3" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonEMG" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButtonGSR" alignment="3" max="32767" attributes="0"/>
+                      <Component id="jButtonEMG" alignment="3" pref="0" max="32767" attributes="0"/>
+                      <Component id="jButtonGSR" alignment="3" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
@@ -460,7 +460,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                  <Component id="jLabelCamera" pref="182" max="32767" attributes="0"/>
+                  <Component id="jLabelCamera" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               </Group>
           </Group>

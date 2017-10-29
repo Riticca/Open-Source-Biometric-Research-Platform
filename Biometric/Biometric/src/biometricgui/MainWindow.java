@@ -514,7 +514,7 @@ public class MainWindow extends javax.swing.JFrame {
         JFileChooser videochooser = new JFileChooser();
         videochooser.showOpenDialog(null);
         File f = videochooser.getSelectedFile();
-        runMedia( f.getAbsolutePath() );
+        runUserMedia( f.getAbsolutePath() );
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
@@ -639,24 +639,31 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     void runUserMedia(String filePath){
-        NativeDiscovery nd = new NativeDiscovery();
+
+        Canvas mediaCanvas;
+        MediaPlayerFactory userMediaPlayerFactory;
+        NativeDiscovery nd;
+        EmbeddedMediaPlayer userMediaPlayer;
+
+        nd = new NativeDiscovery();
         if (!nd.discover()) {
            System.out.println("VLC not found");
            System.exit(-1);
         }
-        Canvas canvas = new Canvas();
-        jPanel9.add(canvas);
-        canvas.setSize(jPanel9.getSize());
-        
+
+        mediaCanvas = new Canvas();
+        jPanel9.add(mediaCanvas);
+        mediaCanvas.setSize(jPanel9.getSize());
+
         jPanel9.revalidate();
         jPanel9.repaint();
-        
-        MediaPlayerFactory mediaPlayerFactory = new MediaPlayerFactory();
-        EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
-        CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
-        mediaPlayer.setVideoSurface(videoSurface);
+
+        userMediaPlayerFactory = new MediaPlayerFactory();
+        userMediaPlayer = userMediaPlayerFactory.newEmbeddedMediaPlayer();
+        CanvasVideoSurface videoSurface = userMediaPlayerFactory.newVideoSurface(mediaCanvas);
+        userMediaPlayer.setVideoSurface(videoSurface);
         jLabelCamera.setVisible(false);
-        mediaPlayer.playMedia(filePath);
+        userMediaPlayer.playMedia(filePath);
     }
     
     /**
