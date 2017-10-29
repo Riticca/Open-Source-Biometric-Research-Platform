@@ -79,6 +79,8 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonECG = new javax.swing.JButton();
         jButtonEMG = new javax.swing.JButton();
         jButtonGSR = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabelCamera = new javax.swing.JLabel();
         jPanelECG = new javax.swing.JPanel();
@@ -239,6 +241,20 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("EyeTrackingData");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("UserVideoData");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -265,7 +281,19 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jRadioButtonBrowseComputer, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                             .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(97, 97, 97))))
+                        .addGap(97, 97, 97))
+			.addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonEMG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jButtonEEG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonECG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonGSR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,6 +304,10 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jRadioButtonLive, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+		.addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -563,23 +595,67 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jToggleButtonStartActionPerformed
     
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if (browseComputer == true)
+            chooseFile(jPanel1);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (browseComputer == true)
+            chooseFile(jPanel9);
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
     void runMedia(String filePath){
         NativeDiscovery nd = new NativeDiscovery();
         if (!nd.discover()) {
            System.out.println("VLC not found");
-           System.exit(1);
+           System.exit(-1);
+        }
+        //Canvas canvas1 = new Canvas();
+        //canvas1.setBounds(100, 0, 200, 100);
+        //jPanel1.add(canvas1);
+        //canvas1.setSize(jPanel1.getSize());
+        
+        //Canvas canvas2 = new Canvas();
+        //jPanel1.add(canvas2);
+        //canvas2.setSize(jPanel1.getSize());
+        //jPanel1.setOpaque(false);
+        
+        //jPanel1.revalidate();
+        //jPanel1.repaint();
+        
+        MediaPlayerFactory mediaPlayerFactory = new MediaPlayerFactory();
+        EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
+        //CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas1);
+        //mediaPlayer.setVideoSurface(videoSurface);
+        
+        //ChartFactory chartFactory = new ChartFactory();
+        
+        //VideoPlotter userData = new VideoPlotter("C:/Users/ssidd/Documents/test2.txt", jPanel1);
+        
+        mediaPlayer.playMedia(filePath);
+    }
+
+    void runUserMedia(String filePath){
+        NativeDiscovery nd = new NativeDiscovery();
+        if (!nd.discover()) {
+           System.out.println("VLC not found");
+           System.exit(-1);
         }
         Canvas canvas = new Canvas();
-        jPanel1.add(canvas);
-        canvas.setSize(jPanel1.getSize());
-        jPanel1.revalidate();
-        jPanel1.repaint();
+        jPanel9.add(canvas);
+        canvas.setSize(jPanel9.getSize());
+        
+        jPanel9.revalidate();
+        jPanel9.repaint();
         
         MediaPlayerFactory mediaPlayerFactory = new MediaPlayerFactory();
         EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
         CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
         mediaPlayer.setVideoSurface(videoSurface);
-        jLabelEyeTracking.setVisible(false);
+        jLabelCamera.setVisible(false);
         mediaPlayer.playMedia(filePath);
     }
     
@@ -596,6 +672,8 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonECG;
     private javax.swing.JButton jButtonEEG;
     private javax.swing.JButton jButtonEMG;
