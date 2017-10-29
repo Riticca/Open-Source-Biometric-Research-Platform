@@ -62,16 +62,16 @@ public class VideoPlotter implements Runnable {
         panel.revalidate();
         panel.repaint();
         
-        MediaPlayerFactory mediaPlayerFactory = new MediaPlayerFactory();
-        EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
-        CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
+        mediaPlayerFactory = new MediaPlayerFactory();
+        mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
+        videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
         mediaPlayer.setVideoSurface(videoSurface);
         mediaPlayer.playMedia(filePath);
         
-        while ( true ) {
+        
             
-            mediaPlayer.skip(sharedData.get());
-        }
+        
+        
         /*
         series = new XYSeries("Eye Tracking Data");      
         String line = null;
@@ -129,6 +129,12 @@ public class VideoPlotter implements Runnable {
         
     }
     
+    void setMediaValue(int value) {
+        System.out.println("Hereee.." + value);
+        mediaPlayer.setTime(value * 10000);
+        
+    }
+    
     private XYSeries series;
     private BufferedReader fileReader;
     private XYSeriesCollection dataset;
@@ -136,4 +142,7 @@ public class VideoPlotter implements Runnable {
     private ChartPanel chartPanel;
     private String filePath;
     private SharedData sharedData;
+    private EmbeddedMediaPlayer mediaPlayer;
+    private CanvasVideoSurface videoSurface;
+    private MediaPlayerFactory mediaPlayerFactory;
 }

@@ -115,6 +115,11 @@ public class MainWindow extends javax.swing.JFrame {
                 sliderMouseDragged(evt);
             }
         });
+        slider.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sliderMouseClicked(evt);
+            }
+        });
 
         jPanelMessages.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -530,6 +535,8 @@ public class MainWindow extends javax.swing.JFrame {
         
         int i = 0;
         graphThreads = new Thread[4];
+        videoPlotters = new VideoPlotter[2];
+        videoPlotterCount = 0;
         sharedData = SharedData.getSharedDataInstance();
         
         if (jToggleButtonStart.getText().equals("Start")) {
@@ -549,10 +556,10 @@ public class MainWindow extends javax.swing.JFrame {
                     javax.swing.JLabel lab = (javax.swing.JLabel) key.getComponent(0);
                     lab.setVisible(false);
                    
-                    VideoPlotter video;
-                    video = new VideoPlotter(key, value);
-                    Thread thread = new Thread(video);
+                    videoPlotters[videoPlotterCount] = new VideoPlotter(key, value);
+                    Thread thread = new Thread(videoPlotters[videoPlotterCount]);
                     thread.start();
+                    videoPlotterCount++;
                 }
                 else {
                     GraphPlotter newGraph = new GraphPlotter(key, value);
@@ -590,7 +597,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUserVideoDataMouseClicked
 
     private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
-        
+        sharedData.set(slider.getValue());
+        for ( int i=0; i < videoPlotterCount; i++ )
+            videoPlotters[i].setMediaValue(slider.getValue());
     }//GEN-LAST:event_sliderMouseDragged
 
     private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
@@ -612,6 +621,12 @@ public class MainWindow extends javax.swing.JFrame {
         if (browseComputer == true)
             chooseFile(jPanelEMG);
     }//GEN-LAST:event_jButtonEMGMouseClicked
+
+    private void sliderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseClicked
+        sharedData.set(slider.getValue());
+        for ( int i=0; i < videoPlotterCount; i++ )
+            videoPlotters[i].setMediaValue(slider.getValue());
+    }//GEN-LAST:event_sliderMouseClicked
 
     /**
      * @param args the command line arguments
@@ -661,5 +676,8 @@ public class MainWindow extends javax.swing.JFrame {
     private Map<javax.swing.JPanel, String> fileToOpen;
     private boolean browseComputer;
     private Thread graphThreads[];
+    private VideoPlotter videoPlotters[];
+    private int videoPlotterCount;
     private SharedData sharedData;
+    
 }
