@@ -567,7 +567,7 @@ public class MainWindow extends javax.swing.JFrame {
         NativeDiscovery nd = new NativeDiscovery();
         if (!nd.discover()) {
            System.out.println("VLC not found");
-           System.exit(-1);
+           System.exit(1);
         }
         Canvas canvas = new Canvas();
         jPanel1.add(canvas);
