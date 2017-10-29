@@ -68,7 +68,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaDisplayMessages = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jTrackingEyeTracking = new javax.swing.JPanel();
+        jPanelEyeTracking = new javax.swing.JPanel();
         jLabelEyeTracking = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jRadioButtonLive = new javax.swing.JRadioButton();
@@ -81,8 +81,8 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonGSR = new javax.swing.JButton();
         jButtonEyeTrackingData = new javax.swing.JButton();
         jButtonUserVideoData = new javax.swing.JButton();
-        jPanelCamera = new javax.swing.JPanel();
-        jLabelCamera = new javax.swing.JLabel();
+        jPanelUserVideo = new javax.swing.JPanel();
+        jLabelUserVideo = new javax.swing.JLabel();
         jPanelECG = new javax.swing.JPanel();
         jPanelGSR = new javax.swing.JPanel();
         jPanelEEG = new javax.swing.JPanel();
@@ -149,26 +149,27 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(60, 60, 60))
         );
 
-        jTrackingEyeTracking.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTrackingEyeTracking.setPreferredSize(new java.awt.Dimension(65, 14));
+        jPanelEyeTracking.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelEyeTracking.setName("jPanelEyeTracking"); // NOI18N
+        jPanelEyeTracking.setPreferredSize(new java.awt.Dimension(65, 14));
 
         jLabelEyeTracking.setText("Eye Tracking");
         jLabelEyeTracking.setAlignmentX(0.5F);
         jLabelEyeTracking.setMaximumSize(new java.awt.Dimension(3267, 3267));
         jLabelEyeTracking.setMinimumSize(new java.awt.Dimension(0, 0));
 
-        javax.swing.GroupLayout jTrackingEyeTrackingLayout = new javax.swing.GroupLayout(jTrackingEyeTracking);
-        jTrackingEyeTracking.setLayout(jTrackingEyeTrackingLayout);
-        jTrackingEyeTrackingLayout.setHorizontalGroup(
-            jTrackingEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jTrackingEyeTrackingLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelEyeTrackingLayout = new javax.swing.GroupLayout(jPanelEyeTracking);
+        jPanelEyeTracking.setLayout(jPanelEyeTrackingLayout);
+        jPanelEyeTrackingLayout.setHorizontalGroup(
+            jPanelEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEyeTrackingLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(357, Short.MAX_VALUE))
         );
-        jTrackingEyeTrackingLayout.setVerticalGroup(
-            jTrackingEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jTrackingEyeTrackingLayout.createSequentialGroup()
+        jPanelEyeTrackingLayout.setVerticalGroup(
+            jPanelEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelEyeTrackingLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(77, 77, 77))
@@ -321,25 +322,26 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButtonUserVideoData.getAccessibleContext().setAccessibleName("User Video Data");
 
-        jPanelCamera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanelCamera.setPreferredSize(new java.awt.Dimension(61, 14));
+        jPanelUserVideo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelUserVideo.setName("jPanelUserVideo"); // NOI18N
+        jPanelUserVideo.setPreferredSize(new java.awt.Dimension(61, 14));
 
-        jLabelCamera.setText("Camera");
+        jLabelUserVideo.setText("User Video");
 
-        javax.swing.GroupLayout jPanelCameraLayout = new javax.swing.GroupLayout(jPanelCamera);
-        jPanelCamera.setLayout(jPanelCameraLayout);
-        jPanelCameraLayout.setHorizontalGroup(
-            jPanelCameraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCameraLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelUserVideoLayout = new javax.swing.GroupLayout(jPanelUserVideo);
+        jPanelUserVideo.setLayout(jPanelUserVideoLayout);
+        jPanelUserVideoLayout.setHorizontalGroup(
+            jPanelUserVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserVideoLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
-                .addComponent(jLabelCamera, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelUserVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(241, Short.MAX_VALUE))
         );
-        jPanelCameraLayout.setVerticalGroup(
-            jPanelCameraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCameraLayout.createSequentialGroup()
+        jPanelUserVideoLayout.setVerticalGroup(
+            jPanelUserVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelUserVideoLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addComponent(jLabelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(77, 77, 77))
         );
 
@@ -426,9 +428,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(slider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTrackingEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                        .addComponent(jPanelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
+                        .addComponent(jPanelUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 508, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -456,8 +458,8 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelCamera, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                    .addComponent(jTrackingEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                    .addComponent(jPanelUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
+                    .addComponent(jPanelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -510,11 +512,8 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void jButtonEyeTrackingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingMouseClicked
-        // TODO add your handling code here:
-        JFileChooser videochooser = new JFileChooser();
-        videochooser.showOpenDialog(null);
-        File f = videochooser.getSelectedFile();
-        runMedia( f.getAbsolutePath() );
+        if (browseComputer == true)
+            chooseFile(jPanelEyeTracking);
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
@@ -538,11 +537,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonGSRActionPerformed
     
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
-        // TODO add your handling code here:
-        JFileChooser videochooser = new JFileChooser();
-        videochooser.showOpenDialog(null);
-        File f = videochooser.getSelectedFile();
-        runMedia( f.getAbsolutePath() );
+         if (browseComputer == true)
+            chooseFile(jPanelUserVideo);
     }//GEN-LAST:event_jButtonUserVideoMouseClicked
 
     private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
@@ -568,12 +564,23 @@ public class MainWindow extends javax.swing.JFrame {
             jToggleButtonStart.setBackground(Color.YELLOW);
             
             for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
+                
                 javax.swing.JPanel key = entry.getKey();
                 String value = entry.getValue();
-                GraphPlotter newGraph = new GraphPlotter(key, value);
-                graphThreads[i] = new Thread(newGraph);
-                graphThreads[i].start();
-                i++;
+                
+                if ( (key.getName().equals("jPanelEyeTracking"))
+                        || (key.getName().equals("jPanelUserVideo")) ) {
+                    VideoPlotter video;
+                    video = new VideoPlotter(key, value);
+                    Thread thread = new Thread(video);
+                    thread.start();
+                }
+                else {
+                    GraphPlotter newGraph = new GraphPlotter(key, value);
+                    graphThreads[i] = new Thread(newGraph);
+                    graphThreads[i].start();
+                    i++;
+                }
             }
             sharedData.setSliderStatus(true);
             Slider firstThread = new Slider(slider);
@@ -608,23 +615,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUserVideoDataActionPerformed
     
     void runMedia(String filePath){
-        NativeDiscovery nd = new NativeDiscovery();
-        if (!nd.discover()) {
-           System.out.println("VLC not found");
-           System.exit(-1);
-        }
-        Canvas canvas = new Canvas();
-        jTrackingEyeTracking.add(canvas);
-        canvas.setSize(jTrackingEyeTracking.getSize());
-        jTrackingEyeTracking.revalidate();
-        jTrackingEyeTracking.repaint();
-        
-        MediaPlayerFactory mediaPlayerFactory = new MediaPlayerFactory();
-        EmbeddedMediaPlayer mediaPlayer = mediaPlayerFactory.newEmbeddedMediaPlayer();
-        CanvasVideoSurface videoSurface = mediaPlayerFactory.newVideoSurface(canvas);
-        mediaPlayer.setVideoSurface(videoSurface);
-        jLabelEyeTracking.setVisible(false);
-        mediaPlayer.playMedia(filePath);
+     
     }
     
     /**
@@ -650,22 +641,22 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButtonUserVideoData;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabelCamera;
     private javax.swing.JLabel jLabelEyeTracking;
+    private javax.swing.JLabel jLabelUserVideo;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanelCamera;
     private javax.swing.JPanel jPanelECG;
     private javax.swing.JPanel jPanelEEG;
     private javax.swing.JPanel jPanelEMG;
+    private javax.swing.JPanel jPanelEyeTracking;
     private javax.swing.JPanel jPanelGSR;
     private javax.swing.JPanel jPanelMessages;
+    private javax.swing.JPanel jPanelUserVideo;
     private javax.swing.JRadioButton jRadioButtonBrowseComputer;
     private javax.swing.JRadioButton jRadioButtonLive;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDisplayMessages;
     private javax.swing.JToggleButton jToggleButtonStart;
     private javax.swing.JToggleButton jToggleButtonStop;
-    private javax.swing.JPanel jTrackingEyeTracking;
     private javax.swing.JSlider slider;
     // End of variables declaration//GEN-END:variables
     
