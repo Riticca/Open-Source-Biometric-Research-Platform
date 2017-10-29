@@ -108,7 +108,13 @@ public class MainWindow extends javax.swing.JFrame {
         slider.setSnapToTicks(true);
         slider.setToolTipText("");
         slider.setValue(0);
+        slider.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         slider.setPreferredSize(new java.awt.Dimension(200, 40));
+        slider.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                sliderMouseDragged(evt);
+            }
+        });
 
         jPanelMessages.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -208,37 +214,32 @@ public class MainWindow extends javax.swing.JFrame {
                 jButtonUserVideoMouseClicked(evt);
             }
         });
-        jButtonUserVideo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUserVideoActionPerformed(evt);
-            }
-        });
 
         jButtonEEG.setText("EEG");
-        jButtonEEG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEEGActionPerformed(evt);
+        jButtonEEG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEEGMouseClicked(evt);
             }
         });
 
         jButtonECG.setText("ECG");
-        jButtonECG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonECGActionPerformed(evt);
+        jButtonECG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonECGMouseClicked(evt);
             }
         });
 
         jButtonEMG.setText("EMG");
-        jButtonEMG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEMGActionPerformed(evt);
+        jButtonEMG.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonEMGMouseClicked(evt);
             }
         });
 
         jButtonGSR.setText("GSR");
-        jButtonGSR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonGSRActionPerformed(evt);
+        jButtonGSR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonGSRMouseClicked(evt);
             }
         });
 
@@ -254,11 +255,6 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonUserVideoData.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonUserVideoDataMouseClicked(evt);
-            }
-        });
-        jButtonUserVideoData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUserVideoDataActionPerformed(evt);
             }
         });
 
@@ -289,7 +285,7 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                        .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                         .addContainerGap())))
@@ -319,8 +315,6 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jButtonGSR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-
-        jButtonUserVideoData.getAccessibleContext().setAccessibleName("User Video Data");
 
         jPanelUserVideo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelUserVideo.setName("jPanelUserVideo"); // NOI18N
@@ -495,10 +489,6 @@ public class MainWindow extends javax.swing.JFrame {
         browseComputer = true;        
     }//GEN-LAST:event_jRadioButtonBrowseComputerActionPerformed
 
-    private void jButtonUserVideoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserVideoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonUserVideoActionPerformed
-
     private void chooseFile(javax.swing.JPanel panelName) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
@@ -516,25 +506,9 @@ public class MainWindow extends javax.swing.JFrame {
             chooseFile(jPanelEyeTracking);
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
 
-    private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
-        if (browseComputer == true)
-            chooseFile(jPanelEEG);        
-    }//GEN-LAST:event_jButtonEEGActionPerformed
-
     private void jButtonEMGActionPerformed(java.awt.event.ActionEvent evt) {
-        if (browseComputer == true)
-            chooseFile(jPanelEMG);
+        
     }
-
-    private void jButtonECGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonECGActionPerformed
-        if (browseComputer == true)
-            chooseFile(jPanelECG);
-    }//GEN-LAST:event_jButtonECGActionPerformed
-
-    private void jButtonGSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGSRActionPerformed
-        if (browseComputer == true)
-            chooseFile(jPanelGSR);
-    }//GEN-LAST:event_jButtonGSRActionPerformed
     
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
          if (browseComputer == true)
@@ -615,9 +589,29 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonUserVideoDataMouseClicked
 
-    private void jButtonUserVideoDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUserVideoDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonUserVideoDataActionPerformed
+    private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
+        
+    }//GEN-LAST:event_sliderMouseDragged
+
+    private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
+        if (browseComputer == true)
+            chooseFile(jPanelECG);
+    }//GEN-LAST:event_jButtonECGMouseClicked
+
+    private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
+         if (browseComputer == true)
+            chooseFile(jPanelEEG);        
+    }//GEN-LAST:event_jButtonEEGMouseClicked
+
+    private void jButtonGSRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGSRMouseClicked
+        if (browseComputer == true)
+            chooseFile(jPanelGSR);
+    }//GEN-LAST:event_jButtonGSRMouseClicked
+
+    private void jButtonEMGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEMGMouseClicked
+        if (browseComputer == true)
+            chooseFile(jPanelEMG);
+    }//GEN-LAST:event_jButtonEMGMouseClicked
 
     /**
      * @param args the command line arguments

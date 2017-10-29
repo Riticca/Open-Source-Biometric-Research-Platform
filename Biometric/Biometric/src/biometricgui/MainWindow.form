@@ -140,10 +140,18 @@
         <Property name="snapToTicks" type="boolean" value="true"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="value" type="int" value="0"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.SoftBevelBorderInfo">
+            <BevelBorder/>
+          </Border>
+        </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[200, 40]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="sliderMouseDragged"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanelMessages">
       <Properties>
@@ -309,7 +317,7 @@
                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButtonEyeTrackingData" pref="139" max="32767" attributes="0"/>
+                          <Component id="jButtonEyeTrackingData" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonUserVideoData" pref="129" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -389,7 +397,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonUserVideoMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUserVideoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEEG">
@@ -397,7 +404,7 @@
             <Property name="text" type="java.lang.String" value="EEG"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEEGActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEEGMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonECG">
@@ -405,7 +412,7 @@
             <Property name="text" type="java.lang.String" value="ECG"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonECGActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonECGMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEMG">
@@ -413,7 +420,7 @@
             <Property name="text" type="java.lang.String" value="EMG"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEMGActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEMGMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonGSR">
@@ -421,7 +428,7 @@
             <Property name="text" type="java.lang.String" value="GSR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGSRActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonGSRMouseClicked"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonEyeTrackingData">
@@ -437,12 +444,8 @@
             <Property name="label" type="java.lang.String" value="User Video Data"/>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="User Video Data"/>
-          </AccessibilityProperties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonUserVideoDataMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUserVideoDataActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

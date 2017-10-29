@@ -35,6 +35,7 @@ public class VideoPlotter implements Runnable {
     public VideoPlotter(javax.swing.JPanel panel, String filePath) {
         this.panel = panel;
         this.filePath = filePath;
+        sharedData = SharedData.getSharedDataInstance();
         /*
         try {
             fileReader = new BufferedReader(new FileReader(filePath));
@@ -67,6 +68,10 @@ public class VideoPlotter implements Runnable {
         mediaPlayer.setVideoSurface(videoSurface);
         mediaPlayer.playMedia(filePath);
         
+        while ( true ) {
+            
+            mediaPlayer.skip(sharedData.get());
+        }
         /*
         series = new XYSeries("Eye Tracking Data");      
         String line = null;
@@ -130,4 +135,5 @@ public class VideoPlotter implements Runnable {
     private javax.swing.JPanel panel;
     private ChartPanel chartPanel;
     private String filePath;
+    private SharedData sharedData;
 }
