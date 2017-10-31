@@ -862,11 +862,8 @@ public class MainWindow extends javax.swing.JFrame {
                         EEGSignals.put(2, EEG_S2_On);
                         EEGSignals.put(3, EEG_S3_On);
                         EEGSignals.put(4, EEG_S4_On); 
-                        
-                        
                         whichSignalCalled.putAll(EEGSignals);
-                         
-                    }
+                     }
                         
                     
                     else if(panelSelected.getName().contains("ECG"))
