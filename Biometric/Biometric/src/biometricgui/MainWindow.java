@@ -855,6 +855,8 @@ public class MainWindow extends javax.swing.JFrame {
                     Map<Integer, Boolean> whichSignalCalled = new HashMap<>();
                     Map<Integer, Boolean> EEGSignals = new HashMap<>();
                     Map<Integer, Boolean> ECGSignals = new HashMap<>();
+                     Map<Integer, Boolean> EMGSignals = new HashMap<>();
+                      Map<Integer, Boolean> GSRSignals = new HashMap<>();
                     /* Processing for graphs */
                     if(panelSelected.getName().contains("EEG"))
                     {
@@ -876,7 +878,26 @@ public class MainWindow extends javax.swing.JFrame {
                         
                         whichSignalCalled.putAll(ECGSignals);
                     }
-                    
+                     else if(panelSelected.getName().contains("EMG"))
+                    {
+                        EMGSignals.put(1, EMG_S1_On);
+                        EMGSignals.put(2, EMG_S2_On);
+                        EMGSignals.put(3, EMG_S3_On);
+                        EMGSignals.put(4, EMG_S4_On); 
+                        
+                        
+                        whichSignalCalled.putAll(EMGSignals);
+                    }
+                     else if(panelSelected.getName().contains("GSR"))
+                    {
+                        GSRSignals.put(1, GSR_S1_On);
+                        GSRSignals.put(2, GSR_S2_On);
+                        GSRSignals.put(3, GSR_S3_On);
+                        GSRSignals.put(4, GSR_S4_On); 
+                        
+                        
+                        whichSignalCalled.putAll(GSRSignals);
+                    }
                   GraphPlotter newGraph = new GraphPlotter(panelSelected, localFilePath,whichSignalCalled);
                     graphThreads[graphCount] = new Thread(newGraph);
                     graphThreads[graphCount].start();
@@ -1061,35 +1082,79 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ECG_S4ActionPerformed
 
     private void GSR_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S1ActionPerformed
-        // TODO add your handling code here:
+       if(GSRSetOn){
+            if(GSR_S1.isSelected())
+            {
+             GSR_S1_On=true;
+            }
+            }
     }//GEN-LAST:event_GSR_S1ActionPerformed
 
     private void GSR_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S2ActionPerformed
-        // TODO add your handling code here:
+        if(GSRSetOn){
+            if(GSR_S2.isSelected())
+            {
+            GSR_S2_On=true;
+            }
+            }
     }//GEN-LAST:event_GSR_S2ActionPerformed
 
     private void GSR_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S3ActionPerformed
-        // TODO add your handling code here:
+       if(GSRSetOn){
+            if(GSR_S3.isSelected())
+            {
+             GSR_S3_On=true;
+            }
+            }
     }//GEN-LAST:event_GSR_S3ActionPerformed
 
     private void GSR_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S4ActionPerformed
-        // TODO add your handling code here:
+        if(GSRSetOn){
+            if(GSR_S4.isSelected())
+            {
+             GSR_S4_On=true;
+            }
+            }
     }//GEN-LAST:event_GSR_S4ActionPerformed
 
     private void EMG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S1ActionPerformed
-        // TODO add your handling code here:
+         if(EMGSetOn){
+            if(EMG_S1.isSelected())
+            {
+             System.out.println("EMG_S1 is  now selected\n");  
+             EMG_S1_On=true;
+            }
+            }
     }//GEN-LAST:event_EMG_S1ActionPerformed
 
     private void EMG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S2ActionPerformed
-        // TODO add your handling code here:
+        if(EMGSetOn){
+            if(EMG_S2.isSelected())
+            {
+             System.out.println("EMG_S2 is  now selected\n");  
+             EMG_S2_On=true;
+            }
+            }
     }//GEN-LAST:event_EMG_S2ActionPerformed
 
     private void EMG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S3ActionPerformed
-        // TODO add your handling code here:
+        if(EMGSetOn){
+            if(EMG_S3.isSelected())
+            {
+             System.out.println("EMG_S3 is  now selected\n");  
+             EMG_S3_On=true;
+            }
+            }
     }//GEN-LAST:event_EMG_S3ActionPerformed
 
     private void EMG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S4ActionPerformed
-        // TODO add your handling code here:
+        if(EMGSetOn){
+            if(EMG_S4.isSelected())
+            {
+             System.out.println("EMG_S4 is  now selected\n");  
+             EMG_S4_On=true;
+            }
+            }
     }//GEN-LAST:event_EMG_S4ActionPerformed
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed

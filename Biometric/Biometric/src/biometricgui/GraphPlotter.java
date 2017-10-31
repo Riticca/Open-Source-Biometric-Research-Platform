@@ -100,7 +100,7 @@ public class GraphPlotter implements Runnable {
             }
                 
         }
-                 System.out.println("It is reading "+ valueRead+"\n");
+                 //System.out.println("It is reading "+ valueRead+"\n");
                  series.add(current, valueRead);
                    current = ( Second ) current.next( ); 
                                                         
