@@ -80,7 +80,6 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonEMG = new javax.swing.JButton();
         jButtonGSR = new javax.swing.JButton();
         jButtonEyeTrackingData = new javax.swing.JButton();
-        jButtonUserVideoData = new javax.swing.JButton();
         jPanelUserVideo = new javax.swing.JPanel();
         jLabelUserVideo = new javax.swing.JLabel();
         jPanelECG = new javax.swing.JPanel();
@@ -277,14 +276,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jButtonUserVideoData.setLabel("User Video Data");
-        jButtonUserVideoData.setName(""); // NOI18N
-        jButtonUserVideoData.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButtonUserVideoDataMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -313,9 +304,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addGap(125, 125, 125))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,9 +314,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButtonLive, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(14, 14, 14)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -950,10 +937,6 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
 
-    private void jButtonUserVideoDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoDataMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonUserVideoDataMouseClicked
-
     private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
         
         /* Change the current time of video according to slider */
@@ -1192,7 +1175,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEyeTrackingData;
     private javax.swing.JButton jButtonGSR;
     private javax.swing.JButton jButtonUserVideo;
-    private javax.swing.JButton jButtonUserVideoData;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelEyeTracking;

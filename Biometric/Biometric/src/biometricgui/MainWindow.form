@@ -419,9 +419,7 @@
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jButtonEyeTrackingData" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonUserVideoData" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -435,10 +433,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jRadioButtonLive" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonEyeTrackingData" alignment="3" max="32767" attributes="0"/>
-                      <Component id="jButtonUserVideoData" alignment="3" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jButtonEyeTrackingData" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jButtonEyeTracking" alignment="3" max="32767" attributes="0"/>
@@ -539,15 +534,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEyeTrackingDataMouseClicked"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButtonUserVideoData">
-          <Properties>
-            <Property name="label" type="java.lang.String" value="User Video Data"/>
-            <Property name="name" type="java.lang.String" value="" noResource="true"/>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonUserVideoDataMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
