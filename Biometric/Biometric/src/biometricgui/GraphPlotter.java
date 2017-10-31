@@ -9,6 +9,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jfree.data.xy.XYDataset;
@@ -30,9 +33,22 @@ public class GraphPlotter implements Runnable {
      * Initialize required stuff
      * @param panel the place where to draw graph
      * @param filePath absolute path of file to be read
+     * @param signals which defines the signals switched on for that graph
      */
-    public GraphPlotter(javax.swing.JPanel panel, String filePath) {
+    private TimeSeries series;
+    private Second current;
+    private BufferedReader fileReader;
+    private XYDataset dataset;
+    private JFreeChart chart;
+    private javax.swing.JPanel panel;
+    private ChartPanel chartPanel;
+    private SharedData sharedData;
+    private Map<Integer,Boolean> signals = new HashMap<>();
+
+    public GraphPlotter(javax.swing.JPanel panel, String filePath,Map<Integer,Boolean> signalsToSelect) {
         
+       
+        this.signals.putAll(signalsToSelect);
         this.panel = panel;
         sharedData = SharedData.getSharedDataInstance();
         
@@ -44,6 +60,7 @@ public class GraphPlotter implements Runnable {
          */
         try {
             fileReader = new BufferedReader(new FileReader(filePath));
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GraphPlotter.class.getName()).log(
                     Level.SEVERE, null, ex);
@@ -53,7 +70,8 @@ public class GraphPlotter implements Runnable {
     @Override
     public void run() {
         
-        Double biometricValue;
+        String biometricValue;
+        Double valueRead =0.0;
         int endOfFileFlag = 0;
         int oldValue = sharedData.get();
 
@@ -69,14 +87,23 @@ public class GraphPlotter implements Runnable {
             oldValue = sharedData.get();
             series.clear();
             
-            /* Let's plot 50 values at a time */
+          
             for (int i = 0; i < 50; i++) 
                 
                 try {
-                   biometricValue = new Double(fileReader.readLine());
-                   series.add(current, biometricValue);
-                   current = ( Second ) current.next( ); // TODO: it will come
-                                                         // from the file
+                   biometricValue = fileReader.readLine();
+                    for (Entry<Integer,Boolean> entry : signals.entrySet()) {
+               if (entry.getValue().equals(true)) {
+                 valueRead = Double.parseDouble( biometricValue.split(",")[entry.getKey()]);
+                
+                //System.out.println("It is reading "+ valueRead+"\n");
+            }
+                
+        }
+                   System.out.println("It is reading "+ valueRead+"\n");
+                 series.add(current, valueRead);
+                   current = ( Second ) current.next( ); 
+                                                        
                 } catch ( SeriesException e ) {
                     System.err.println("Error adding to series");
                 } catch ( IOException ex ) {
@@ -101,25 +128,10 @@ public class GraphPlotter implements Runnable {
             panel.add(chartPanel);
             panel.revalidate();
             panel.repaint();
-            /*
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(GraphPlotter.class.getName()).log(
-                        Level.SEVERE, null, ex);
-            }
-            */
+          
         }
         
     }
     
-    private TimeSeries series;
-    private Second current;
-    private BufferedReader fileReader;
-    private XYDataset dataset;
-    private JFreeChart chart;
-    private javax.swing.JPanel panel;
-    private ChartPanel chartPanel;
-    private SharedData sharedData;
-
+    
 }

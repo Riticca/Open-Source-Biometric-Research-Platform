@@ -5,10 +5,7 @@
  */
 package biometricgui;
 
-/**
- * @author Vikram Wathodkar (vikram.wathodkar@gmail.com)
- * This Singleton class keeps track of shared data between multiple threads
- */
+
 public class SharedData {
 
     public SharedData() { 

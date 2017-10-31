@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 
@@ -88,6 +89,23 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelEMG = new javax.swing.JPanel();
         jToggleButtonStop = new javax.swing.JToggleButton();
         jToggleButtonStart = new javax.swing.JToggleButton();
+        EEG_S1 = new javax.swing.JCheckBox();
+        EEG_S2 = new javax.swing.JCheckBox();
+        EEG_S3 = new javax.swing.JCheckBox();
+        EEG_S4 = new javax.swing.JCheckBox();
+        ECG_S1 = new javax.swing.JCheckBox();
+        ECG_S2 = new javax.swing.JCheckBox();
+        ECG_S3 = new javax.swing.JCheckBox();
+        ECG_S4 = new javax.swing.JCheckBox();
+        GSR_S1 = new javax.swing.JCheckBox();
+        GSR_S2 = new javax.swing.JCheckBox();
+        GSR_S3 = new javax.swing.JCheckBox();
+        GSR_S4 = new javax.swing.JCheckBox();
+        EMG_S1 = new javax.swing.JCheckBox();
+        EMG_S2 = new javax.swing.JCheckBox();
+        EMG_S3 = new javax.swing.JCheckBox();
+        EMG_S4 = new javax.swing.JCheckBox();
+        jToggleButtonExit = new javax.swing.JToggleButton();
 
         jFileChooser1.setDialogTitle("This is my open dialog");
 
@@ -143,20 +161,20 @@ public class MainWindow extends javax.swing.JFrame {
             jPanelMessagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMessagesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelMessagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelMessagesLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelMessagesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelMessagesLayout.setVerticalGroup(
             jPanelMessagesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelMessagesLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                .addGap(33, 33, 33))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                .addGap(48, 48, 48))
         );
 
         jPanelEyeTracking.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -175,7 +193,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanelEyeTrackingLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(300, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
         jPanelEyeTrackingLayout.setVerticalGroup(
             jPanelEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,6 +241,11 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonEEG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonEEGMouseClicked(evt);
+            }
+        });
+        jButtonEEG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEEGActionPerformed(evt);
             }
         });
 
@@ -284,14 +307,14 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonECG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.CENTER, jPanel8Layout.createSequentialGroup()
-                                .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                                .addComponent(jButtonEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)))
+                                .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                        .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel8Layout.setVerticalGroup(
@@ -333,7 +356,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanelUserVideoLayout.createSequentialGroup()
                 .addGap(118, 118, 118)
                 .addComponent(jLabelUserVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanelUserVideoLayout.setVerticalGroup(
             jPanelUserVideoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,7 +378,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         jPanelECGLayout.setVerticalGroup(
             jPanelECGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 185, Short.MAX_VALUE)
         );
 
         jPanelGSR.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -370,19 +393,20 @@ public class MainWindow extends javax.swing.JFrame {
         );
         jPanelGSRLayout.setVerticalGroup(
             jPanelGSRLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 173, Short.MAX_VALUE)
         );
 
         jPanelEEG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanelEEG.setAlignmentX(0.0F);
         jPanelEEG.setAlignmentY(0.0F);
         jPanelEEG.setName("EEG Graph"); // NOI18N
+        jPanelEEG.setPreferredSize(new java.awt.Dimension(452, 187));
 
         javax.swing.GroupLayout jPanelEEGLayout = new javax.swing.GroupLayout(jPanelEEG);
         jPanelEEG.setLayout(jPanelEEGLayout);
         jPanelEEGLayout.setHorizontalGroup(
             jPanelEEGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 471, Short.MAX_VALUE)
         );
         jPanelEEGLayout.setVerticalGroup(
             jPanelEEGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,11 +421,11 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelEMG.setLayout(jPanelEMGLayout);
         jPanelEMGLayout.setHorizontalGroup(
             jPanelEMGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanelEMGLayout.setVerticalGroup(
             jPanelEMGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
+            .addGap(0, 173, Short.MAX_VALUE)
         );
 
         jToggleButtonStop.setBackground(new java.awt.Color(204, 0, 0));
@@ -420,41 +444,226 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        EEG_S1.setText("S1");
+        EEG_S1.setActionCommand("EEGS1");
+        EEG_S1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EEG_S1ActionPerformed(evt);
+            }
+        });
+
+        EEG_S2.setText("S2");
+        EEG_S2.setToolTipText("");
+        EEG_S2.setActionCommand("EEGS2");
+        EEG_S2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EEG_S2ActionPerformed(evt);
+            }
+        });
+
+        EEG_S3.setText("S3");
+        EEG_S3.setToolTipText("");
+        EEG_S3.setActionCommand("EEGS3");
+        EEG_S3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EEG_S3ActionPerformed(evt);
+            }
+        });
+
+        EEG_S4.setText("S4");
+        EEG_S4.setToolTipText("");
+        EEG_S4.setActionCommand("EEGS4");
+        EEG_S4.setVerifyInputWhenFocusTarget(false);
+        EEG_S4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EEG_S4ActionPerformed(evt);
+            }
+        });
+
+        ECG_S1.setText("S1");
+        ECG_S1.setActionCommand("ECGS1");
+        ECG_S1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ECG_S1ActionPerformed(evt);
+            }
+        });
+
+        ECG_S2.setText("S2");
+        ECG_S2.setToolTipText("");
+        ECG_S2.setActionCommand("EEGS2");
+        ECG_S2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ECG_S2ActionPerformed(evt);
+            }
+        });
+
+        ECG_S3.setText("S3");
+        ECG_S3.setToolTipText("");
+        ECG_S3.setActionCommand("EEGS3");
+        ECG_S3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ECG_S3ActionPerformed(evt);
+            }
+        });
+
+        ECG_S4.setText("S4");
+        ECG_S4.setToolTipText("");
+        ECG_S4.setActionCommand("EEGS4");
+        ECG_S4.setVerifyInputWhenFocusTarget(false);
+        ECG_S4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ECG_S4ActionPerformed(evt);
+            }
+        });
+
+        GSR_S1.setText("S1");
+        GSR_S1.setActionCommand("EEGS1");
+        GSR_S1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GSR_S1ActionPerformed(evt);
+            }
+        });
+
+        GSR_S2.setText("S2");
+        GSR_S2.setToolTipText("");
+        GSR_S2.setActionCommand("EEGS2");
+        GSR_S2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GSR_S2ActionPerformed(evt);
+            }
+        });
+
+        GSR_S3.setText("S3");
+        GSR_S3.setToolTipText("");
+        GSR_S3.setActionCommand("EEGS3");
+        GSR_S3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GSR_S3ActionPerformed(evt);
+            }
+        });
+
+        GSR_S4.setText("S4");
+        GSR_S4.setToolTipText("");
+        GSR_S4.setActionCommand("EEGS4");
+        GSR_S4.setVerifyInputWhenFocusTarget(false);
+        GSR_S4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GSR_S4ActionPerformed(evt);
+            }
+        });
+
+        EMG_S1.setText("S1");
+        EMG_S1.setActionCommand("EEGS1");
+        EMG_S1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EMG_S1ActionPerformed(evt);
+            }
+        });
+
+        EMG_S2.setText("S2");
+        EMG_S2.setToolTipText("");
+        EMG_S2.setActionCommand("EEGS2");
+        EMG_S2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EMG_S2ActionPerformed(evt);
+            }
+        });
+
+        EMG_S3.setText("S3");
+        EMG_S3.setToolTipText("");
+        EMG_S3.setActionCommand("EEGS3");
+        EMG_S3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EMG_S3ActionPerformed(evt);
+            }
+        });
+
+        EMG_S4.setText("S4");
+        EMG_S4.setToolTipText("");
+        EMG_S4.setActionCommand("EEGS4");
+        EMG_S4.setVerifyInputWhenFocusTarget(false);
+        EMG_S4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EMG_S4ActionPerformed(evt);
+            }
+        });
+
+        jToggleButtonExit.setBackground(new java.awt.Color(204, 204, 204));
+        jToggleButtonExit.setText("Exit");
+        jToggleButtonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButtonExitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(slider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(slider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelEEG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanelEMG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                                .addComponent(jPanelUserVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanelGSR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jPanelECG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(EMG_S1)
+                                    .addComponent(EMG_S2)
+                                    .addComponent(EMG_S3)
+                                    .addComponent(EMG_S4)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(EEG_S3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(EEG_S2, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(EEG_S1)
+                                    .addComponent(EEG_S4))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jToggleButtonStart)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButtonStop)
-                                .addGap(123, 123, 123)))))
+                                .addComponent(jPanelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addComponent(jPanelUserVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanelEEG, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
+                                    .addComponent(jPanelEMG, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(7, 7, 7)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ECG_S1)
+                                            .addComponent(ECG_S2)
+                                            .addComponent(ECG_S3)
+                                            .addComponent(ECG_S4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanelECG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(5, 5, 5)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(GSR_S1)
+                                            .addComponent(GSR_S2)
+                                            .addComponent(GSR_S3)
+                                            .addComponent(GSR_S4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanelGSR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jToggleButtonStart)
+                        .addGap(18, 18, 18)
+                        .addComponent(jToggleButtonStop)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jToggleButtonExit))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
@@ -463,31 +672,88 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButtonStart)
-                            .addComponent(jToggleButtonStop))
-                        .addGap(10, 10, 10))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanelEyeTracking, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                             .addComponent(jPanelUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelEEG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelECG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanelEMG, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jPanelGSR, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanelECG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanelEEG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(43, 43, 43))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(ECG_S1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ECG_S2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ECG_S3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(ECG_S4)
+                                        .addGap(110, 110, 110))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(EEG_S1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(EEG_S2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(EEG_S3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(EEG_S4)
+                                        .addGap(109, 109, 109)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanelEMG, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanelGSR, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(GSR_S1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GSR_S2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GSR_S3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GSR_S4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(EMG_S1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EMG_S2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EMG_S3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(EMG_S4)))
                         .addGap(18, 18, 18)
                         .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanelMessages, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(230, 230, 230))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jToggleButtonStart)
+                            .addComponent(jToggleButtonStop)
+                            .addComponent(jToggleButtonExit))
+                        .addGap(39, 39, 39)
+                        .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
+
+        EEG_S1.getAccessibleContext().setAccessibleName("EEGS1");
+        EEG_S2.getAccessibleContext().setAccessibleName("EEGS2");
+        EEG_S3.getAccessibleContext().setAccessibleName("EEGS3");
+        EEG_S4.getAccessibleContext().setAccessibleName("EEGS4");
+        ECG_S1.getAccessibleContext().setAccessibleName("ECGS1");
+        ECG_S2.getAccessibleContext().setAccessibleName("ECGS2");
+        ECG_S3.getAccessibleContext().setAccessibleName("ECGS3");
+        ECG_S4.getAccessibleContext().setAccessibleName("ECGS4");
+        GSR_S1.getAccessibleContext().setAccessibleName("GSRS1");
+        GSR_S2.getAccessibleContext().setAccessibleName("GSRS2");
+        GSR_S3.getAccessibleContext().setAccessibleName("GSRS3");
+        GSR_S4.getAccessibleContext().setAccessibleName("GSRS4");
+        EMG_S1.getAccessibleContext().setAccessibleName("EMGS1");
+        EMG_S2.getAccessibleContext().setAccessibleName("EMGS2");
+        EMG_S3.getAccessibleContext().setAccessibleName("EMGS3");
+        EMG_S4.getAccessibleContext().setAccessibleName("EMGS4");
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -507,11 +773,22 @@ public class MainWindow extends javax.swing.JFrame {
         /* Get input file from user */
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
-        
+        //System.out.println("The choose File selected\n");
         try{
             File fileRef = fileChooser.getSelectedFile();
-            if(fileRef != null)
+            if(fileRef != null){
                 fileToOpen.put(panelName, fileRef.getAbsolutePath());
+                if(  (panelName.getName()).contains("EEG"))
+                    EEGSetOn = true;
+                if(  (panelName.getName()).contains("ECG"))
+                    ECGSetOn = true;
+                if(  (panelName.getName()).contains("EMG"))
+                    EMGSetOn = true;
+                if(  (panelName.getName()).contains("GSR"))
+                    GSRSetOn = true;
+                
+                System.out.println("My panel name is "+panelName.getName());
+            }
         } catch (NullPointerException e) {
             System.out.println("Null pointer exception");
         }
@@ -550,32 +827,54 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
        
+        
         if (jToggleButtonStart.getText().equals("Start")) {
-
+            
             /* Process all entries from map */
             for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
                 
-                javax.swing.JPanel key = entry.getKey();
-                String value = entry.getValue();
-                
+                javax.swing.JPanel panelSelected = entry.getKey();
+                String localFilePath = entry.getValue();
+               
                 /* Processing for videos */
-                if ( (key.getName().equals("jPanelEyeTracking"))
-                        || (key.getName().equals("jPanelUserVideo")) ) {
+                if ( (panelSelected.getName().equals("jPanelEyeTracking"))
+                        || (panelSelected.getName().equals("jPanelUserVideo")) ) {
                    
                     /* Hide the label on video */
-                    javax.swing.JLabel lab = (javax.swing.JLabel) key.getComponent(0);
+                    javax.swing.JLabel lab = (javax.swing.JLabel) panelSelected.getComponent(0);
                     lab.setVisible(false);
                    
                     /* Create and start threads for video */
-                    videoPlotters[videoPlotterCount] = new VideoPlotter(key, value);
+                    videoPlotters[videoPlotterCount] = new VideoPlotter(panelSelected, localFilePath);
                     Thread thread = new Thread(videoPlotters[videoPlotterCount]);
                     thread.start();
                     videoPlotterCount++;
                 }
                 else {
-                    
+                    System.out.println("E1 values are after Start "+ EEG_S1_On+" " + EEG_S2_On +" "+ EEG_S3_On + " " + EEG_S4_On);
+                    Map<Integer, Boolean> whichSignalCalled = new HashMap<Integer, Boolean>();
+                    Map<Integer, Boolean> EEGSignals = new HashMap<Integer, Boolean>();
+        
                     /* Processing for graphs */
-                    GraphPlotter newGraph = new GraphPlotter(key, value);
+                    if(panelSelected.getName().contains("EEG"))
+                    {
+                        EEGSignals.put(1, EEG_S1_On);
+                        EEGSignals.put(2, EEG_S2_On);
+                        EEGSignals.put(3, EEG_S3_On);
+                        EEGSignals.put(4, EEG_S4_On); 
+                        
+                        
+                        whichSignalCalled.putAll(EEGSignals);
+                         
+                    }
+                        
+                    
+                    else if(panelSelected.getName().contains("EEG"))
+                    {
+                        System.out.println("ECG is selected yar\n");
+                    }
+                    
+                  GraphPlotter newGraph = new GraphPlotter(panelSelected, localFilePath,whichSignalCalled);
                     graphThreads[graphCount] = new Thread(newGraph);
                     graphThreads[graphCount].start();
                     graphCount++;
@@ -674,6 +973,113 @@ public class MainWindow extends javax.swing.JFrame {
             videoPlotters[i].setMediaValue(slider.getValue());
     }//GEN-LAST:event_sliderMouseClicked
 
+    private void EEG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S1ActionPerformed
+        if(EEGSetOn){
+            if(EEG_S1.isSelected())
+            {
+             System.out.println("EEG_S1 is  now selected\n");  
+             EEG_S1_On=true;
+            }
+            }
+       
+    }//GEN-LAST:event_EEG_S1ActionPerformed
+
+    private void EEG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S2ActionPerformed
+         if(EEGSetOn){
+             if(EEG_S2.isSelected())
+            {
+                System.out.println("why yr");
+             System.out.println("EEG_S2 is  now selected\n");  
+             EEG_S2_On=true;
+            }
+         }
+    }//GEN-LAST:event_EEG_S2ActionPerformed
+
+    private void EEG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S3ActionPerformed
+         if(EEGSetOn){
+             if(EEG_S3.isSelected())
+            {
+                System.out.println("why yr");
+             System.out.println("EEG_S3 is  now selected\n");  
+             EEG_S3_On=true;
+            }
+         }
+    }//GEN-LAST:event_EEG_S3ActionPerformed
+
+    private void EEG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S4ActionPerformed
+        if(EEGSetOn){
+             if(EEG_S4.isSelected())
+            {
+                System.out.println("why yr");
+             System.out.println("EEG_S4 is  now selected\n");  
+             EEG_S4_On=true;
+            }
+         }
+    }//GEN-LAST:event_EEG_S4ActionPerformed
+
+    private void ECG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S1ActionPerformed
+        if(ECGSetOn){
+            if(ECG_S1.isSelected())
+            {
+             System.out.println("ECG_S1 is  now selected\n");  
+             ECG_S1_On=true;
+            }
+            }
+    }//GEN-LAST:event_ECG_S1ActionPerformed
+
+    private void ECG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ECG_S2ActionPerformed
+
+    private void ECG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ECG_S3ActionPerformed
+
+    private void ECG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ECG_S4ActionPerformed
+
+    private void GSR_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GSR_S1ActionPerformed
+
+    private void GSR_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GSR_S2ActionPerformed
+
+    private void GSR_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GSR_S3ActionPerformed
+
+    private void GSR_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GSR_S4ActionPerformed
+
+    private void EMG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EMG_S1ActionPerformed
+
+    private void EMG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EMG_S2ActionPerformed
+
+    private void EMG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EMG_S3ActionPerformed
+
+    private void EMG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EMG_S4ActionPerformed
+
+    private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonEEGActionPerformed
+
+    private void jToggleButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonExitActionPerformed
+        if (jToggleButtonExit.getText().equals("Exit") && jToggleButtonExit.isEnabled()) {
+            System.exit(0);
+    }//GEN-LAST:event_jToggleButtonExitActionPerformed
+    }
     /**
      * @param args the command line arguments
      */
@@ -686,6 +1092,22 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox ECG_S1;
+    private javax.swing.JCheckBox ECG_S2;
+    private javax.swing.JCheckBox ECG_S3;
+    private javax.swing.JCheckBox ECG_S4;
+    private javax.swing.JCheckBox EEG_S1;
+    private javax.swing.JCheckBox EEG_S2;
+    private javax.swing.JCheckBox EEG_S3;
+    private javax.swing.JCheckBox EEG_S4;
+    private javax.swing.JCheckBox EMG_S1;
+    private javax.swing.JCheckBox EMG_S2;
+    private javax.swing.JCheckBox EMG_S3;
+    private javax.swing.JCheckBox EMG_S4;
+    private javax.swing.JCheckBox GSR_S1;
+    private javax.swing.JCheckBox GSR_S2;
+    private javax.swing.JCheckBox GSR_S3;
+    private javax.swing.JCheckBox GSR_S4;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButtonECG;
     private javax.swing.JButton jButtonEEG;
@@ -711,6 +1133,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonLive;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDisplayMessages;
+    private javax.swing.JToggleButton jToggleButtonExit;
     private javax.swing.JToggleButton jToggleButtonStart;
     private javax.swing.JToggleButton jToggleButtonStop;
     private javax.swing.JSlider slider;
@@ -726,5 +1149,24 @@ public class MainWindow extends javax.swing.JFrame {
     private VideoPlotter videoPlotters[];
     private int videoPlotterCount;
     private SharedData sharedData;
-    
+    private boolean EEGSetOn = false;
+    private boolean ECGSetOn = false;
+    private boolean EMGSetOn = false;
+    private boolean GSRSetOn = false;
+    public boolean EEG_S1_On= false;
+    public boolean EEG_S2_On= false;
+    public boolean EEG_S3_On= false;
+    public boolean EEG_S4_On= false;
+    public boolean ECG_S1_On= false;
+    public boolean ECG_S2_On= false;
+    public boolean ECG_S3_On= false;
+    public boolean ECG_S4_On= false;
+    public boolean EMG_S1_On= false;
+    public boolean EMG_S2_On= false;
+    public boolean EMG_S3_On= false;
+    public boolean EMG_S4_On= false;
+    public boolean GSR_S1_On= false;
+    public boolean GSR_S2_On= false;
+    public boolean GSR_S3_On= false;
+    public boolean GSR_S4_On= false;
 }
