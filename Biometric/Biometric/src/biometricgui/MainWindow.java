@@ -1028,15 +1028,33 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ECG_S1ActionPerformed
 
     private void ECG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S2ActionPerformed
-        // TODO add your handling code here:
+         if(ECGSetOn){
+            if(ECG_S2.isSelected())
+            {
+             System.out.println("ECG_S2 is  now selected\n");  
+             ECG_S2_On=true;
+            }
+            }
     }//GEN-LAST:event_ECG_S2ActionPerformed
 
     private void ECG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S3ActionPerformed
-        // TODO add your handling code here:
+         if(ECGSetOn){
+            if(ECG_S3.isSelected())
+            {
+             System.out.println("ECG_S3 is  now selected\n");  
+             ECG_S3_On=true;
+            }
+            }
     }//GEN-LAST:event_ECG_S3ActionPerformed
 
     private void ECG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S4ActionPerformed
-        // TODO add your handling code here:
+         if(ECGSetOn){
+            if(ECG_S4.isSelected())
+            {
+             System.out.println("ECG_S4 is  now selected\n");  
+             ECG_S4_On=true;
+            }
+            }
     }//GEN-LAST:event_ECG_S4ActionPerformed
 
     private void GSR_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S1ActionPerformed
