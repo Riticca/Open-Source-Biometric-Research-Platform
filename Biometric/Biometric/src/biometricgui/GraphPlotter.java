@@ -96,11 +96,11 @@ public class GraphPlotter implements Runnable {
                if (entry.getValue().equals(true)) {
                  valueRead = Double.parseDouble( biometricValue.split(",")[entry.getKey()]);
                 
-                //System.out.println("It is reading "+ valueRead+"\n");
+                
             }
                 
         }
-                   System.out.println("It is reading "+ valueRead+"\n");
+                 System.out.println("It is reading "+ valueRead+"\n");
                  series.add(current, valueRead);
                    current = ( Second ) current.next( ); 
                                                         

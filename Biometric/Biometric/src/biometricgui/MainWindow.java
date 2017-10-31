@@ -851,10 +851,10 @@ public class MainWindow extends javax.swing.JFrame {
                     videoPlotterCount++;
                 }
                 else {
-                    System.out.println("E1 values are after Start "+ EEG_S1_On+" " + EEG_S2_On +" "+ EEG_S3_On + " " + EEG_S4_On);
-                    Map<Integer, Boolean> whichSignalCalled = new HashMap<Integer, Boolean>();
-                    Map<Integer, Boolean> EEGSignals = new HashMap<Integer, Boolean>();
-        
+                   
+                    Map<Integer, Boolean> whichSignalCalled = new HashMap<>();
+                    Map<Integer, Boolean> EEGSignals = new HashMap<>();
+                    Map<Integer, Boolean> ECGSignals = new HashMap<>();
                     /* Processing for graphs */
                     if(panelSelected.getName().contains("EEG"))
                     {
@@ -869,9 +869,15 @@ public class MainWindow extends javax.swing.JFrame {
                     }
                         
                     
-                    else if(panelSelected.getName().contains("EEG"))
+                    else if(panelSelected.getName().contains("ECG"))
                     {
-                        System.out.println("ECG is selected yar\n");
+                        ECGSignals.put(1, ECG_S1_On);
+                        ECGSignals.put(2, ECG_S2_On);
+                        ECGSignals.put(3, ECG_S3_On);
+                        ECGSignals.put(4, ECG_S4_On); 
+                        
+                        
+                        whichSignalCalled.putAll(ECGSignals);
                     }
                     
                   GraphPlotter newGraph = new GraphPlotter(panelSelected, localFilePath,whichSignalCalled);
