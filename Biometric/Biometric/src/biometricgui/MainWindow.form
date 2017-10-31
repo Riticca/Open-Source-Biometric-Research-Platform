@@ -131,10 +131,11 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanelMessages" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jPanelMessages" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -417,9 +418,9 @@
                           <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButtonEyeTrackingData" pref="124" max="32767" attributes="0"/>
+                          <Component id="jButtonEyeTrackingData" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonUserVideoData" pref="130" max="32767" attributes="0"/>
+                          <Component id="jButtonUserVideoData" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>

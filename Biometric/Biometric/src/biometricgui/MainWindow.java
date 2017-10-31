@@ -312,9 +312,9 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addComponent(jButtonUserVideo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                        .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                        .addComponent(jButtonEyeTrackingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                        .addComponent(jButtonUserVideoData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         jPanel8Layout.setVerticalGroup(
@@ -661,9 +661,10 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jToggleButtonExit))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
@@ -1001,7 +1002,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(EEGSetOn){
             if(EEG_S1.isSelected())
             {
-             System.out.println("EEG_S1 is  now selected\n");  
+             
              EEG_S1_On=true;
             }
             }
@@ -1012,8 +1013,7 @@ public class MainWindow extends javax.swing.JFrame {
          if(EEGSetOn){
              if(EEG_S2.isSelected())
             {
-                System.out.println("why yr");
-             System.out.println("EEG_S2 is  now selected\n");  
+            
              EEG_S2_On=true;
             }
          }
@@ -1023,8 +1023,7 @@ public class MainWindow extends javax.swing.JFrame {
          if(EEGSetOn){
              if(EEG_S3.isSelected())
             {
-                System.out.println("why yr");
-             System.out.println("EEG_S3 is  now selected\n");  
+               
              EEG_S3_On=true;
             }
          }
@@ -1034,8 +1033,7 @@ public class MainWindow extends javax.swing.JFrame {
         if(EEGSetOn){
              if(EEG_S4.isSelected())
             {
-                System.out.println("why yr");
-             System.out.println("EEG_S4 is  now selected\n");  
+                
              EEG_S4_On=true;
             }
          }
@@ -1045,7 +1043,6 @@ public class MainWindow extends javax.swing.JFrame {
         if(ECGSetOn){
             if(ECG_S1.isSelected())
             {
-             System.out.println("ECG_S1 is  now selected\n");  
              ECG_S1_On=true;
             }
             }
@@ -1055,7 +1052,6 @@ public class MainWindow extends javax.swing.JFrame {
          if(ECGSetOn){
             if(ECG_S2.isSelected())
             {
-             System.out.println("ECG_S2 is  now selected\n");  
              ECG_S2_On=true;
             }
             }
@@ -1065,8 +1061,7 @@ public class MainWindow extends javax.swing.JFrame {
          if(ECGSetOn){
             if(ECG_S3.isSelected())
             {
-             System.out.println("ECG_S3 is  now selected\n");  
-             ECG_S3_On=true;
+              ECG_S3_On=true;
             }
             }
     }//GEN-LAST:event_ECG_S3ActionPerformed
@@ -1075,8 +1070,7 @@ public class MainWindow extends javax.swing.JFrame {
          if(ECGSetOn){
             if(ECG_S4.isSelected())
             {
-             System.out.println("ECG_S4 is  now selected\n");  
-             ECG_S4_On=true;
+            ECG_S4_On=true;
             }
             }
     }//GEN-LAST:event_ECG_S4ActionPerformed
@@ -1121,7 +1115,6 @@ public class MainWindow extends javax.swing.JFrame {
          if(EMGSetOn){
             if(EMG_S1.isSelected())
             {
-             System.out.println("EMG_S1 is  now selected\n");  
              EMG_S1_On=true;
             }
             }
@@ -1131,7 +1124,6 @@ public class MainWindow extends javax.swing.JFrame {
         if(EMGSetOn){
             if(EMG_S2.isSelected())
             {
-             System.out.println("EMG_S2 is  now selected\n");  
              EMG_S2_On=true;
             }
             }
@@ -1141,7 +1133,6 @@ public class MainWindow extends javax.swing.JFrame {
         if(EMGSetOn){
             if(EMG_S3.isSelected())
             {
-             System.out.println("EMG_S3 is  now selected\n");  
              EMG_S3_On=true;
             }
             }
@@ -1151,7 +1142,6 @@ public class MainWindow extends javax.swing.JFrame {
         if(EMGSetOn){
             if(EMG_S4.isSelected())
             {
-             System.out.println("EMG_S4 is  now selected\n");  
              EMG_S4_On=true;
             }
             }
