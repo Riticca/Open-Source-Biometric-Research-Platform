@@ -29,22 +29,17 @@ public class VideoPlotter implements Runnable {
      *
      * @param videoPanel the place where to draw graph
      * @param fileToOpen absolute path of file to be read
-     * @param eyeTrackingDataPath path for eye tracking data file
+     * @param eyeTrackingData path for eye tracking data file
      * @param mainWin Main Window object which is required by overlay
      */
-    public VideoPlotter(javax.swing.JPanel videoPanel, String fileToOpen, String eyeTrackingDataPath, 
+    public VideoPlotter(javax.swing.JPanel videoPanel, String fileToOpen, String eyeTrackingData,
             MainWindow mainWin) {
-        
+
         panel = videoPanel;
         filePath = fileToOpen;
         sharedData = SharedData.getSharedDataInstance();
         mainWindow = mainWin;
-
-        try {
-            fileReader = new BufferedReader(new FileReader(eyeTrackingDataPath));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Overlay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        eyeTrackingDataPath = eyeTrackingData;
     }
 
     @Override
@@ -79,8 +74,10 @@ public class VideoPlotter implements Runnable {
         mediaPlayer.setOverlay(overlay);
         mediaPlayer.enableOverlay(true);
 
-        if (fileReader != null) {
+        if (eyeTrackingDataPath != null) {
             try {
+                fileReader = new BufferedReader(new FileReader(eyeTrackingDataPath));
+
                 while ((line = fileReader.readLine()) != null) {
                     String xy[] = line.split(",");
                     int x = Integer.parseInt(xy[0]);
@@ -121,4 +118,5 @@ public class VideoPlotter implements Runnable {
     private CanvasVideoSurface videoSurface;
     private MediaPlayerFactory mediaPlayerFactory;
     private MainWindow mainWindow;
+    private final String eyeTrackingDataPath;
 }

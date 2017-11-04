@@ -53,8 +53,8 @@ public class Overlay extends Window {
                     RenderingHints.VALUE_ANTIALIAS_ON);
             
             /* Draw and fill a circle at position x, y of height and width 10 */
-            twoDG.drawOval(x, y, 10, 10);
-            twoDG.fillOval(x, y, 10, 10);
+            twoDG.drawOval(x, y, 20, 20);
+            twoDG.fillOval(x, y, 20, 20);
             
             /* Put thread to sleep so user can see the circle */
             try {
@@ -64,7 +64,7 @@ public class Overlay extends Window {
             }
             
             /* Clear the circle before we exit */
-            twoDG.clearRect(x, y, 20, 20);
+            twoDG.clearRect(x, y, 25, 25);
 
         } catch (NullPointerException ex) {
             Logger.getLogger(Overlay.class.getName()).log(Level.WARNING, null, ex);
