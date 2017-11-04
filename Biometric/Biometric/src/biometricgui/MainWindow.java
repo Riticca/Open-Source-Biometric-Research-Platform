@@ -120,11 +120,6 @@ public class MainWindow extends javax.swing.JFrame {
                 sliderMouseDragged(evt);
             }
         });
-        slider.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sliderMouseClicked(evt);
-            }
-        });
 
         jPanelMessages.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -751,26 +746,13 @@ public class MainWindow extends javax.swing.JFrame {
         /* Get input file from user */
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
-        //System.out.println("The choose File selected\n");
+
         try {
             File fileRef = fileChooser.getSelectedFile();
-            if (fileRef != null) {
+            if (panelName != null)
                 fileToOpen.put(panelName, fileRef.getAbsolutePath());
-                if ((panelName.getName()).contains("EEG")) {
-                    EEGSetOn = true;
-                }
-                if ((panelName.getName()).contains("ECG")) {
-                    ECGSetOn = true;
-                }
-                if ((panelName.getName()).contains("EMG")) {
-                    EMGSetOn = true;
-                }
-                if ((panelName.getName()).contains("GSR")) {
-                    GSRSetOn = true;
-                }
-
-                System.out.println("My panel name is " + panelName.getName());
-            }
+            else
+                eyeTrackingDataPath = fileRef.getAbsolutePath();
         } catch (NullPointerException e) {
             System.out.println("Null pointer exception");
         }
@@ -797,7 +779,7 @@ public class MainWindow extends javax.swing.JFrame {
                 graphThread.stop();
             }
              */
- /* Stop all videos */
+            /* Stop all videos */
             for (int i = 0; i < videoPlotterCount; i++) {
                 videoPlotters[i].stopVideo();
             }
@@ -828,7 +810,10 @@ public class MainWindow extends javax.swing.JFrame {
                         lab.setVisible(false);
 
                         /* Create and start threads for video */
-                        videoPlotters[videoPlotterCount] = new VideoPlotter(panelSelected, localFilePath, this);
+                        if (panelSelected.getName().equals("jPanelEyeTracking"))
+                            videoPlotters[videoPlotterCount] = new VideoPlotter(panelSelected, localFilePath, eyeTrackingDataPath, this);
+                        else
+                            videoPlotters[videoPlotterCount] = new VideoPlotter(panelSelected, localFilePath, null, this);
                         Thread thread = new Thread(videoPlotters[videoPlotterCount]);
                         thread.start();
                         videoPlotterCount++;
@@ -913,7 +898,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonStartActionPerformed
 
     private void jButtonEyeTrackingDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingDataMouseClicked
-        // TODO add your handling code here:
+        if (browseComputer == true) {
+            chooseFile(null);
+        }
     }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
 
     private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
@@ -956,15 +943,6 @@ public class MainWindow extends javax.swing.JFrame {
             chooseFile(jPanelEMG);
         }
     }//GEN-LAST:event_jButtonEMGMouseClicked
-
-    private void sliderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseClicked
-
-        /* Change the current time of video according to slider */
-        sharedData.set(slider.getValue());
-        for (int i = 0; i < videoPlotterCount; i++) {
-            videoPlotters[i].setMediaValue(slider.getValue());
-        }
-    }//GEN-LAST:event_sliderMouseClicked
 
     private void EEG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S1ActionPerformed
         if (EEGSetOn) {
@@ -1175,6 +1153,7 @@ public class MainWindow extends javax.swing.JFrame {
     private VideoPlotter videoPlotters[];
     private int videoPlotterCount;
     private SharedData sharedData;
+    private String eyeTrackingDataPath;
     private boolean EEGSetOn = false;
     private boolean ECGSetOn = false;
     private boolean EMGSetOn = false;

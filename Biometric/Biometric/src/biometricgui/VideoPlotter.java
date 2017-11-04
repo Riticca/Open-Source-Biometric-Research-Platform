@@ -29,9 +29,10 @@ public class VideoPlotter implements Runnable {
      *
      * @param videoPanel the place where to draw graph
      * @param fileToOpen absolute path of file to be read
+     * @param eyeTrackingDataPath path for eye tracking data file
      * @param mainWin Main Window object which is required by overlay
      */
-    public VideoPlotter(javax.swing.JPanel videoPanel, String fileToOpen,
+    public VideoPlotter(javax.swing.JPanel videoPanel, String fileToOpen, String eyeTrackingDataPath, 
             MainWindow mainWin) {
         
         panel = videoPanel;
@@ -40,7 +41,7 @@ public class VideoPlotter implements Runnable {
         mainWindow = mainWin;
 
         try {
-            fileReader = new BufferedReader(new FileReader(filePath));
+            fileReader = new BufferedReader(new FileReader(eyeTrackingDataPath));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Overlay.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,16 +79,17 @@ public class VideoPlotter implements Runnable {
         mediaPlayer.setOverlay(overlay);
         mediaPlayer.enableOverlay(true);
 
-        
-        try {
-            while ((line = fileReader.readLine()) != null) {
-                String xy[] = line.split(",");
-                int x = Integer.parseInt(xy[0]);
-                int y = Integer.parseInt(xy[1]);
-                overlay.paintEyeTracking(overlay.getGraphics(), x, y);
+        if (fileReader != null) {
+            try {
+                while ((line = fileReader.readLine()) != null) {
+                    String xy[] = line.split(",");
+                    int x = Integer.parseInt(xy[0]);
+                    int y = Integer.parseInt(xy[1]);
+                    overlay.paintEyeTracking(overlay.getGraphics(), x, y);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Overlay.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Overlay.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
