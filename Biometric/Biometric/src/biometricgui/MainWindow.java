@@ -7,21 +7,10 @@ package biometricgui;
 
 import java.awt.*;
 import java.awt.Color;
-import java.awt.geom.AffineTransform;
 import java.io.File;
-import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
-import javax.swing.JComponent;
 import javax.swing.JFileChooser;
-
-
-//import com.sun.jna.Native;
-
-import uk.co.caprica.vlcj.player.MediaPlayerFactory;
-import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
-
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -29,25 +18,25 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form BiometricUI
      */
     public MainWindow() {
-        
+
         /* Hash map contains panels and filepaths */
         fileToOpen = new HashMap<>();
-        
+
         /* Count for videos to be load */
         videoPlotterCount = 0;
-        
+
         /* Count for graphs to be load */
         graphCount = 0;
-        
+
         /* Initialization for video plotters (maximum 2) */
         videoPlotters = new VideoPlotter[2];
-        
+
         /* Initialization for graph plotters (maximum 4) */
         graphThreads = new Thread[4];
-        
+
         /* Data to be synchronized between threads */
         sharedData = SharedData.getSharedDataInstance();
-        
+
         /* Initialization of window components */
         initComponents();
     }
@@ -192,7 +181,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanelEyeTrackingLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         jPanelEyeTrackingLayout.setVerticalGroup(
             jPanelEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,6 +196,7 @@ public class MainWindow extends javax.swing.JFrame {
         buttonGroup2.add(jRadioButtonLive);
         jRadioButtonLive.setText("Live");
         jRadioButtonLive.setActionCommand("Load Live");
+        jRadioButtonLive.setEnabled(false);
         jRadioButtonLive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButtonLiveActionPerformed(evt);
@@ -753,29 +743,33 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButtonLiveActionPerformed
 
     private void jRadioButtonBrowseComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonBrowseComputerActionPerformed
-        browseComputer = true;        
+        browseComputer = true;
     }//GEN-LAST:event_jRadioButtonBrowseComputerActionPerformed
 
     private void chooseFile(javax.swing.JPanel panelName) {
-        
+
         /* Get input file from user */
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
         //System.out.println("The choose File selected\n");
-        try{
+        try {
             File fileRef = fileChooser.getSelectedFile();
-            if(fileRef != null){
+            if (fileRef != null) {
                 fileToOpen.put(panelName, fileRef.getAbsolutePath());
-                if(  (panelName.getName()).contains("EEG"))
+                if ((panelName.getName()).contains("EEG")) {
                     EEGSetOn = true;
-                if(  (panelName.getName()).contains("ECG"))
+                }
+                if ((panelName.getName()).contains("ECG")) {
                     ECGSetOn = true;
-                if(  (panelName.getName()).contains("EMG"))
+                }
+                if ((panelName.getName()).contains("EMG")) {
                     EMGSetOn = true;
-                if(  (panelName.getName()).contains("GSR"))
+                }
+                if ((panelName.getName()).contains("GSR")) {
                     GSRSetOn = true;
-                
-                System.out.println("My panel name is "+panelName.getName());
+                }
+
+                System.out.println("My panel name is " + panelName.getName());
             }
         } catch (NullPointerException e) {
             System.out.println("Null pointer exception");
@@ -783,154 +777,139 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void jButtonEyeTrackingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingMouseClicked
-        if (browseComputer == true)
+        if (browseComputer == true) {
             chooseFile(jPanelEyeTracking);
+        }
     }//GEN-LAST:event_jButtonEyeTrackingMouseClicked
-  
+
     private void jButtonUserVideoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonUserVideoMouseClicked
-         if (browseComputer == true)
+        if (browseComputer == true) {
             chooseFile(jPanelUserVideo);
+        }
     }//GEN-LAST:event_jButtonUserVideoMouseClicked
 
     private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
-        
+
         if (jToggleButtonStop.getText().equals("Stop") && jToggleButtonStop.isEnabled()) {
-            
+
             /* Stop all graph threads
             for (Thread graphThread : graphThreads) {
                 graphThread.stop();
             }
-            */
-            
-            /* Stop all videos */
-            for ( int i=0; i < videoPlotterCount; i++ )
+             */
+ /* Stop all videos */
+            for (int i = 0; i < videoPlotterCount; i++) {
                 videoPlotters[i].stopVideo();
-            
+            }
+
             /* Change the color of button */
             jToggleButtonStart.setText("Start");
             jToggleButtonStart.setBackground(Color.GREEN);
-            
-        } 
+
+        }
     }//GEN-LAST:event_jToggleButtonStopActionPerformed
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
-       
-        
-        if (jToggleButtonStart.getText().equals("Start")) {
-            
-            /* Process all entries from map */
-            for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
-                
-                javax.swing.JPanel panelSelected = entry.getKey();
-                String localFilePath = entry.getValue();
-               
-                /* Processing for videos */
-                if ( (panelSelected.getName().equals("jPanelEyeTracking"))
-                        || (panelSelected.getName().equals("jPanelUserVideo")) ) {
-                   
-                    /* Hide the label on video */
-                    javax.swing.JLabel lab = (javax.swing.JLabel) panelSelected.getComponent(0);
-                    lab.setVisible(false);
-                   
-                    /* Create and start threads for video */
-                    videoPlotters[videoPlotterCount] = new VideoPlotter(panelSelected, localFilePath);
-                    Thread thread = new Thread(videoPlotters[videoPlotterCount]);
-                    thread.start();
-                    videoPlotterCount++;
-                }
-                else {
-                   
-                    Map<Integer, Boolean> whichSignalCalled = new HashMap<>();
-                    Map<Integer, Boolean> EEGSignals = new HashMap<>();
-                    Map<Integer, Boolean> ECGSignals = new HashMap<>();
-                     Map<Integer, Boolean> EMGSignals = new HashMap<>();
-                      Map<Integer, Boolean> GSRSignals = new HashMap<>();
-                    /* Processing for graphs */
-                    if(panelSelected.getName().contains("EEG"))
-                    {
-                        EEGSignals.put(1, EEG_S1_On);
-                        EEGSignals.put(2, EEG_S2_On);
-                        EEGSignals.put(3, EEG_S3_On);
-                        EEGSignals.put(4, EEG_S4_On); 
-                        whichSignalCalled.putAll(EEGSignals);
-                     }
-                        
-                    
-                    else if(panelSelected.getName().contains("ECG"))
-                    {
-                        ECGSignals.put(1, ECG_S1_On);
-                        ECGSignals.put(2, ECG_S2_On);
-                        ECGSignals.put(3, ECG_S3_On);
-                        ECGSignals.put(4, ECG_S4_On); 
-                        
-                        
-                        whichSignalCalled.putAll(ECGSignals);
-                    }
-                     else if(panelSelected.getName().contains("EMG"))
-                    {
-                        EMGSignals.put(1, EMG_S1_On);
-                        EMGSignals.put(2, EMG_S2_On);
-                        EMGSignals.put(3, EMG_S3_On);
-                        EMGSignals.put(4, EMG_S4_On); 
-                        
-                        
-                        whichSignalCalled.putAll(EMGSignals);
-                    }
-                     else if(panelSelected.getName().contains("GSR"))
-                    {
-                        GSRSignals.put(1, GSR_S1_On);
-                        GSRSignals.put(2, GSR_S2_On);
-                        GSRSignals.put(3, GSR_S3_On);
-                        GSRSignals.put(4, GSR_S4_On); 
-                        
-                        
-                        whichSignalCalled.putAll(GSRSignals);
-                    }
-                  GraphPlotter newGraph = new GraphPlotter(panelSelected, localFilePath,whichSignalCalled);
-                    graphThreads[graphCount] = new Thread(newGraph);
-                    graphThreads[graphCount].start();
-                    graphCount++;
-                }
-            }
-            
-            /* Create thread for slider and set its status to true */
-            sharedData.setSliderStatus(true);
-            Slider firstThread = new Slider(slider);
-            Thread thread = new Thread(firstThread);
-            thread.start();
-            
-            /* Change Start button label to Pause */
-            jToggleButtonStop.setEnabled(true);
-            jToggleButtonStart.setText("Pause");
-            jToggleButtonStart.setBackground(Color.YELLOW);
 
-        } else if (jToggleButtonStart.getText().equals("Pause")) {
-            
-            /* Pause all running videos */
-            for ( int i=0; i < videoPlotterCount; i++ )
-                videoPlotters[i].pauseVideo();
-            
-            /* Disable slider */
-            sharedData.setSliderStatus(false);
-            
-            /* Change Pause button label to Resume */
-            jToggleButtonStart.setText("Resume");
-            jToggleButtonStart.setBackground(Color.GREEN);
+        switch (jToggleButtonStart.getText()) {
+            case "Start":
+                /* Process all entries from map */
+                for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
 
-        } else if (jToggleButtonStart.getText().equals("Resume")) {
-            
-            /* Resume all videos */
-            for ( int i=0; i < videoPlotterCount; i++ )
-                videoPlotters[i].resumeVideo();
-            
-            /* Change Resume button label to Pause */
-            jToggleButtonStart.setText("Pause");
-            jToggleButtonStart.setBackground(Color.YELLOW);
-            
-            /* Enable slider */
-            sharedData.setSliderStatus(true);
+                    javax.swing.JPanel panelSelected = entry.getKey();
+                    String localFilePath = entry.getValue();
+
+                    /* Processing for videos */
+                    if ((panelSelected.getName().equals("jPanelEyeTracking"))
+                            || (panelSelected.getName().equals("jPanelUserVideo"))) {
+
+                        /* Hide the label on video */
+                        javax.swing.JLabel lab = (javax.swing.JLabel) panelSelected.getComponent(0);
+                        lab.setVisible(false);
+
+                        /* Create and start threads for video */
+                        videoPlotters[videoPlotterCount] = new VideoPlotter(panelSelected, localFilePath, this);
+                        Thread thread = new Thread(videoPlotters[videoPlotterCount]);
+                        thread.start();
+                        videoPlotterCount++;
+                    } else {
+
+                        Map<Integer, Boolean> whichSignalCalled = new HashMap<>();
+                        Map<Integer, Boolean> EEGSignals = new HashMap<>();
+                        Map<Integer, Boolean> ECGSignals = new HashMap<>();
+                        Map<Integer, Boolean> EMGSignals = new HashMap<>();
+                        Map<Integer, Boolean> GSRSignals = new HashMap<>();
+                        /* Processing for graphs */
+                        if (panelSelected.getName().contains("EEG")) {
+                            EEGSignals.put(1, EEG_S1_On);
+                            EEGSignals.put(2, EEG_S2_On);
+                            EEGSignals.put(3, EEG_S3_On);
+                            EEGSignals.put(4, EEG_S4_On);
+                            whichSignalCalled.putAll(EEGSignals);
+                        } else if (panelSelected.getName().contains("ECG")) {
+                            ECGSignals.put(1, ECG_S1_On);
+                            ECGSignals.put(2, ECG_S2_On);
+                            ECGSignals.put(3, ECG_S3_On);
+                            ECGSignals.put(4, ECG_S4_On);
+
+                            whichSignalCalled.putAll(ECGSignals);
+                        } else if (panelSelected.getName().contains("EMG")) {
+                            EMGSignals.put(1, EMG_S1_On);
+                            EMGSignals.put(2, EMG_S2_On);
+                            EMGSignals.put(3, EMG_S3_On);
+                            EMGSignals.put(4, EMG_S4_On);
+
+                            whichSignalCalled.putAll(EMGSignals);
+                        } else if (panelSelected.getName().contains("GSR")) {
+                            GSRSignals.put(1, GSR_S1_On);
+                            GSRSignals.put(2, GSR_S2_On);
+                            GSRSignals.put(3, GSR_S3_On);
+                            GSRSignals.put(4, GSR_S4_On);
+
+                            whichSignalCalled.putAll(GSRSignals);
+                        }
+                        GraphPlotter newGraph = new GraphPlotter(panelSelected, localFilePath, whichSignalCalled);
+                        graphThreads[graphCount] = new Thread(newGraph);
+                        graphThreads[graphCount].start();
+                        graphCount++;
+                    }
+                }
+                /* Create thread for slider and set its status to true */
+                sharedData.setSliderStatus(true);
+                Slider firstThread = new Slider(slider);
+                Thread thread = new Thread(firstThread);
+                thread.start();
+                /* Change Start button label to Pause */
+                jToggleButtonStop.setEnabled(true);
+                jToggleButtonStart.setText("Pause");
+                jToggleButtonStart.setBackground(Color.YELLOW);
+                break;
+            case "Pause":
+                /* Pause all running videos */
+                for (int i = 0; i < videoPlotterCount; i++) {
+                    videoPlotters[i].pauseVideo();
+                }
+                /* Disable slider */
+                sharedData.setSliderStatus(false);
+                /* Change Pause button label to Resume */
+                jToggleButtonStart.setText("Resume");
+                jToggleButtonStart.setBackground(Color.GREEN);
+                break;
+            case "Resume":
+                /* Resume all videos */
+                for (int i = 0; i < videoPlotterCount; i++) {
+                    videoPlotters[i].resumeVideo();
+                }
+                /* Change Resume button label to Pause */
+                jToggleButtonStart.setText("Pause");
+                jToggleButtonStart.setBackground(Color.YELLOW);
+                /* Enable slider */
+                sharedData.setSliderStatus(true);
+                break;
+            default:
+                break;
         }
-        
+
     }//GEN-LAST:event_jToggleButtonStartActionPerformed
 
     private void jButtonEyeTrackingDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingDataMouseClicked
@@ -938,196 +917,186 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
 
     private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
-        
+
         /* Change the current time of video according to slider */
         sharedData.set(slider.getValue());
-        for ( int i=0; i < videoPlotterCount; i++ )
+        for (int i = 0; i < videoPlotterCount; i++) {
             videoPlotters[i].setMediaValue(slider.getValue());
+        }
     }//GEN-LAST:event_sliderMouseDragged
 
     private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
-        
+
         /* Get ECG file from user */
-        if (browseComputer == true)
+        if (browseComputer == true) {
             chooseFile(jPanelECG);
+        }
     }//GEN-LAST:event_jButtonECGMouseClicked
 
     private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
-        
+
         /* Get EEG file from user */
-        if (browseComputer == true)
-            chooseFile(jPanelEEG);        
+        if (browseComputer == true) {
+            chooseFile(jPanelEEG);
+        }
     }//GEN-LAST:event_jButtonEEGMouseClicked
 
     private void jButtonGSRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGSRMouseClicked
-        
+
         /* Get GSR file from user */
-        if (browseComputer == true)
+        if (browseComputer == true) {
             chooseFile(jPanelGSR);
+        }
     }//GEN-LAST:event_jButtonGSRMouseClicked
 
     private void jButtonEMGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEMGMouseClicked
-        
+
         /* Get EMG file from user */
-        if (browseComputer == true)
+        if (browseComputer == true) {
             chooseFile(jPanelEMG);
+        }
     }//GEN-LAST:event_jButtonEMGMouseClicked
 
     private void sliderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseClicked
-        
+
         /* Change the current time of video according to slider */
         sharedData.set(slider.getValue());
-        for ( int i=0; i < videoPlotterCount; i++ )
+        for (int i = 0; i < videoPlotterCount; i++) {
             videoPlotters[i].setMediaValue(slider.getValue());
+        }
     }//GEN-LAST:event_sliderMouseClicked
 
     private void EEG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S1ActionPerformed
-        if(EEGSetOn){
-            if(EEG_S1.isSelected())
-            {
-             
-             EEG_S1_On=true;
+        if (EEGSetOn) {
+            if (EEG_S1.isSelected()) {
+
+                EEG_S1_On = true;
             }
-            }
-       
+        }
+
     }//GEN-LAST:event_EEG_S1ActionPerformed
 
     private void EEG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S2ActionPerformed
-         if(EEGSetOn){
-             if(EEG_S2.isSelected())
-            {
-            
-             EEG_S2_On=true;
+        if (EEGSetOn) {
+            if (EEG_S2.isSelected()) {
+
+                EEG_S2_On = true;
             }
-         }
+        }
     }//GEN-LAST:event_EEG_S2ActionPerformed
 
     private void EEG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S3ActionPerformed
-         if(EEGSetOn){
-             if(EEG_S3.isSelected())
-            {
-               
-             EEG_S3_On=true;
+        if (EEGSetOn) {
+            if (EEG_S3.isSelected()) {
+
+                EEG_S3_On = true;
             }
-         }
+        }
     }//GEN-LAST:event_EEG_S3ActionPerformed
 
     private void EEG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S4ActionPerformed
-        if(EEGSetOn){
-             if(EEG_S4.isSelected())
-            {
-                
-             EEG_S4_On=true;
+        if (EEGSetOn) {
+            if (EEG_S4.isSelected()) {
+
+                EEG_S4_On = true;
             }
-         }
+        }
     }//GEN-LAST:event_EEG_S4ActionPerformed
 
     private void ECG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S1ActionPerformed
-        if(ECGSetOn){
-            if(ECG_S1.isSelected())
-            {
-             ECG_S1_On=true;
+        if (ECGSetOn) {
+            if (ECG_S1.isSelected()) {
+                ECG_S1_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_ECG_S1ActionPerformed
 
     private void ECG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S2ActionPerformed
-         if(ECGSetOn){
-            if(ECG_S2.isSelected())
-            {
-             ECG_S2_On=true;
+        if (ECGSetOn) {
+            if (ECG_S2.isSelected()) {
+                ECG_S2_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_ECG_S2ActionPerformed
 
     private void ECG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S3ActionPerformed
-         if(ECGSetOn){
-            if(ECG_S3.isSelected())
-            {
-              ECG_S3_On=true;
+        if (ECGSetOn) {
+            if (ECG_S3.isSelected()) {
+                ECG_S3_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_ECG_S3ActionPerformed
 
     private void ECG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S4ActionPerformed
-         if(ECGSetOn){
-            if(ECG_S4.isSelected())
-            {
-            ECG_S4_On=true;
+        if (ECGSetOn) {
+            if (ECG_S4.isSelected()) {
+                ECG_S4_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_ECG_S4ActionPerformed
 
     private void GSR_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S1ActionPerformed
-       if(GSRSetOn){
-            if(GSR_S1.isSelected())
-            {
-             GSR_S1_On=true;
+        if (GSRSetOn) {
+            if (GSR_S1.isSelected()) {
+                GSR_S1_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_GSR_S1ActionPerformed
 
     private void GSR_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S2ActionPerformed
-        if(GSRSetOn){
-            if(GSR_S2.isSelected())
-            {
-            GSR_S2_On=true;
+        if (GSRSetOn) {
+            if (GSR_S2.isSelected()) {
+                GSR_S2_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_GSR_S2ActionPerformed
 
     private void GSR_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S3ActionPerformed
-       if(GSRSetOn){
-            if(GSR_S3.isSelected())
-            {
-             GSR_S3_On=true;
+        if (GSRSetOn) {
+            if (GSR_S3.isSelected()) {
+                GSR_S3_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_GSR_S3ActionPerformed
 
     private void GSR_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S4ActionPerformed
-        if(GSRSetOn){
-            if(GSR_S4.isSelected())
-            {
-             GSR_S4_On=true;
+        if (GSRSetOn) {
+            if (GSR_S4.isSelected()) {
+                GSR_S4_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_GSR_S4ActionPerformed
 
     private void EMG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S1ActionPerformed
-         if(EMGSetOn){
-            if(EMG_S1.isSelected())
-            {
-             EMG_S1_On=true;
+        if (EMGSetOn) {
+            if (EMG_S1.isSelected()) {
+                EMG_S1_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_EMG_S1ActionPerformed
 
     private void EMG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S2ActionPerformed
-        if(EMGSetOn){
-            if(EMG_S2.isSelected())
-            {
-             EMG_S2_On=true;
+        if (EMGSetOn) {
+            if (EMG_S2.isSelected()) {
+                EMG_S2_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_EMG_S2ActionPerformed
 
     private void EMG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S3ActionPerformed
-        if(EMGSetOn){
-            if(EMG_S3.isSelected())
-            {
-             EMG_S3_On=true;
+        if (EMGSetOn) {
+            if (EMG_S3.isSelected()) {
+                EMG_S3_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_EMG_S3ActionPerformed
 
     private void EMG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S4ActionPerformed
-        if(EMGSetOn){
-            if(EMG_S4.isSelected())
-            {
-             EMG_S4_On=true;
+        if (EMGSetOn) {
+            if (EMG_S4.isSelected()) {
+                EMG_S4_On = true;
             }
-            }
+        }
     }//GEN-LAST:event_EMG_S4ActionPerformed
 
     private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
@@ -1139,6 +1108,7 @@ public class MainWindow extends javax.swing.JFrame {
             System.exit(0);
     }//GEN-LAST:event_jToggleButtonExitActionPerformed
     }
+
     /**
      * @param args the command line arguments
      */
@@ -1196,10 +1166,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JToggleButton jToggleButtonStop;
     private javax.swing.JSlider slider;
     // End of variables declaration//GEN-END:variables
-    
+
     private Canvas canvas;
-    private EmbeddedMediaPlayer mediaPlayer;
-    private MediaPlayerFactory mediaPlayerFactory;
     private Map<javax.swing.JPanel, String> fileToOpen;
     private boolean browseComputer;
     private Thread graphThreads[];
@@ -1211,20 +1179,20 @@ public class MainWindow extends javax.swing.JFrame {
     private boolean ECGSetOn = false;
     private boolean EMGSetOn = false;
     private boolean GSRSetOn = false;
-    public boolean EEG_S1_On= false;
-    public boolean EEG_S2_On= false;
-    public boolean EEG_S3_On= false;
-    public boolean EEG_S4_On= false;
-    public boolean ECG_S1_On= false;
-    public boolean ECG_S2_On= false;
-    public boolean ECG_S3_On= false;
-    public boolean ECG_S4_On= false;
-    public boolean EMG_S1_On= false;
-    public boolean EMG_S2_On= false;
-    public boolean EMG_S3_On= false;
-    public boolean EMG_S4_On= false;
-    public boolean GSR_S1_On= false;
-    public boolean GSR_S2_On= false;
-    public boolean GSR_S3_On= false;
-    public boolean GSR_S4_On= false;
+    public boolean EEG_S1_On = false;
+    public boolean EEG_S2_On = false;
+    public boolean EEG_S3_On = false;
+    public boolean EEG_S4_On = false;
+    public boolean ECG_S1_On = false;
+    public boolean ECG_S2_On = false;
+    public boolean ECG_S3_On = false;
+    public boolean ECG_S4_On = false;
+    public boolean EMG_S1_On = false;
+    public boolean EMG_S2_On = false;
+    public boolean EMG_S3_On = false;
+    public boolean EMG_S4_On = false;
+    public boolean GSR_S1_On = false;
+    public boolean GSR_S2_On = false;
+    public boolean GSR_S3_On = false;
+    public boolean GSR_S4_On = false;
 }

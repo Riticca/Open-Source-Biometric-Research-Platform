@@ -24,13 +24,14 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
 /**
- * @author Vikram Wathodkar (vikram.wathodkar@gmail.com)
+ * @author Vikram Wathodkar (vikram.wathodkar@gmail.com) 
  * This class read the given file and plot graph on panels
  */
 public class GraphPlotter implements Runnable {
 
     /**
      * Initialize required stuff
+     *
      * @param panel the place where to draw graph
      * @param filePath absolute path of file to be read
      * @param signals which defines the signals switched on for that graph
@@ -43,18 +44,17 @@ public class GraphPlotter implements Runnable {
     private javax.swing.JPanel panel;
     private ChartPanel chartPanel;
     private SharedData sharedData;
-    private Map<Integer,Boolean> signals = new HashMap<>();
+    private Map<Integer, Boolean> signals = new HashMap<>();
 
-    public GraphPlotter(javax.swing.JPanel panel, String filePath,Map<Integer,Boolean> signalsToSelect) {
-        
-       
+    public GraphPlotter(javax.swing.JPanel panel, String filePath, Map<Integer, Boolean> signalsToSelect) {
+
         this.signals.putAll(signalsToSelect);
         this.panel = panel;
         sharedData = SharedData.getSharedDataInstance();
-        
+
         series = new TimeSeries("Biometric Data");
-        current = new Second( );
-        
+        current = new Second();
+
         /* We already made sure that file exists
          * but my IDE wants me to double check it
          */
@@ -69,69 +69,67 @@ public class GraphPlotter implements Runnable {
 
     @Override
     public void run() {
-        
+
         String biometricValue;
-        Double valueRead =0.0;
+        Double valueRead = 0.0;
         int endOfFileFlag = 0;
         int oldValue = sharedData.get();
 
-        while( true )
-        {
-            while (oldValue == sharedData.get() || !sharedData.getSliderStatus())
+        while (true) {
+            while (oldValue == sharedData.get() || !sharedData.getSliderStatus()) {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(GraphPlotter.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            
+            }
+
             oldValue = sharedData.get();
             series.clear();
-            
-          
-            for (int i = 0; i < 50; i++) 
-                
+
+            for (int i = 0; i < 50; i++) {
                 try {
-                   biometricValue = fileReader.readLine();
-                    for (Entry<Integer,Boolean> entry : signals.entrySet()) {
-               if (entry.getValue().equals(true)) {
-                 valueRead = Double.parseDouble( biometricValue.split(",")[entry.getKey()]);
-                
-                
-            }
-                
-        }
-                 //System.out.println("It is reading "+ valueRead+"\n");
-                 series.add(current, valueRead);
-                   current = ( Second ) current.next( ); 
-                                                        
-                } catch ( SeriesException e ) {
+                    biometricValue = fileReader.readLine();
+                    for (Entry<Integer, Boolean> entry : signals.entrySet()) {
+                        if (entry.getValue().equals(true)) {
+                            valueRead = Double.parseDouble(biometricValue.split(",")[entry.getKey()]);
+
+                        }
+
+                    }
+                    //System.out.println("It is reading "+ valueRead+"\n");
+                    series.add(current, valueRead);
+                    current = (Second) current.next();
+
+                } catch (SeriesException e) {
                     System.err.println("Error adding to series");
-                } catch ( IOException ex ) {
+                } catch (IOException ex) {
                     /* Everything that has a beginning, has an ending */
                     endOfFileFlag = 1;
                     break;
                 }
-            
+            }
+
             /* Exit on EOF */
-            if (endOfFileFlag == 1)
+            if (endOfFileFlag == 1) {
                 break;
-            
+            }
+
             /* Draw the graph */
             dataset = new TimeSeriesCollection(series);
             chart = ChartFactory.createTimeSeriesChart(this.panel.getName(),
-                    "Seconds", this.panel.getName().split(" ")[0]+" values", dataset,
+                    "Seconds", this.panel.getName().split(" ")[0] + " values", dataset,
                     false, false, false);
-            
+
             chartPanel = new ChartPanel(chart);
             chartPanel.setSize(panel.getSize());
             chartPanel.setRefreshBuffer(true);
             panel.add(chartPanel);
             panel.revalidate();
             panel.repaint();
-          
+
         }
-        
+
     }
-    
-    
+
 }
