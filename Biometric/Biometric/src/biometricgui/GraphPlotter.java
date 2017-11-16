@@ -46,9 +46,13 @@ public class GraphPlotter implements Runnable {
     private SharedData sharedData;
     private Map<Integer, Boolean> signals = new HashMap<>();
 
-    public GraphPlotter(javax.swing.JPanel panel, String filePath, Map<Integer, Boolean> signalsToSelect) {
+    public GraphPlotter(javax.swing.JPanel panel, String filePath,
+                        boolean s1, boolean s2, boolean s3, boolean s4) {
 
-        this.signals.putAll(signalsToSelect);
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        System.out.println(s4);
         this.panel = panel;
         sharedData = SharedData.getSharedDataInstance();
 

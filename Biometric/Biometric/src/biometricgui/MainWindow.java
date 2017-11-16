@@ -8,8 +8,10 @@ package biometricgui;
 import java.awt.*;
 import java.awt.Color;
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 
 public class MainWindow extends javax.swing.JFrame {
@@ -36,9 +38,19 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Data to be synchronized between threads */
         sharedData = SharedData.getSharedDataInstance();
-
-        /* Initialization of window components */
         initComponents();
+        
+        /* Hashmap for panels and signals */
+        panelSignalMap = new HashMap<javax.swing.JPanel, javax.swing.JCheckBox[]>()
+        {{
+            put(jPanelEEG, new javax.swing.JCheckBox[]{s1EEG, s2EEG, s3EEG, s4EEG});
+            put(jPanelEMG, new javax.swing.JCheckBox[]{s1EMG, s2EMG, s3EMG, s4EMG});
+            put(jPanelECG, new javax.swing.JCheckBox[]{s1ECG, s2ECG, s3ECG, s4ECG});
+            put(jPanelGSR, new javax.swing.JCheckBox[]{s1GSR, s2GSR, s3GSR, s4GSR});
+        }};
+        //System.out.println(panelSignalMap.get("EEG Graph")[0]);
+        /* Initialization of window components */
+        
     }
 
     /**
@@ -77,23 +89,22 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelEMG = new javax.swing.JPanel();
         jToggleButtonStop = new javax.swing.JToggleButton();
         jToggleButtonStart = new javax.swing.JToggleButton();
-        EEG_S1 = new javax.swing.JCheckBox();
-        EEG_S2 = new javax.swing.JCheckBox();
-        EEG_S3 = new javax.swing.JCheckBox();
-        EEG_S4 = new javax.swing.JCheckBox();
-        ECG_S1 = new javax.swing.JCheckBox();
-        ECG_S2 = new javax.swing.JCheckBox();
-        ECG_S3 = new javax.swing.JCheckBox();
-        ECG_S4 = new javax.swing.JCheckBox();
-        GSR_S1 = new javax.swing.JCheckBox();
-        GSR_S2 = new javax.swing.JCheckBox();
-        GSR_S3 = new javax.swing.JCheckBox();
-        GSR_S4 = new javax.swing.JCheckBox();
-        EMG_S1 = new javax.swing.JCheckBox();
-        EMG_S2 = new javax.swing.JCheckBox();
-        EMG_S3 = new javax.swing.JCheckBox();
-        EMG_S4 = new javax.swing.JCheckBox();
-        jToggleButtonExit = new javax.swing.JToggleButton();
+        s1EEG = new javax.swing.JCheckBox();
+        s2EEG = new javax.swing.JCheckBox();
+        s3EEG = new javax.swing.JCheckBox();
+        s4EEG = new javax.swing.JCheckBox();
+        s1ECG = new javax.swing.JCheckBox();
+        s2ECG = new javax.swing.JCheckBox();
+        s3ECG = new javax.swing.JCheckBox();
+        s4ECG = new javax.swing.JCheckBox();
+        s1GSR = new javax.swing.JCheckBox();
+        s2GSR = new javax.swing.JCheckBox();
+        s3GSR = new javax.swing.JCheckBox();
+        s4GSR = new javax.swing.JCheckBox();
+        s1EMG = new javax.swing.JCheckBox();
+        s2EMG = new javax.swing.JCheckBox();
+        s3EMG = new javax.swing.JCheckBox();
+        s4EMG = new javax.swing.JCheckBox();
 
         jFileChooser1.setDialogTitle("This is my open dialog");
 
@@ -225,11 +236,6 @@ public class MainWindow extends javax.swing.JFrame {
         jButtonEEG.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButtonEEGMouseClicked(evt);
-            }
-        });
-        jButtonEEG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEEGActionPerformed(evt);
             }
         });
 
@@ -416,157 +422,69 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        EEG_S1.setText("S1");
-        EEG_S1.setActionCommand("EEGS1");
-        EEG_S1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EEG_S1ActionPerformed(evt);
-            }
-        });
+        s1EEG.setText("S1");
+        s1EEG.setActionCommand("EEGS1");
 
-        EEG_S2.setText("S2");
-        EEG_S2.setToolTipText("");
-        EEG_S2.setActionCommand("EEGS2");
-        EEG_S2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EEG_S2ActionPerformed(evt);
-            }
-        });
+        s2EEG.setText("S2");
+        s2EEG.setToolTipText("");
+        s2EEG.setActionCommand("EEGS2");
 
-        EEG_S3.setText("S3");
-        EEG_S3.setToolTipText("");
-        EEG_S3.setActionCommand("EEGS3");
-        EEG_S3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EEG_S3ActionPerformed(evt);
-            }
-        });
+        s3EEG.setText("S3");
+        s3EEG.setToolTipText("");
+        s3EEG.setActionCommand("EEGS3");
 
-        EEG_S4.setText("S4");
-        EEG_S4.setToolTipText("");
-        EEG_S4.setActionCommand("EEGS4");
-        EEG_S4.setVerifyInputWhenFocusTarget(false);
-        EEG_S4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EEG_S4ActionPerformed(evt);
-            }
-        });
+        s4EEG.setText("S4");
+        s4EEG.setToolTipText("");
+        s4EEG.setActionCommand("EEGS4");
+        s4EEG.setVerifyInputWhenFocusTarget(false);
 
-        ECG_S1.setText("S1");
-        ECG_S1.setActionCommand("ECGS1");
-        ECG_S1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ECG_S1ActionPerformed(evt);
-            }
-        });
+        s1ECG.setText("S1");
+        s1ECG.setActionCommand("ECGS1");
 
-        ECG_S2.setText("S2");
-        ECG_S2.setToolTipText("");
-        ECG_S2.setActionCommand("EEGS2");
-        ECG_S2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ECG_S2ActionPerformed(evt);
-            }
-        });
+        s2ECG.setText("S2");
+        s2ECG.setToolTipText("");
+        s2ECG.setActionCommand("EEGS2");
 
-        ECG_S3.setText("S3");
-        ECG_S3.setToolTipText("");
-        ECG_S3.setActionCommand("EEGS3");
-        ECG_S3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ECG_S3ActionPerformed(evt);
-            }
-        });
+        s3ECG.setText("S3");
+        s3ECG.setToolTipText("");
+        s3ECG.setActionCommand("EEGS3");
 
-        ECG_S4.setText("S4");
-        ECG_S4.setToolTipText("");
-        ECG_S4.setActionCommand("EEGS4");
-        ECG_S4.setVerifyInputWhenFocusTarget(false);
-        ECG_S4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ECG_S4ActionPerformed(evt);
-            }
-        });
+        s4ECG.setText("S4");
+        s4ECG.setToolTipText("");
+        s4ECG.setActionCommand("EEGS4");
+        s4ECG.setVerifyInputWhenFocusTarget(false);
 
-        GSR_S1.setText("S1");
-        GSR_S1.setActionCommand("EEGS1");
-        GSR_S1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GSR_S1ActionPerformed(evt);
-            }
-        });
+        s1GSR.setText("S1");
+        s1GSR.setActionCommand("EEGS1");
 
-        GSR_S2.setText("S2");
-        GSR_S2.setToolTipText("");
-        GSR_S2.setActionCommand("EEGS2");
-        GSR_S2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GSR_S2ActionPerformed(evt);
-            }
-        });
+        s2GSR.setText("S2");
+        s2GSR.setToolTipText("");
+        s2GSR.setActionCommand("EEGS2");
 
-        GSR_S3.setText("S3");
-        GSR_S3.setToolTipText("");
-        GSR_S3.setActionCommand("EEGS3");
-        GSR_S3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GSR_S3ActionPerformed(evt);
-            }
-        });
+        s3GSR.setText("S3");
+        s3GSR.setToolTipText("");
+        s3GSR.setActionCommand("EEGS3");
 
-        GSR_S4.setText("S4");
-        GSR_S4.setToolTipText("");
-        GSR_S4.setActionCommand("EEGS4");
-        GSR_S4.setVerifyInputWhenFocusTarget(false);
-        GSR_S4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GSR_S4ActionPerformed(evt);
-            }
-        });
+        s4GSR.setText("S4");
+        s4GSR.setToolTipText("");
+        s4GSR.setActionCommand("EEGS4");
+        s4GSR.setVerifyInputWhenFocusTarget(false);
 
-        EMG_S1.setText("S1");
-        EMG_S1.setActionCommand("EEGS1");
-        EMG_S1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EMG_S1ActionPerformed(evt);
-            }
-        });
+        s1EMG.setText("S1");
+        s1EMG.setActionCommand("EEGS1");
 
-        EMG_S2.setText("S2");
-        EMG_S2.setToolTipText("");
-        EMG_S2.setActionCommand("EEGS2");
-        EMG_S2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EMG_S2ActionPerformed(evt);
-            }
-        });
+        s2EMG.setText("S2");
+        s2EMG.setToolTipText("");
+        s2EMG.setActionCommand("EEGS2");
 
-        EMG_S3.setText("S3");
-        EMG_S3.setToolTipText("");
-        EMG_S3.setActionCommand("EEGS3");
-        EMG_S3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EMG_S3ActionPerformed(evt);
-            }
-        });
+        s3EMG.setText("S3");
+        s3EMG.setToolTipText("");
+        s3EMG.setActionCommand("EEGS3");
 
-        EMG_S4.setText("S4");
-        EMG_S4.setToolTipText("");
-        EMG_S4.setActionCommand("EEGS4");
-        EMG_S4.setVerifyInputWhenFocusTarget(false);
-        EMG_S4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EMG_S4ActionPerformed(evt);
-            }
-        });
-
-        jToggleButtonExit.setBackground(new java.awt.Color(204, 204, 204));
-        jToggleButtonExit.setText("Exit");
-        jToggleButtonExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonExitActionPerformed(evt);
-            }
-        });
+        s4EMG.setText("S4");
+        s4EMG.setToolTipText("");
+        s4EMG.setActionCommand("EEGS4");
+        s4EMG.setVerifyInputWhenFocusTarget(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -582,22 +500,22 @@ public class MainWindow extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EMG_S1)
-                                    .addComponent(EMG_S2)
-                                    .addComponent(EMG_S3)
-                                    .addComponent(EMG_S4)))
+                                    .addComponent(s1EMG)
+                                    .addComponent(s2EMG)
+                                    .addComponent(s3EMG)
+                                    .addComponent(s4EMG)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(EEG_S3, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EEG_S2, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EEG_S1)
-                                    .addComponent(EEG_S4))))
+                                    .addComponent(s3EEG, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(s2EEG, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(s1EEG)
+                                    .addComponent(s4EEG))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                                 .addComponent(jPanelUserVideo, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(11, 11, 11))
                             .addGroup(layout.createSequentialGroup()
@@ -608,19 +526,19 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(7, 7, 7)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ECG_S1)
-                                            .addComponent(ECG_S2)
-                                            .addComponent(ECG_S3)
-                                            .addComponent(ECG_S4))
+                                            .addComponent(s1ECG)
+                                            .addComponent(s2ECG)
+                                            .addComponent(s3ECG)
+                                            .addComponent(s4ECG))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jPanelECG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(5, 5, 5)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(GSR_S1)
-                                            .addComponent(GSR_S2)
-                                            .addComponent(GSR_S3)
-                                            .addComponent(GSR_S4))
+                                            .addComponent(s1GSR)
+                                            .addComponent(s2GSR)
+                                            .addComponent(s3GSR)
+                                            .addComponent(s4GSR))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jPanelGSR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -628,9 +546,7 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jToggleButtonStart)
                         .addGap(18, 18, 18)
-                        .addComponent(jToggleButtonStop)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButtonExit))
+                        .addComponent(jToggleButtonStop))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -659,74 +575,73 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(ECG_S1)
+                                        .addComponent(s1ECG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ECG_S2)
+                                        .addComponent(s2ECG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ECG_S3)
+                                        .addComponent(s3ECG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(ECG_S4)
+                                        .addComponent(s4ECG)
                                         .addGap(110, 110, 110))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(EEG_S1)
+                                        .addComponent(s1EEG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(EEG_S2)
+                                        .addComponent(s2EEG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(EEG_S3)
+                                        .addComponent(s3EEG)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(EEG_S4)
+                                        .addComponent(s4EEG)
                                         .addGap(109, 109, 109)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanelEMG, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanelGSR, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
-                                .addComponent(GSR_S1)
+                                .addComponent(s1GSR)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(GSR_S2)
+                                .addComponent(s2GSR)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(GSR_S3)
+                                .addComponent(s3GSR)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(GSR_S4))
+                                .addComponent(s4GSR))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(EMG_S1)
+                                .addComponent(s1EMG)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(EMG_S2)
+                                .addComponent(s2EMG)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(EMG_S3)
+                                .addComponent(s3EMG)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(EMG_S4)))
+                                .addComponent(s4EMG)))
                         .addGap(18, 18, 18)
                         .addComponent(slider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jToggleButtonStart)
-                            .addComponent(jToggleButtonStop)
-                            .addComponent(jToggleButtonExit))
+                            .addComponent(jToggleButtonStop))
                         .addGap(39, 39, 39)
                         .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
-        EEG_S1.getAccessibleContext().setAccessibleName("EEGS1");
-        EEG_S2.getAccessibleContext().setAccessibleName("EEGS2");
-        EEG_S3.getAccessibleContext().setAccessibleName("EEGS3");
-        EEG_S4.getAccessibleContext().setAccessibleName("EEGS4");
-        ECG_S1.getAccessibleContext().setAccessibleName("ECGS1");
-        ECG_S2.getAccessibleContext().setAccessibleName("ECGS2");
-        ECG_S3.getAccessibleContext().setAccessibleName("ECGS3");
-        ECG_S4.getAccessibleContext().setAccessibleName("ECGS4");
-        GSR_S1.getAccessibleContext().setAccessibleName("GSRS1");
-        GSR_S2.getAccessibleContext().setAccessibleName("GSRS2");
-        GSR_S3.getAccessibleContext().setAccessibleName("GSRS3");
-        GSR_S4.getAccessibleContext().setAccessibleName("GSRS4");
-        EMG_S1.getAccessibleContext().setAccessibleName("EMGS1");
-        EMG_S2.getAccessibleContext().setAccessibleName("EMGS2");
-        EMG_S3.getAccessibleContext().setAccessibleName("EMGS3");
-        EMG_S4.getAccessibleContext().setAccessibleName("EMGS4");
+        s1EEG.getAccessibleContext().setAccessibleName("EEGS1");
+        s2EEG.getAccessibleContext().setAccessibleName("EEGS2");
+        s3EEG.getAccessibleContext().setAccessibleName("EEGS3");
+        s4EEG.getAccessibleContext().setAccessibleName("EEGS4");
+        s1ECG.getAccessibleContext().setAccessibleName("ECGS1");
+        s2ECG.getAccessibleContext().setAccessibleName("ECGS2");
+        s3ECG.getAccessibleContext().setAccessibleName("ECGS3");
+        s4ECG.getAccessibleContext().setAccessibleName("ECGS4");
+        s1GSR.getAccessibleContext().setAccessibleName("GSRS1");
+        s2GSR.getAccessibleContext().setAccessibleName("GSRS2");
+        s3GSR.getAccessibleContext().setAccessibleName("GSRS3");
+        s4GSR.getAccessibleContext().setAccessibleName("GSRS4");
+        s1EMG.getAccessibleContext().setAccessibleName("EMGS1");
+        s2EMG.getAccessibleContext().setAccessibleName("EMGS2");
+        s3EMG.getAccessibleContext().setAccessibleName("EMGS3");
+        s4EMG.getAccessibleContext().setAccessibleName("EMGS4");
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -794,7 +709,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
 
         switch (jToggleButtonStart.getText()) {
+            
             case "Start":
+                
                 /* Process all entries from map */
                 for (Map.Entry<javax.swing.JPanel, String> entry : fileToOpen.entrySet()) {
 
@@ -817,46 +734,21 @@ public class MainWindow extends javax.swing.JFrame {
                         Thread thread = new Thread(videoPlotters[videoPlotterCount]);
                         thread.start();
                         videoPlotterCount++;
+                        
                     } else {
-
-                        Map<Integer, Boolean> whichSignalCalled = new HashMap<>();
-                        Map<Integer, Boolean> EEGSignals = new HashMap<>();
-                        Map<Integer, Boolean> ECGSignals = new HashMap<>();
-                        Map<Integer, Boolean> EMGSignals = new HashMap<>();
-                        Map<Integer, Boolean> GSRSignals = new HashMap<>();
-                        /* Processing for graphs */
-                        if (panelSelected.getName().contains("EEG")) {
-                            EEGSignals.put(1, EEG_S1_On);
-                            EEGSignals.put(2, EEG_S2_On);
-                            EEGSignals.put(3, EEG_S3_On);
-                            EEGSignals.put(4, EEG_S4_On);
-                            whichSignalCalled.putAll(EEGSignals);
-                        } else if (panelSelected.getName().contains("ECG")) {
-                            ECGSignals.put(1, ECG_S1_On);
-                            ECGSignals.put(2, ECG_S2_On);
-                            ECGSignals.put(3, ECG_S3_On);
-                            ECGSignals.put(4, ECG_S4_On);
-
-                            whichSignalCalled.putAll(ECGSignals);
-                        } else if (panelSelected.getName().contains("EMG")) {
-                            EMGSignals.put(1, EMG_S1_On);
-                            EMGSignals.put(2, EMG_S2_On);
-                            EMGSignals.put(3, EMG_S3_On);
-                            EMGSignals.put(4, EMG_S4_On);
-
-                            whichSignalCalled.putAll(EMGSignals);
-                        } else if (panelSelected.getName().contains("GSR")) {
-                            GSRSignals.put(1, GSR_S1_On);
-                            GSRSignals.put(2, GSR_S2_On);
-                            GSRSignals.put(3, GSR_S3_On);
-                            GSRSignals.put(4, GSR_S4_On);
-
-                            whichSignalCalled.putAll(GSRSignals);
-                        }
-                        GraphPlotter newGraph = new GraphPlotter(panelSelected, localFilePath, whichSignalCalled);
+                        
+                        /* Processing for Graphs */
+                        javax.swing.JCheckBox[] signals = panelSignalMap.get(panelSelected);
+                        GraphPlotter newGraph;
+                        newGraph = new GraphPlotter(panelSelected, localFilePath,
+                                                    signals[0].isSelected(),
+                                                    signals[1].isSelected(),
+                                                    signals[2].isSelected(),
+                                                    signals[3].isSelected());
                         graphThreads[graphCount] = new Thread(newGraph);
                         graphThreads[graphCount].start();
                         graphCount++;
+                        
                     }
                 }
                 /* Create thread for slider and set its status to true */
@@ -869,6 +761,7 @@ public class MainWindow extends javax.swing.JFrame {
                 jToggleButtonStart.setText("Pause");
                 jToggleButtonStart.setBackground(Color.YELLOW);
                 break;
+                
             case "Pause":
                 /* Pause all running videos */
                 for (int i = 0; i < videoPlotterCount; i++) {
@@ -904,7 +797,6 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
 
     private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
-
         /* Change the current time of video according to slider */
         sharedData.set(slider.getValue());
         for (int i = 0; i < videoPlotterCount; i++) {
@@ -913,7 +805,6 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_sliderMouseDragged
 
     private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
-
         /* Get ECG file from user */
         if (browseComputer == true) {
             chooseFile(jPanelECG);
@@ -921,7 +812,6 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonECGMouseClicked
 
     private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
-
         /* Get EEG file from user */
         if (browseComputer == true) {
             chooseFile(jPanelEEG);
@@ -943,149 +833,7 @@ public class MainWindow extends javax.swing.JFrame {
             chooseFile(jPanelEMG);
         }
     }//GEN-LAST:event_jButtonEMGMouseClicked
-
-    private void EEG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S1ActionPerformed
-        if (EEGSetOn) {
-            if (EEG_S1.isSelected()) {
-
-                EEG_S1_On = true;
-            }
-        }
-
-    }//GEN-LAST:event_EEG_S1ActionPerformed
-
-    private void EEG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S2ActionPerformed
-        if (EEGSetOn) {
-            if (EEG_S2.isSelected()) {
-
-                EEG_S2_On = true;
-            }
-        }
-    }//GEN-LAST:event_EEG_S2ActionPerformed
-
-    private void EEG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S3ActionPerformed
-        if (EEGSetOn) {
-            if (EEG_S3.isSelected()) {
-
-                EEG_S3_On = true;
-            }
-        }
-    }//GEN-LAST:event_EEG_S3ActionPerformed
-
-    private void EEG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EEG_S4ActionPerformed
-        if (EEGSetOn) {
-            if (EEG_S4.isSelected()) {
-
-                EEG_S4_On = true;
-            }
-        }
-    }//GEN-LAST:event_EEG_S4ActionPerformed
-
-    private void ECG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S1ActionPerformed
-        if (ECGSetOn) {
-            if (ECG_S1.isSelected()) {
-                ECG_S1_On = true;
-            }
-        }
-    }//GEN-LAST:event_ECG_S1ActionPerformed
-
-    private void ECG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S2ActionPerformed
-        if (ECGSetOn) {
-            if (ECG_S2.isSelected()) {
-                ECG_S2_On = true;
-            }
-        }
-    }//GEN-LAST:event_ECG_S2ActionPerformed
-
-    private void ECG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S3ActionPerformed
-        if (ECGSetOn) {
-            if (ECG_S3.isSelected()) {
-                ECG_S3_On = true;
-            }
-        }
-    }//GEN-LAST:event_ECG_S3ActionPerformed
-
-    private void ECG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ECG_S4ActionPerformed
-        if (ECGSetOn) {
-            if (ECG_S4.isSelected()) {
-                ECG_S4_On = true;
-            }
-        }
-    }//GEN-LAST:event_ECG_S4ActionPerformed
-
-    private void GSR_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S1ActionPerformed
-        if (GSRSetOn) {
-            if (GSR_S1.isSelected()) {
-                GSR_S1_On = true;
-            }
-        }
-    }//GEN-LAST:event_GSR_S1ActionPerformed
-
-    private void GSR_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S2ActionPerformed
-        if (GSRSetOn) {
-            if (GSR_S2.isSelected()) {
-                GSR_S2_On = true;
-            }
-        }
-    }//GEN-LAST:event_GSR_S2ActionPerformed
-
-    private void GSR_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S3ActionPerformed
-        if (GSRSetOn) {
-            if (GSR_S3.isSelected()) {
-                GSR_S3_On = true;
-            }
-        }
-    }//GEN-LAST:event_GSR_S3ActionPerformed
-
-    private void GSR_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GSR_S4ActionPerformed
-        if (GSRSetOn) {
-            if (GSR_S4.isSelected()) {
-                GSR_S4_On = true;
-            }
-        }
-    }//GEN-LAST:event_GSR_S4ActionPerformed
-
-    private void EMG_S1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S1ActionPerformed
-        if (EMGSetOn) {
-            if (EMG_S1.isSelected()) {
-                EMG_S1_On = true;
-            }
-        }
-    }//GEN-LAST:event_EMG_S1ActionPerformed
-
-    private void EMG_S2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S2ActionPerformed
-        if (EMGSetOn) {
-            if (EMG_S2.isSelected()) {
-                EMG_S2_On = true;
-            }
-        }
-    }//GEN-LAST:event_EMG_S2ActionPerformed
-
-    private void EMG_S3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S3ActionPerformed
-        if (EMGSetOn) {
-            if (EMG_S3.isSelected()) {
-                EMG_S3_On = true;
-            }
-        }
-    }//GEN-LAST:event_EMG_S3ActionPerformed
-
-    private void EMG_S4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EMG_S4ActionPerformed
-        if (EMGSetOn) {
-            if (EMG_S4.isSelected()) {
-                EMG_S4_On = true;
-            }
-        }
-    }//GEN-LAST:event_EMG_S4ActionPerformed
-
-    private void jButtonEEGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEEGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonEEGActionPerformed
-
-    private void jToggleButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonExitActionPerformed
-        if (jToggleButtonExit.getText().equals("Exit") && jToggleButtonExit.isEnabled()) {
-            System.exit(0);
-    }//GEN-LAST:event_jToggleButtonExitActionPerformed
-    }
+    
 
     /**
      * @param args the command line arguments
@@ -1099,22 +847,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox ECG_S1;
-    private javax.swing.JCheckBox ECG_S2;
-    private javax.swing.JCheckBox ECG_S3;
-    private javax.swing.JCheckBox ECG_S4;
-    private javax.swing.JCheckBox EEG_S1;
-    private javax.swing.JCheckBox EEG_S2;
-    private javax.swing.JCheckBox EEG_S3;
-    private javax.swing.JCheckBox EEG_S4;
-    private javax.swing.JCheckBox EMG_S1;
-    private javax.swing.JCheckBox EMG_S2;
-    private javax.swing.JCheckBox EMG_S3;
-    private javax.swing.JCheckBox EMG_S4;
-    private javax.swing.JCheckBox GSR_S1;
-    private javax.swing.JCheckBox GSR_S2;
-    private javax.swing.JCheckBox GSR_S3;
-    private javax.swing.JCheckBox GSR_S4;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButtonECG;
     private javax.swing.JButton jButtonEEG;
@@ -1139,9 +871,24 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonLive;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDisplayMessages;
-    private javax.swing.JToggleButton jToggleButtonExit;
     private javax.swing.JToggleButton jToggleButtonStart;
     private javax.swing.JToggleButton jToggleButtonStop;
+    private javax.swing.JCheckBox s1ECG;
+    private javax.swing.JCheckBox s1EEG;
+    private javax.swing.JCheckBox s1EMG;
+    private javax.swing.JCheckBox s1GSR;
+    private javax.swing.JCheckBox s2ECG;
+    private javax.swing.JCheckBox s2EEG;
+    private javax.swing.JCheckBox s2EMG;
+    private javax.swing.JCheckBox s2GSR;
+    private javax.swing.JCheckBox s3ECG;
+    private javax.swing.JCheckBox s3EEG;
+    private javax.swing.JCheckBox s3EMG;
+    private javax.swing.JCheckBox s3GSR;
+    private javax.swing.JCheckBox s4ECG;
+    private javax.swing.JCheckBox s4EEG;
+    private javax.swing.JCheckBox s4EMG;
+    private javax.swing.JCheckBox s4GSR;
     private javax.swing.JSlider slider;
     // End of variables declaration//GEN-END:variables
 
@@ -1154,24 +901,6 @@ public class MainWindow extends javax.swing.JFrame {
     private int videoPlotterCount;
     private SharedData sharedData;
     private String eyeTrackingDataPath;
-    private boolean EEGSetOn = false;
-    private boolean ECGSetOn = false;
-    private boolean EMGSetOn = false;
-    private boolean GSRSetOn = false;
-    public boolean EEG_S1_On = false;
-    public boolean EEG_S2_On = false;
-    public boolean EEG_S3_On = false;
-    public boolean EEG_S4_On = false;
-    public boolean ECG_S1_On = false;
-    public boolean ECG_S2_On = false;
-    public boolean ECG_S3_On = false;
-    public boolean ECG_S4_On = false;
-    public boolean EMG_S1_On = false;
-    public boolean EMG_S2_On = false;
-    public boolean EMG_S3_On = false;
-    public boolean EMG_S4_On = false;
-    public boolean GSR_S1_On = false;
-    public boolean GSR_S2_On = false;
-    public boolean GSR_S3_On = false;
-    public boolean GSR_S4_On = false;
+    private Map<javax.swing.JPanel, javax.swing.JCheckBox[]> panelSignalMap;
+
 }

@@ -63,19 +63,19 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="EMG_S1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="EMG_S2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="EMG_S3" alignment="0" max="-2" attributes="0"/>
-                                  <Component id="EMG_S4" alignment="0" max="-2" attributes="0"/>
+                                  <Component id="s1EMG" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="s2EMG" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="s3EMG" alignment="0" max="-2" attributes="0"/>
+                                  <Component id="s4EMG" alignment="0" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="EEG_S3" alignment="0" max="-2" attributes="0"/>
-                                  <Component id="EEG_S2" alignment="0" max="-2" attributes="0"/>
-                                  <Component id="EEG_S1" alignment="1" max="-2" attributes="0"/>
-                                  <Component id="EEG_S4" max="-2" attributes="0"/>
+                                  <Component id="s3EEG" alignment="0" max="-2" attributes="0"/>
+                                  <Component id="s2EEG" alignment="0" max="-2" attributes="0"/>
+                                  <Component id="s1EEG" alignment="1" max="-2" attributes="0"/>
+                                  <Component id="s4EEG" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -83,7 +83,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jPanelEyeTracking" min="-2" pref="468" max="-2" attributes="0"/>
-                              <EmptySpace pref="40" max="32767" attributes="0"/>
+                              <EmptySpace pref="49" max="32767" attributes="0"/>
                               <Component id="jPanelUserVideo" min="-2" pref="452" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           </Group>
@@ -96,10 +96,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="ECG_S1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ECG_S2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="ECG_S3" alignment="0" max="-2" attributes="0"/>
-                                          <Component id="ECG_S4" alignment="0" max="-2" attributes="0"/>
+                                          <Component id="s1ECG" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="s2ECG" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="s3ECG" alignment="0" max="-2" attributes="0"/>
+                                          <Component id="s4ECG" alignment="0" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanelECG" min="-2" max="-2" attributes="0"/>
@@ -107,10 +107,10 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="GSR_S1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="GSR_S2" alignment="0" max="-2" attributes="0"/>
-                                          <Component id="GSR_S3" alignment="0" max="-2" attributes="0"/>
-                                          <Component id="GSR_S4" alignment="0" max="-2" attributes="0"/>
+                                          <Component id="s1GSR" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="s2GSR" alignment="0" max="-2" attributes="0"/>
+                                          <Component id="s3GSR" alignment="0" max="-2" attributes="0"/>
+                                          <Component id="s4GSR" alignment="0" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jPanelGSR" min="-2" max="-2" attributes="0"/>
@@ -126,8 +126,6 @@
                       <Component id="jToggleButtonStart" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jToggleButtonStop" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jToggleButtonExit" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -165,23 +163,23 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="ECG_S1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s1ECG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ECG_S2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s2ECG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ECG_S3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s3ECG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="ECG_S4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s4ECG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="EEG_S1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s1EEG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="EEG_S2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s2EEG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="EEG_S3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s3EEG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="EEG_S4" min="-2" max="-2" attributes="0"/>
+                                      <Component id="s4EEG" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -192,23 +190,23 @@
                           <Component id="jPanelGSR" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="GSR_S1" min="-2" max="-2" attributes="0"/>
+                              <Component id="s1GSR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="GSR_S2" min="-2" max="-2" attributes="0"/>
+                              <Component id="s2GSR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="GSR_S3" min="-2" max="-2" attributes="0"/>
+                              <Component id="s3GSR" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="GSR_S4" min="-2" max="-2" attributes="0"/>
+                              <Component id="s4GSR" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                              <Component id="EMG_S1" min="-2" max="-2" attributes="0"/>
+                              <Component id="s1EMG" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="EMG_S2" min="-2" max="-2" attributes="0"/>
+                              <Component id="s2EMG" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="EMG_S3" min="-2" max="-2" attributes="0"/>
+                              <Component id="s3EMG" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="EMG_S4" min="-2" max="-2" attributes="0"/>
+                              <Component id="s4EMG" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -216,17 +214,16 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="24" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jToggleButtonStart" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jToggleButtonStop" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jToggleButtonExit" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jPanelMessages" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="174" max="32767" attributes="0"/>
+              <EmptySpace pref="173" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -501,7 +498,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonEEGMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEEGActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonECG">
@@ -707,7 +703,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonStartActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EEG_S1">
+    <Component class="javax.swing.JCheckBox" name="s1EEG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S1"/>
         <Property name="actionCommand" type="java.lang.String" value="EEGS1"/>
@@ -715,11 +711,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EEGS1"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EEG_S1ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EEG_S2">
+    <Component class="javax.swing.JCheckBox" name="s2EEG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -728,11 +721,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EEGS2"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EEG_S2ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EEG_S3">
+    <Component class="javax.swing.JCheckBox" name="s3EEG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S3"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -741,11 +731,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EEGS3"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EEG_S3ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EEG_S4">
+    <Component class="javax.swing.JCheckBox" name="s4EEG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S4"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -755,11 +742,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EEGS4"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EEG_S4ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="ECG_S1">
+    <Component class="javax.swing.JCheckBox" name="s1ECG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S1"/>
         <Property name="actionCommand" type="java.lang.String" value="ECGS1"/>
@@ -767,11 +751,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ECGS1"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ECG_S1ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="ECG_S2">
+    <Component class="javax.swing.JCheckBox" name="s2ECG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -780,11 +761,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ECGS2"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ECG_S2ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="ECG_S3">
+    <Component class="javax.swing.JCheckBox" name="s3ECG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S3"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -793,11 +771,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ECGS3"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ECG_S3ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="ECG_S4">
+    <Component class="javax.swing.JCheckBox" name="s4ECG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S4"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -807,11 +782,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ECGS4"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ECG_S4ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="GSR_S1">
+    <Component class="javax.swing.JCheckBox" name="s1GSR">
       <Properties>
         <Property name="text" type="java.lang.String" value="S1"/>
         <Property name="actionCommand" type="java.lang.String" value="EEGS1"/>
@@ -819,11 +791,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="GSRS1"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GSR_S1ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="GSR_S2">
+    <Component class="javax.swing.JCheckBox" name="s2GSR">
       <Properties>
         <Property name="text" type="java.lang.String" value="S2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -832,11 +801,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="GSRS2"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GSR_S2ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="GSR_S3">
+    <Component class="javax.swing.JCheckBox" name="s3GSR">
       <Properties>
         <Property name="text" type="java.lang.String" value="S3"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -845,11 +811,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="GSRS3"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GSR_S3ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="GSR_S4">
+    <Component class="javax.swing.JCheckBox" name="s4GSR">
       <Properties>
         <Property name="text" type="java.lang.String" value="S4"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -859,11 +822,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="GSRS4"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GSR_S4ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EMG_S1">
+    <Component class="javax.swing.JCheckBox" name="s1EMG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S1"/>
         <Property name="actionCommand" type="java.lang.String" value="EEGS1"/>
@@ -871,11 +831,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EMGS1"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EMG_S1ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EMG_S2">
+    <Component class="javax.swing.JCheckBox" name="s2EMG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S2"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -884,11 +841,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EMGS2"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EMG_S2ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EMG_S3">
+    <Component class="javax.swing.JCheckBox" name="s3EMG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S3"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -897,11 +851,8 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EMGS3"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EMG_S3ActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="EMG_S4">
+    <Component class="javax.swing.JCheckBox" name="s4EMG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S4"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -911,20 +862,6 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EMGS4"/>
       </AccessibilityProperties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EMG_S4ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButtonExit">
-      <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="cc" green="cc" red="cc" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Exit"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonExitActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
