@@ -5,6 +5,10 @@
  */
 package biometricgui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Shared data class contains data shared between different objects in GUI
  *
@@ -15,7 +19,7 @@ public class SharedData {
     public SharedData() {
 
         /* Slider status true indicates it is running */
-        sliderStatus = true;
+        fileLengths = new ArrayList<>();
     }
 
     public static SharedData getSharedDataInstance() {
@@ -27,6 +31,18 @@ public class SharedData {
         return instance;
     }
 
+    public synchronized void setFileLength(int x) {
+        fileLengths.add(x);
+    }
+    
+    public synchronized int getNoThreadsCalculatedFileLength() {
+        return fileLengths.size();
+    }
+    
+    public synchronized int getMaxFileLength() {
+        return Collections.max(fileLengths);
+    }
+    
     public synchronized void set(int newVal) {
         sliderValue = newVal;
     }
@@ -43,7 +59,24 @@ public class SharedData {
         sliderStatus = status;
     }
 
+    public synchronized boolean isStopEverything() {
+        return stopEveryThing;
+    }
+    
+    public synchronized void stopEverything() {
+        fileLengths = new ArrayList<>();
+        stopEveryThing = true;
+        sliderStatus = false;
+    }
+    
+    public synchronized void startEverything() {
+        sliderStatus = true;
+        stopEveryThing = false;
+    }
+
     private int sliderValue;
     private static SharedData instance;
     private boolean sliderStatus;
+    private List<Integer> fileLengths;
+    private boolean stopEveryThing;
 }

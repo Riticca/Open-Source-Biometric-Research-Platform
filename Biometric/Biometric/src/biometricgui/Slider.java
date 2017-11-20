@@ -5,8 +5,10 @@
  */
 package biometricgui;
 
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  * @author Vikram Wathodkar (vikram.wathodkar@gmail.com) This class read the
@@ -20,18 +22,36 @@ public class Slider implements Runnable {
     public Slider(javax.swing.JSlider sliderRef) {
         slider = sliderRef;
         sharedData = SharedData.getSharedDataInstance();
+        sliderMinVal = 25201;
+        sliderMaxVal = sharedData.getMaxFileLength();
+    }
+
+    public void initSlider(int minVal, int maxVal)
+    { 
+        sliderMinVal = minVal;
+        sliderMaxVal = maxVal;
     }
 
     @Override
     public void run() {
 
-        slider.setValue(0);
+        Hashtable labelTable = new Hashtable();
+        
+        slider.setMinimum(sliderMinVal);
+        slider.setMaximum(sliderMaxVal);
+        slider.setValue(sliderMinVal);
+        
+        //slider.setLabelTable(slider.createStandardLabels(10));
+        
+        labelTable.put( new Integer(0), new JLabel("Start")); //sliderMinVal.toString()));
+        labelTable.put( sliderMaxVal, new JLabel("end")); //sliderMaxVal.toString()));
+        slider.setLabelTable(labelTable);
+        sharedData.set(sliderMinVal);
 
-        sharedData.set(0);
-
-        while (true) {
+        while ( !sharedData.isStopEverything() ) {
+            
             try {
-                while (slider.getValue() < 100 && sharedData.getSliderStatus()) {
+                while (slider.getValue() < sliderMaxVal && sharedData.getSliderStatus()) {
                     slider.setValue(slider.getValue() + 1);
                     sharedData.set(slider.getValue());
                     Thread.sleep(1000);
@@ -42,8 +62,11 @@ public class Slider implements Runnable {
 
             //sharedData.setSliderStatus(false);
         }
+        slider.setValue(sliderMinVal);
     }
 
     private javax.swing.JSlider slider;
     private SharedData sharedData;
+    private Integer sliderMaxVal;
+    private Integer sliderMinVal;
 }

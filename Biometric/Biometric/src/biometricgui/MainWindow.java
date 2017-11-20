@@ -8,10 +8,8 @@ package biometricgui;
 import java.awt.*;
 import java.awt.Color;
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JCheckBox;
 import javax.swing.JFileChooser;
 
 public class MainWindow extends javax.swing.JFrame {
@@ -38,6 +36,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         /* Data to be synchronized between threads */
         sharedData = SharedData.getSharedDataInstance();
+        
+        /* Initialization of window components */
         initComponents();
         
         /* Hashmap for panels and signals */
@@ -48,9 +48,9 @@ public class MainWindow extends javax.swing.JFrame {
             put(jPanelECG, new javax.swing.JCheckBox[]{s1ECG, s2ECG, s3ECG, s4ECG});
             put(jPanelGSR, new javax.swing.JCheckBox[]{s1GSR, s2GSR, s3GSR, s4GSR});
         }};
-        //System.out.println(panelSignalMap.get("EEG Graph")[0]);
-        /* Initialization of window components */
-        
+
+        jToggleButtonStop.setEnabled(false);
+        jToggleButtonStart.setEnabled(true);
     }
 
     /**
@@ -117,14 +117,13 @@ public class MainWindow extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1390, 900));
         setResizable(false);
 
-        slider.setMajorTickSpacing(10);
         slider.setMinorTickSpacing(1);
-        slider.setPaintLabels(true);
         slider.setPaintTicks(true);
         slider.setSnapToTicks(true);
         slider.setToolTipText("");
         slider.setValue(0);
         slider.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        slider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         slider.setPreferredSize(new java.awt.Dimension(200, 40));
         slider.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -406,7 +405,6 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 173, Short.MAX_VALUE)
         );
 
-        jToggleButtonStop.setBackground(new java.awt.Color(204, 0, 0));
         jToggleButtonStop.setText("Stop");
         jToggleButtonStop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,7 +412,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        jToggleButtonStart.setBackground(new java.awt.Color(0, 255, 0));
         jToggleButtonStart.setText("Start");
         jToggleButtonStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -687,23 +684,26 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
 
-        if (jToggleButtonStop.getText().equals("Stop") && jToggleButtonStop.isEnabled()) {
-
-            /* Stop all graph threads
-            for (Thread graphThread : graphThreads) {
-                graphThread.stop();
-            }
-             */
             /* Stop all videos */
             for (int i = 0; i < videoPlotterCount; i++) {
                 videoPlotters[i].stopVideo();
             }
+            sharedData.stopEverything();
+            sharedData.setSliderStatus(false);
+
+            videoPlotterCount = 0;
+            graphCount = 0;
+
+            videoPlotters = new VideoPlotter[2];;
+            graphThreads = new Thread[4];
+            fileToOpen = new HashMap<>();;
+
+            System.gc();
 
             /* Change the color of button */
             jToggleButtonStart.setText("Start");
-            jToggleButtonStart.setBackground(Color.GREEN);
+            jToggleButtonStop.setEnabled(false);
 
-        }
     }//GEN-LAST:event_jToggleButtonStopActionPerformed
 
     private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
@@ -751,39 +751,50 @@ public class MainWindow extends javax.swing.JFrame {
                         
                     }
                 }
+                
                 /* Create thread for slider and set its status to true */
                 sharedData.setSliderStatus(true);
+                sharedData.startEverything();
                 Slider firstThread = new Slider(slider);
                 Thread thread = new Thread(firstThread);
                 thread.start();
+
                 /* Change Start button label to Pause */
-                jToggleButtonStop.setEnabled(true);
                 jToggleButtonStart.setText("Pause");
-                jToggleButtonStart.setBackground(Color.YELLOW);
+
+                jToggleButtonStop.setEnabled(true);
                 break;
                 
             case "Pause":
+
                 /* Pause all running videos */
                 for (int i = 0; i < videoPlotterCount; i++) {
                     videoPlotters[i].pauseVideo();
                 }
+
                 /* Disable slider */
                 sharedData.setSliderStatus(false);
+
                 /* Change Pause button label to Resume */
                 jToggleButtonStart.setText("Resume");
-                jToggleButtonStart.setBackground(Color.GREEN);
+                
                 break;
+                
             case "Resume":
+
                 /* Resume all videos */
                 for (int i = 0; i < videoPlotterCount; i++) {
                     videoPlotters[i].resumeVideo();
                 }
+
                 /* Change Resume button label to Pause */
                 jToggleButtonStart.setText("Pause");
-                jToggleButtonStart.setBackground(Color.YELLOW);
+
                 /* Enable slider */
                 sharedData.setSliderStatus(true);
+
                 break;
+
             default:
                 break;
         }
