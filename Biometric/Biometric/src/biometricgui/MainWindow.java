@@ -8,6 +8,7 @@ package biometricgui;
 import java.awt.*;
 import java.awt.Color;
 import java.io.File;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFileChooser;
@@ -49,8 +50,8 @@ public class MainWindow extends javax.swing.JFrame {
             put(jPanelGSR, new javax.swing.JCheckBox[]{s1GSR, s2GSR, s3GSR, s4GSR});
         }};
 
-        jToggleButtonStop.setEnabled(false);
-        jToggleButtonStart.setEnabled(true);
+        jButtonStop.setEnabled(false);
+
     }
 
     /**
@@ -87,8 +88,6 @@ public class MainWindow extends javax.swing.JFrame {
         jPanelGSR = new javax.swing.JPanel();
         jPanelEEG = new javax.swing.JPanel();
         jPanelEMG = new javax.swing.JPanel();
-        jToggleButtonStop = new javax.swing.JToggleButton();
-        jToggleButtonStart = new javax.swing.JToggleButton();
         s1EEG = new javax.swing.JCheckBox();
         s2EEG = new javax.swing.JCheckBox();
         s3EEG = new javax.swing.JCheckBox();
@@ -105,6 +104,8 @@ public class MainWindow extends javax.swing.JFrame {
         s2EMG = new javax.swing.JCheckBox();
         s3EMG = new javax.swing.JCheckBox();
         s4EMG = new javax.swing.JCheckBox();
+        jButtonStop = new javax.swing.JButton();
+        jButtonStart = new javax.swing.JButton();
 
         jFileChooser1.setDialogTitle("This is my open dialog");
 
@@ -405,20 +406,6 @@ public class MainWindow extends javax.swing.JFrame {
             .addGap(0, 173, Short.MAX_VALUE)
         );
 
-        jToggleButtonStop.setText("Stop");
-        jToggleButtonStop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonStopActionPerformed(evt);
-            }
-        });
-
-        jToggleButtonStart.setText("Start");
-        jToggleButtonStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButtonStartActionPerformed(evt);
-            }
-        });
-
         s1EEG.setText("S1");
         s1EEG.setActionCommand("EEGS1");
 
@@ -483,6 +470,20 @@ public class MainWindow extends javax.swing.JFrame {
         s4EMG.setActionCommand("EEGS4");
         s4EMG.setVerifyInputWhenFocusTarget(false);
 
+        jButtonStop.setText("Stop");
+        jButtonStop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonStopMouseClicked(evt);
+            }
+        });
+
+        jButtonStart.setText("Start");
+        jButtonStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButtonStartMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -540,10 +541,10 @@ public class MainWindow extends javax.swing.JFrame {
                                         .addComponent(jPanelGSR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jToggleButtonStart)
-                        .addGap(18, 18, 18)
-                        .addComponent(jToggleButtonStop))
+                        .addGap(22, 22, 22)
+                        .addComponent(jButtonStart)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonStop))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -616,8 +617,8 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButtonStart)
-                            .addComponent(jToggleButtonStop))
+                            .addComponent(jButtonStop)
+                            .addComponent(jButtonStart))
                         .addGap(39, 39, 39)
                         .addComponent(jPanelMessages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(173, Short.MAX_VALUE))
@@ -639,6 +640,8 @@ public class MainWindow extends javax.swing.JFrame {
         s2EMG.getAccessibleContext().setAccessibleName("EMGS2");
         s3EMG.getAccessibleContext().setAccessibleName("EMGS3");
         s4EMG.getAccessibleContext().setAccessibleName("EMGS4");
+        jButtonStop.getAccessibleContext().setAccessibleName("jButtonStop");
+        jButtonStart.getAccessibleContext().setAccessibleName("jButtonStart");
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -658,13 +661,59 @@ public class MainWindow extends javax.swing.JFrame {
         /* Get input file from user */
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.showOpenDialog(null);
+        String filename;
 
         try {
             File fileRef = fileChooser.getSelectedFile();
+            filename = fileRef.getName();
+
+            if ( panelName == jPanelEyeTracking )
+                if ( "mp4".equals(filename.substring(filename.lastIndexOf(".") + 1, 
+                        filename.length())) )
+                    jTextAreaDisplayMessages.append(fileRef.getName() + 
+                        " File is selected for Eye Tracking video" + "\n");
+                else {
+                    jTextAreaDisplayMessages.append(
+                        "Wrong file selected for eye tracking video; File format should be mp4\n");
+                    return;
+                }
+            else if ( panelName == jPanelUserVideo )
+                    if ( "mp4".equals(filename.substring(filename.lastIndexOf(".") + 1, 
+                            filename.length())) )
+                        jTextAreaDisplayMessages.append(fileRef.getName() + 
+                          " File is selected for User video" + "\n");
+                    else {
+                        jTextAreaDisplayMessages.append(
+                            "Wrong file selected for user video; File format should be mp4\n");
+                        return;
+                    }
+            else {
+                if ( "csv".equals(filename.substring(filename.lastIndexOf(".") + 1, 
+                        filename.length())) )
+                    jTextAreaDisplayMessages.append(fileRef.getName() + 
+                        " File is selected for " + 
+                        panelName.getName().substring(0, 3) + "\n");
+                else {
+                    jTextAreaDisplayMessages.append(
+                       "Wrong file selected for Biometric Data; File format should be csv\n");
+                    return;
+                }
+            }
+
             if (panelName != null)
                 fileToOpen.put(panelName, fileRef.getAbsolutePath());
-            else
-                eyeTrackingDataPath = fileRef.getAbsolutePath();
+            else {
+                if ( "csv".equals(filename.substring(filename.lastIndexOf(".") + 1, 
+                        filename.length())) ) {
+                    eyeTrackingDataPath = fileRef.getAbsolutePath();
+                    jTextAreaDisplayMessages.append(fileRef.getName() + 
+                        " File is selected for Eye Tracking Data" + "\n");
+                } else {
+                    jTextAreaDisplayMessages.append(
+                       "Wrong file selected for Eye Tracking; File format should be csv\n");
+                }
+            }
+            
         } catch (NullPointerException e) {
             System.out.println("Null pointer exception");
         }
@@ -682,9 +731,52 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonUserVideoMouseClicked
 
-    private void jToggleButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStopActionPerformed
+    private void jButtonEyeTrackingDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingDataMouseClicked
+        if (browseComputer == true) {
+            chooseFile(null);
+        }
+    }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
 
-            /* Stop all videos */
+    private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
+        /* Change the current time of video according to slider */
+        sharedData.set(slider.getValue());
+        for (int i = 0; i < videoPlotterCount; i++) {
+            videoPlotters[i].setMediaValue(slider.getValue());
+        }
+    }//GEN-LAST:event_sliderMouseDragged
+
+    private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
+        /* Get ECG file from user */
+        if (browseComputer == true) {
+            chooseFile(jPanelECG);
+        }
+    }//GEN-LAST:event_jButtonECGMouseClicked
+
+    private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
+        /* Get EEG file from user */
+        if (browseComputer == true) {
+            chooseFile(jPanelEEG);
+        }
+    }//GEN-LAST:event_jButtonEEGMouseClicked
+
+    private void jButtonGSRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGSRMouseClicked
+
+        /* Get GSR file from user */
+        if (browseComputer == true) {
+            chooseFile(jPanelGSR);
+        }
+    }//GEN-LAST:event_jButtonGSRMouseClicked
+
+    private void jButtonEMGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEMGMouseClicked
+
+        /* Get EMG file from user */
+        if (browseComputer == true) {
+            chooseFile(jPanelEMG);
+        }
+    }//GEN-LAST:event_jButtonEMGMouseClicked
+
+    private void jButtonStopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStopMouseClicked
+                   /* Stop all videos */
             for (int i = 0; i < videoPlotterCount; i++) {
                 videoPlotters[i].stopVideo();
             }
@@ -701,14 +793,14 @@ public class MainWindow extends javax.swing.JFrame {
             System.gc();
 
             /* Change the color of button */
-            jToggleButtonStart.setText("Start");
-            jToggleButtonStop.setEnabled(false);
+            jButtonStart.setText("Start");
+            jButtonStop.setEnabled(false);
+            jTextAreaDisplayMessages.append("Application is stopped\n");
+    }//GEN-LAST:event_jButtonStopMouseClicked
 
-    }//GEN-LAST:event_jToggleButtonStopActionPerformed
-
-    private void jToggleButtonStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonStartActionPerformed
-
-        switch (jToggleButtonStart.getText()) {
+    private void jButtonStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStartMouseClicked
+        
+        switch (jButtonStart.getText()) {
             
             case "Start":
                 
@@ -760,9 +852,10 @@ public class MainWindow extends javax.swing.JFrame {
                 thread.start();
 
                 /* Change Start button label to Pause */
-                jToggleButtonStart.setText("Pause");
+                jButtonStart.setText("Pause");
 
-                jToggleButtonStop.setEnabled(true);
+                jButtonStop.setEnabled(true);
+                jTextAreaDisplayMessages.append("Application is started\n");
                 break;
                 
             case "Pause":
@@ -776,8 +869,9 @@ public class MainWindow extends javax.swing.JFrame {
                 sharedData.setSliderStatus(false);
 
                 /* Change Pause button label to Resume */
-                jToggleButtonStart.setText("Resume");
+                jButtonStart.setText("Resume");
                 
+                jTextAreaDisplayMessages.append("Application is paused\n");
                 break;
                 
             case "Resume":
@@ -788,62 +882,19 @@ public class MainWindow extends javax.swing.JFrame {
                 }
 
                 /* Change Resume button label to Pause */
-                jToggleButtonStart.setText("Pause");
+                jButtonStart.setText("Pause");
 
                 /* Enable slider */
                 sharedData.setSliderStatus(true);
 
+                jTextAreaDisplayMessages.append("Application resumed\n");
                 break;
 
             default:
                 break;
         }
 
-    }//GEN-LAST:event_jToggleButtonStartActionPerformed
-
-    private void jButtonEyeTrackingDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingDataMouseClicked
-        if (browseComputer == true) {
-            chooseFile(null);
-        }
-    }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
-
-    private void sliderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sliderMouseDragged
-        /* Change the current time of video according to slider */
-        sharedData.set(slider.getValue());
-        for (int i = 0; i < videoPlotterCount; i++) {
-            videoPlotters[i].setMediaValue(slider.getValue());
-        }
-    }//GEN-LAST:event_sliderMouseDragged
-
-    private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
-        /* Get ECG file from user */
-        if (browseComputer == true) {
-            chooseFile(jPanelECG);
-        }
-    }//GEN-LAST:event_jButtonECGMouseClicked
-
-    private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
-        /* Get EEG file from user */
-        if (browseComputer == true) {
-            chooseFile(jPanelEEG);
-        }
-    }//GEN-LAST:event_jButtonEEGMouseClicked
-
-    private void jButtonGSRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGSRMouseClicked
-
-        /* Get GSR file from user */
-        if (browseComputer == true) {
-            chooseFile(jPanelGSR);
-        }
-    }//GEN-LAST:event_jButtonGSRMouseClicked
-
-    private void jButtonEMGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEMGMouseClicked
-
-        /* Get EMG file from user */
-        if (browseComputer == true) {
-            chooseFile(jPanelEMG);
-        }
-    }//GEN-LAST:event_jButtonEMGMouseClicked
+    }//GEN-LAST:event_jButtonStartMouseClicked
     
 
     /**
@@ -865,6 +916,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton jButtonEyeTracking;
     private javax.swing.JButton jButtonEyeTrackingData;
     private javax.swing.JButton jButtonGSR;
+    private javax.swing.JButton jButtonStart;
+    private javax.swing.JButton jButtonStop;
     private javax.swing.JButton jButtonUserVideo;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
@@ -882,8 +935,6 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonLive;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextAreaDisplayMessages;
-    private javax.swing.JToggleButton jToggleButtonStart;
-    private javax.swing.JToggleButton jToggleButtonStop;
     private javax.swing.JCheckBox s1ECG;
     private javax.swing.JCheckBox s1EEG;
     private javax.swing.JCheckBox s1EMG;

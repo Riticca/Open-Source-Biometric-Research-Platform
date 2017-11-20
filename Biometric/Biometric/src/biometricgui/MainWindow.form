@@ -122,10 +122,10 @@
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="jToggleButtonStart" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jToggleButtonStop" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="jButtonStart" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButtonStop" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -216,8 +216,8 @@
                       <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="24" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jToggleButtonStart" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jToggleButtonStop" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonStop" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonStart" alignment="3" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jPanelMessages" min="-2" max="-2" attributes="0"/>
@@ -682,22 +682,6 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Component class="javax.swing.JToggleButton" name="jToggleButtonStop">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Stop"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonStopActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JToggleButton" name="jToggleButtonStart">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Start"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButtonStartActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JCheckBox" name="s1EEG">
       <Properties>
         <Property name="text" type="java.lang.String" value="S1"/>
@@ -857,6 +841,28 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="EMGS4"/>
       </AccessibilityProperties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonStop">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Stop"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jButtonStop"/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonStopMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonStart">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start"/>
+      </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="jButtonStart"/>
+      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButtonStartMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
