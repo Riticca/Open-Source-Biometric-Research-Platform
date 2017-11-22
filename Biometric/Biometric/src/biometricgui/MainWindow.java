@@ -667,42 +667,42 @@ public class MainWindow extends javax.swing.JFrame {
             File fileRef = fileChooser.getSelectedFile();
             filename = fileRef.getName();
 
-            if ( panelName == jPanelEyeTracking )
-                if ( "mp4".equals(filename.substring(filename.lastIndexOf(".") + 1, 
-                        filename.length())) )
-                    jTextAreaDisplayMessages.append(fileRef.getName() + 
-                        " File is selected for Eye Tracking video" + "\n");
-                else {
-                    jTextAreaDisplayMessages.append(
-                        "Wrong file selected for eye tracking video; File format should be mp4\n");
-                    return;
-                }
-            else if ( panelName == jPanelUserVideo )
+            if (panelName != null) {
+                if ( panelName == jPanelEyeTracking )
                     if ( "mp4".equals(filename.substring(filename.lastIndexOf(".") + 1, 
                             filename.length())) )
                         jTextAreaDisplayMessages.append(fileRef.getName() + 
-                          " File is selected for User video" + "\n");
+                            " File is selected for Eye Tracking video" + "\n");
                     else {
                         jTextAreaDisplayMessages.append(
-                            "Wrong file selected for user video; File format should be mp4\n");
+                            "Wrong file selected for eye tracking video; File format should be mp4\n");
                         return;
                     }
-            else {
-                if ( "csv".equals(filename.substring(filename.lastIndexOf(".") + 1, 
-                        filename.length())) )
-                    jTextAreaDisplayMessages.append(fileRef.getName() + 
-                        " File is selected for " + 
-                        panelName.getName().substring(0, 3) + "\n");
+                else if ( panelName == jPanelUserVideo )
+                        if ( "mp4".equals(filename.substring(filename.lastIndexOf(".") + 1, 
+                                filename.length())) )
+                            jTextAreaDisplayMessages.append(fileRef.getName() + 
+                              " File is selected for User video" + "\n");
+                        else {
+                            jTextAreaDisplayMessages.append(
+                                "Wrong file selected for user video; File format should be mp4\n");
+                            return;
+                        }
                 else {
-                    jTextAreaDisplayMessages.append(
-                       "Wrong file selected for Biometric Data; File format should be csv\n");
-                    return;
+                    if ( "csv".equals(filename.substring(filename.lastIndexOf(".") + 1, 
+                            filename.length())) )
+                        jTextAreaDisplayMessages.append(fileRef.getName() + 
+                            " File is selected for " + 
+                            panelName.getName().substring(0, 3) + "\n");
+                    else {
+                        jTextAreaDisplayMessages.append(
+                           "Wrong file selected for Biometric Data; File format should be csv\n");
+                        return;
+                    }
                 }
-            }
-
-            if (panelName != null)
                 fileToOpen.put(panelName, fileRef.getAbsolutePath());
-            else {
+            
+            } else {
                 if ( "csv".equals(filename.substring(filename.lastIndexOf(".") + 1, 
                         filename.length())) ) {
                     eyeTrackingDataPath = fileRef.getAbsolutePath();
