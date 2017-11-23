@@ -11,8 +11,6 @@ import java.util.List;
 
 /**
  * Shared data class contains data shared between different objects in GUI
- *
- * @author Vikram Wathodkar (vikram.wathodkar@gmail.com)
  */
 public class SharedData {
 

@@ -11,8 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
- * @author Vikram Wathodkar (vikram.wathodkar@gmail.com) This class read the
- * given file and plot graph on panels
+ * This class read the given file and plot graph on panels
  */
 public class Slider implements Runnable {
 
@@ -44,7 +43,7 @@ public class Slider implements Runnable {
         //slider.setLabelTable(slider.createStandardLabels(10));
         
         labelTable.put( new Integer(0), new JLabel("Start")); //sliderMinVal.toString()));
-        labelTable.put( sliderMaxVal, new JLabel("end")); //sliderMaxVal.toString()));
+        labelTable.put( sliderMaxVal, new JLabel("End")); //sliderMaxVal.toString()));
         slider.setLabelTable(labelTable);
         sharedData.set(sliderMinVal);
 

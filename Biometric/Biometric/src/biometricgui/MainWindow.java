@@ -732,7 +732,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonUserVideoMouseClicked
 
     private void jButtonEyeTrackingDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEyeTrackingDataMouseClicked
-        if (browseComputer == true) {
+        if (browseComputer ) {
             chooseFile(null);
         }
     }//GEN-LAST:event_jButtonEyeTrackingDataMouseClicked
@@ -747,14 +747,14 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void jButtonECGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonECGMouseClicked
         /* Get ECG file from user */
-        if (browseComputer == true) {
+        if (browseComputer) {
             chooseFile(jPanelECG);
         }
     }//GEN-LAST:event_jButtonECGMouseClicked
 
     private void jButtonEEGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEEGMouseClicked
         /* Get EEG file from user */
-        if (browseComputer == true) {
+        if (browseComputer) {
             chooseFile(jPanelEEG);
         }
     }//GEN-LAST:event_jButtonEEGMouseClicked
@@ -762,7 +762,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButtonGSRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonGSRMouseClicked
 
         /* Get GSR file from user */
-        if (browseComputer == true) {
+        if (browseComputer) {
             chooseFile(jPanelGSR);
         }
     }//GEN-LAST:event_jButtonGSRMouseClicked
@@ -770,7 +770,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void jButtonEMGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonEMGMouseClicked
 
         /* Get EMG file from user */
-        if (browseComputer == true) {
+        if (browseComputer) {
             chooseFile(jPanelEMG);
         }
     }//GEN-LAST:event_jButtonEMGMouseClicked
@@ -786,16 +786,16 @@ public class MainWindow extends javax.swing.JFrame {
             videoPlotterCount = 0;
             graphCount = 0;
 
-            videoPlotters = new VideoPlotter[2];;
+            videoPlotters = new VideoPlotter[2];
             graphThreads = new Thread[4];
-            fileToOpen = new HashMap<>();;
+            fileToOpen = new HashMap<>();
 
             System.gc();
 
             /* Change the color of button */
             jButtonStart.setText("Start");
             jButtonStop.setEnabled(false);
-            jTextAreaDisplayMessages.append("Application is stopped\n");
+            jTextAreaDisplayMessages.append("Application has now stopped\n");
     }//GEN-LAST:event_jButtonStopMouseClicked
 
     private void jButtonStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonStartMouseClicked
