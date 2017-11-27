@@ -38,6 +38,8 @@ public class SharedData {
     }
     
     public synchronized int getMaxFileLength() {
+        if ( fileLengths.isEmpty() )
+            return 0;
         return Collections.max(fileLengths);
     }
     
