@@ -3,6 +3,12 @@
 Open Source Biometric Research Platform (OSBP) is a desktop-based application that is used primarily by the researchers for
 visualization of different biometric signals/parameters for a given user. It acts like a platform that is helpful for researchers to visualize & study biometric signals such as Eye Tracking, Galvanic Skin Response, EEG, EMG, ECG. The biometric signals are synchronized with the video and screen recording section of the application.
 
+
+
+![Screenshot](Documents/image.jpg?raw=true "OSBP")
+
+
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -36,9 +42,13 @@ $ java -jar Biometric.jar
 ## Authors
 
 [Vikram Wathodkar](https://www.linkedin.com/in/vikramwathodkar/) (vikram.wathodkar@gmail.com)
+
 Tushar Pandey
+
 Siddharth Sivakumaran
+
 Santhosh Samuel Murali
+
 Riticca Gargi Soni
 
 ## License
