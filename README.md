@@ -16,7 +16,7 @@ Install the prerequisites using following commands
 $ sudo apt-get install openjdk-8-jdk-headless openjdk-8-jre-headless openjdk-8-jdk openjdk-8-jre vlc git
 ```
 
-### Download Software
+## Download Software
 
 Download the software using following command -
 
@@ -33,3 +33,14 @@ $ cd SER-517-518-Open-Source-Biometric-Research-Platform-Gr34/executable
 $ java -jar Biometric.jar
 ```
 
+## Authors
+
+[Vikram Wathodkar](https://www.linkedin.com/in/vikramwathodkar/) (vikram.wathodkar@gmail.com)
+Tushar Pandey
+Siddharth Sivakumaran
+Santhosh Samuel Murali
+Riticca Gargi Soni
+
+## License
+
+OSBP is opensource and made available under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
