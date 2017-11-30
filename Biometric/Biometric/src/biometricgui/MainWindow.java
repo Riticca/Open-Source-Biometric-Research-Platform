@@ -123,7 +123,7 @@ public class MainWindow extends javax.swing.JFrame {
         slider.setSnapToTicks(true);
         slider.setToolTipText("");
         slider.setValue(0);
-        slider.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        slider.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         slider.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         slider.setPreferredSize(new java.awt.Dimension(200, 40));
         slider.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -187,7 +187,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanelEyeTrackingLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabelEyeTracking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(289, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
         jPanelEyeTrackingLayout.setVerticalGroup(
             jPanelEyeTrackingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -815,8 +815,10 @@ public class MainWindow extends javax.swing.JFrame {
                             || (panelSelected.getName().equals("jPanelUserVideo"))) {
 
                         /* Hide the label on video */
-                        javax.swing.JLabel lab = (javax.swing.JLabel) panelSelected.getComponent(0);
-                        lab.setVisible(false);
+                        if ( panelSelected.getComponentCount() > 0 ) {
+                            javax.swing.JLabel lab = (javax.swing.JLabel) panelSelected.getComponent(0);
+                            lab.setVisible(false);
+                        }
 
                         /* Create and start threads for video */
                         if (panelSelected.getName().equals("jPanelEyeTracking"))

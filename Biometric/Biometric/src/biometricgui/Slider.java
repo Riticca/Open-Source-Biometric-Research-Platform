@@ -5,6 +5,8 @@
  */
 package biometricgui;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,10 +43,12 @@ public class Slider implements Runnable {
         slider.setValue(sliderMinVal);
         
         //slider.setLabelTable(slider.createStandardLabels(10));
+        SimpleDateFormat d = new SimpleDateFormat("hh:mm:ss");
         
-        labelTable.put( new Integer(0), new JLabel("Start")); //sliderMinVal.toString()));
-        labelTable.put( sliderMaxVal, new JLabel("End")); //sliderMaxVal.toString()));
+        labelTable.put( sliderMinVal, new JLabel("00:00:00") );
+        labelTable.put( sliderMaxVal, new JLabel(d.format(new Date((sliderMaxVal) * 1000L))) );
         slider.setLabelTable(labelTable);
+        slider.setPaintLabels(true);
         sharedData.set(sliderMinVal);
 
         while ( !sharedData.isStopEverything() ) {

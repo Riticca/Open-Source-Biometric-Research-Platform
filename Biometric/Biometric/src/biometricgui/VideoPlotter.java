@@ -81,8 +81,9 @@ public final class VideoPlotter implements Runnable {
         } catch (InterruptedException ex) {
             Logger.getLogger(VideoPlotter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        mediaPlayer.pause();
-        sharedData.setFileLength(25201 + (int) (mediaPlayer.getLength()/1000));
+        //mediaPlayer.pause();
+        maxVideoLen = 25201 + (int) (mediaPlayer.getLength()/1000);
+        sharedData.setFileLength(maxVideoLen);
     }
 
     public void initTimeToXYMap()
@@ -174,6 +175,8 @@ public final class VideoPlotter implements Runnable {
      */
     public void stopVideo() {
         mediaPlayer.stop();
+        mediaPlayer.enableOverlay(false);
+        mediaPlayer.release();
         panel.removeAll();
         panel.repaint();
         panel.validate();
@@ -184,6 +187,7 @@ public final class VideoPlotter implements Runnable {
      */
     public void resumeVideo() {
         mediaPlayer.start();
+        //mediaPlayer.play();
     }
 
     private BufferedReader fileReader;
@@ -197,4 +201,5 @@ public final class VideoPlotter implements Runnable {
     private final String eyeTrackingDataPath;
     private Map<Integer, Integer[]> timeToXYMap;
     private SimpleDateFormat df;
+    private int maxVideoLen;
 }
