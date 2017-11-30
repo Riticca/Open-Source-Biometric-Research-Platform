@@ -6,9 +6,7 @@
 package biometricgui;
 
 import java.awt.*;
-import java.awt.Color;
 import java.io.File;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JFileChooser;
@@ -51,6 +49,8 @@ public class MainWindow extends javax.swing.JFrame {
         }};
 
         jButtonStop.setEnabled(false);
+        
+        eyeTrackingDataPath = null;
 
     }
 
@@ -789,6 +789,7 @@ public class MainWindow extends javax.swing.JFrame {
             videoPlotters = new VideoPlotter[2];
             graphThreads = new Thread[4];
             fileToOpen = new HashMap<>();
+            eyeTrackingDataPath = null;
 
             System.gc();
 

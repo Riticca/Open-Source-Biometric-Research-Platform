@@ -180,6 +180,7 @@ public final class VideoPlotter implements Runnable {
         panel.removeAll();
         panel.repaint();
         panel.validate();
+        eyeTrackingDataPath = null;
     }
 
     /**
@@ -198,7 +199,7 @@ public final class VideoPlotter implements Runnable {
     private CanvasVideoSurface videoSurface;
     private MediaPlayerFactory mediaPlayerFactory;
     private MainWindow mainWindow;
-    private final String eyeTrackingDataPath;
+    private String eyeTrackingDataPath;
     private Map<Integer, Integer[]> timeToXYMap;
     private SimpleDateFormat df;
     private int maxVideoLen;

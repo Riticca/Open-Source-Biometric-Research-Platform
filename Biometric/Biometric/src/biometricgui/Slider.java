@@ -41,8 +41,7 @@ public class Slider implements Runnable {
         slider.setMinimum(sliderMinVal);
         slider.setMaximum(sliderMaxVal);
         slider.setValue(sliderMinVal);
-        
-        //slider.setLabelTable(slider.createStandardLabels(10));
+
         SimpleDateFormat d = new SimpleDateFormat("hh:mm:ss");
         
         labelTable.put( sliderMinVal, new JLabel("00:00:00") );
@@ -66,6 +65,7 @@ public class Slider implements Runnable {
             //sharedData.setSliderStatus(false);
         }
         slider.setValue(sliderMinVal);
+        slider.setPaintLabels(false);
     }
 
     private javax.swing.JSlider slider;

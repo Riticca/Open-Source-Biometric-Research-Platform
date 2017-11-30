@@ -106,7 +106,7 @@ public final class GraphPlotter implements Runnable {
     }
     
     private TimeSeriesCollection createDataset(int currValue, int signal) {
-        final TimeSeries set;
+        TimeSeries set;
         set = new TimeSeries("Random Data" + currValue);
         int i = 0;
         Float currSignals[];
@@ -160,7 +160,7 @@ public final class GraphPlotter implements Runnable {
 
             /* Draw the graph */
         
-            final DateAxis axis = (DateAxis) plot.getDomainAxis();
+            DateAxis axis = (DateAxis) plot.getDomainAxis();
             axis.setDateFormatOverride(new SimpleDateFormat("HH:mm:ss"));
             
             chartPanel = new ChartPanel(chart);
